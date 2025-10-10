@@ -26,8 +26,8 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
   return (
     <div className="w-80 bg-sidebar border-r border-sidebar-border flex flex-col">
       <div className="p-6 border-b border-sidebar-border">
-        <h1 className="text-xl font-bold text-sidebar-foreground">Chrome DevTools Workshop</h1>
-        <p className="text-sm text-sidebar-foreground/70 mt-1">Master debugging with AI assistance</p>
+        <h1 className="text-xl font-bold text-sidebar-foreground">DevTools + IA en Acción</h1>
+        <p className="text-sm text-sidebar-foreground/70 mt-1">Domina la depuración con asistencia de IA</p>
       </div>
       
       <div className="flex-1 overflow-y-auto p-4 space-y-2">
@@ -47,7 +47,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
                   <div>
                     <div className="font-medium text-sidebar-foreground">{section.title}</div>
                     <div className="text-xs text-sidebar-foreground/60">
-                      {completedCount}/{totalCount} completed
+                      {completedCount}/{totalCount} completados
                     </div>
                   </div>
                 </div>
@@ -99,7 +99,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
       
       <div className="p-4 border-t border-sidebar-border">
         <div className="text-xs text-sidebar-foreground/60 text-center">
-          Progress: {completedTopics.size}/{sections.flatMap(s => s.topics).length} topics completed
+          Progreso: {completedTopics.size}/{sections.flatMap(s => s.topics).length} temas completados
         </div>
       </div>
     </div>

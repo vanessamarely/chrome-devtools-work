@@ -17,9 +17,9 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
       <div className="flex-1 flex items-center justify-center bg-background">
         <div className="text-center space-y-4">
           <ClipboardText size={64} className="text-muted-foreground mx-auto" />
-          <h2 className="text-2xl font-semibold text-foreground">Select a Topic</h2>
+          <h2 className="text-2xl font-semibold text-foreground">Selecciona un Tema</h2>
           <p className="text-muted-foreground max-w-md">
-            Choose a topic from the sidebar to start learning about Chrome DevTools and AI-powered debugging features.
+            Elige un tema de la barra lateral para comenzar a aprender sobre Chrome DevTools y las funciones de depuración con IA.
           </p>
         </div>
       </div>
@@ -35,14 +35,14 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
             {isCompleted && (
               <Badge variant="secondary" className="gap-1">
                 <CheckCircle size={14} className="text-accent" />
-                Completed
+                Completado
               </Badge>
             )}
           </div>
           {!isCompleted && (
             <Button onClick={onComplete} className="gap-2">
               <CheckCircle size={16} />
-              Mark as Complete
+              Marcar como Completado
             </Button>
           )}
         </div>
@@ -108,7 +108,7 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
 
         {topic.exercises && topic.exercises.length > 0 && (
           <div className="mt-12 space-y-6">
-            <h2 className="text-2xl font-bold text-foreground">Hands-on Exercises</h2>
+            <h2 className="text-2xl font-bold text-foreground">Ejercicios Prácticos</h2>
             {topic.exercises.map((exercise) => (
               <Card key={exercise.id} className="border-border">
                 <CardHeader>
@@ -124,7 +124,7 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
                     language={exercise.language}
                   />
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">Instructions:</h4>
+                    <h4 className="font-semibold text-foreground mb-2">Instrucciones:</h4>
                     <ol className="space-y-2">
                       {exercise.instructions.map((instruction, index) => (
                         <li key={index} className="text-foreground flex gap-3">

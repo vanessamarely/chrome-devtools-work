@@ -1,143 +1,144 @@
 import { WorkshopData } from '../types/workshop'
 
 export const workshopData: WorkshopData = {
-  title: "Chrome DevTools & AI Workshop",
+  title: "DevTools + IA en Acción",
+  description: "Usa la IA integrada en DevTools para aclarar errores, proponer correcciones seguras y priorizar mejoras de performance. Cero humo: ejercicios guiados, métricas antes/después y un proceso paso a paso que acelera tu depuración diaria en JavaScript, HTML y CSS.",
   sections: [
     {
       id: "basics",
-      title: "DevTools Basics",
+      title: "Fundamentos de DevTools",
       icon: "🔧",
       topics: [
         {
           id: "introduction",
-          title: "Introduction to DevTools",
-          content: `# Welcome to Chrome DevTools Workshop
+          title: "Introducción a DevTools",
+          content: `# Bienvenido al Taller de DevTools + IA
 
-Chrome DevTools is a set of web developer tools built directly into the Google Chrome browser. It allows developers to debug, profile, and optimize their web applications.
+Chrome DevTools es un conjunto de herramientas para desarrolladores web integradas directamente en el navegador Google Chrome. Permite a los desarrolladores depurar, perfilar y optimizar sus aplicaciones web.
 
-## What You'll Learn
+## Lo que Aprenderás
 
-In this workshop, you'll master:
-- Core DevTools panels and their purposes
-- Debugging JavaScript with breakpoints and console
-- Analyzing network performance
-- Using the new AI-powered debugging features
-- Optimizing CSS and DOM manipulation
+En este taller, dominarás:
+- Paneles principales de DevTools y sus propósitos
+- Depuración de JavaScript con breakpoints y consola
+- Análisis de rendimiento de red
+- Uso de las nuevas funciones de depuración con IA
+- Optimización de CSS y manipulación del DOM
 
-## Getting Started
+## Comenzando
 
-Open Chrome DevTools by:
-- **F12** or **Ctrl+Shift+I** (Windows/Linux)
+Abre Chrome DevTools con:
+- **F12** o **Ctrl+Shift+I** (Windows/Linux)
 - **Cmd+Option+I** (Mac)
-- Right-click → "Inspect Element"
+- Clic derecho → "Inspeccionar Elemento"
 
-Let's begin your journey to becoming a DevTools expert!`,
+¡Comencemos tu viaje para convertirte en un experto de DevTools!`,
           exercises: [
             {
               id: "open-devtools",
-              title: "Opening DevTools",
-              description: "Practice opening DevTools using different methods",
+              title: "Abriendo DevTools",
+              description: "Practica abrir DevTools usando diferentes métodos",
               code: `<!DOCTYPE html>
 <html>
 <head>
-    <title>DevTools Practice</title>
+    <title>Práctica de DevTools</title>
 </head>
 <body>
-    <h1>Hello DevTools!</h1>
-    <p id="demo">Click the button to change this text.</p>
-    <button onclick="changeText()">Change Text</button>
+    <h1>¡Hola DevTools!</h1>
+    <p id="demo">Haz clic en el botón para cambiar este texto.</p>
+    <button onclick="cambiarTexto()">Cambiar Texto</button>
     
     <script>
-        function changeText() {
-            document.getElementById("demo").innerHTML = "Text changed!";
+        function cambiarTexto() {
+            document.getElementById("demo").innerHTML = "¡Texto cambiado!";
         }
     </script>
 </body>
 </html>`,
               language: "html",
               instructions: [
-                "Copy the HTML code into a new file and save as 'practice.html'",
-                "Open the file in Chrome",
-                "Try opening DevTools using F12",
-                "Try right-clicking on the button and selecting 'Inspect Element'",
-                "Notice how DevTools highlights the selected element"
+                "Copia el código HTML en un nuevo archivo y guárdalo como 'practica.html'",
+                "Abre el archivo en Chrome",
+                "Intenta abrir DevTools usando F12",
+                "Intenta hacer clic derecho en el botón y seleccionar 'Inspeccionar Elemento'",
+                "Observa cómo DevTools resalta el elemento seleccionado"
               ]
             }
           ]
         },
         {
           id: "elements-panel",
-          title: "Elements Panel",
-          content: `# The Elements Panel
+          title: "Panel de Elementos",
+          content: `# El Panel de Elementos
 
-The Elements panel is your gateway to the DOM (Document Object Model). Here you can inspect, modify, and debug HTML structure and CSS styles in real-time.
+El panel de Elementos es tu puerta de entrada al DOM (Document Object Model). Aquí puedes inspeccionar, modificar y depurar la estructura HTML y estilos CSS en tiempo real.
 
-## Key Features
+## Características Clave
 
-### DOM Tree Navigation
-- Expand/collapse elements using the arrow icons
-- Use arrow keys to navigate the tree
-- Search for elements with **Ctrl+F**
+### Navegación del Árbol DOM
+- Expandir/contraer elementos usando los iconos de flecha
+- Usar las teclas de flecha para navegar por el árbol
+- Buscar elementos con **Ctrl+F**
 
-### Live Editing
-- Double-click any text to edit HTML content
-- Modify attributes by double-clicking them
-- Add new attributes by pressing Tab after the last attribute
+### Edición en Vivo
+- Doble clic en cualquier texto para editar contenido HTML
+- Modificar atributos haciendo doble clic en ellos
+- Agregar nuevos atributos presionando Tab después del último atributo
 
-### CSS Inspection
-- View all applied styles in the Styles pane
-- See computed values in the Computed tab
-- Identify style conflicts with strikethrough text
+### Inspección de CSS
+- Ver todos los estilos aplicados en el panel Styles
+- Ver valores calculados en la pestaña Computed
+- Identificar conflictos de estilo con texto tachado
 
-## Pro Tips
+## Consejos Pro
 
-- **H** key toggles element hiding
-- **Delete** key removes selected elements
-- **Ctrl+Z** undoes DOM changes`,
+- Tecla **H** alterna la ocultación de elementos
+- Tecla **Delete** elimina elementos seleccionados
+- **Ctrl+Z** deshace cambios del DOM`,
           exercises: [
             {
               id: "dom-manipulation",
-              title: "DOM Manipulation Practice",
-              description: "Learn to edit HTML and CSS live in the browser",
+              title: "Práctica de Manipulación del DOM",
+              description: "Aprende a editar HTML y CSS en vivo en el navegador",
               code: `<!DOCTYPE html>
 <html>
 <head>
     <style>
-        .container {
+        .contenedor {
             padding: 20px;
             margin: 10px;
             background-color: #f0f0f0;
             border-radius: 8px;
         }
         
-        .highlight {
+        .resaltado {
             background-color: yellow;
             font-weight: bold;
         }
         
-        .hidden {
+        .oculto {
             display: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>DOM Practice Area</h2>
-        <p class="text">This is some sample text.</p>
-        <button id="toggle-btn">Toggle Visibility</button>
-        <div class="hidden" id="secret">Secret content!</div>
+    <div class="contenedor">
+        <h2>Área de Práctica DOM</h2>
+        <p class="texto">Este es un texto de ejemplo.</p>
+        <button id="boton-alternar">Alternar Visibilidad</button>
+        <div class="oculto" id="secreto">¡Contenido secreto!</div>
     </div>
 </body>
 </html>`,
               language: "html",
               instructions: [
-                "Open this HTML in Chrome and open DevTools",
-                "In Elements panel, find the <p> element with class 'text'",
-                "Double-click on the text content and change it to 'Modified text!'",
-                "Right-click on the <p> element and select 'Edit as HTML'",
-                "Add class='highlight' to the <p> element",
-                "Find the div with id='secret' and remove the 'hidden' class",
-                "Notice how changes appear instantly in the browser"
+                "Abre este HTML en Chrome y abre DevTools",
+                "En el panel Elementos, encuentra el elemento <p> con clase 'texto'",
+                "Haz doble clic en el contenido de texto y cámbialo a '¡Texto modificado!'",
+                "Haz clic derecho en el elemento <p> y selecciona 'Editar como HTML'",
+                "Agrega class='resaltado' al elemento <p>",
+                "Encuentra el div con id='secreto' y elimina la clase 'oculto'",
+                "Observa cómo los cambios aparecen instantáneamente en el navegador"
               ]
             }
           ]
@@ -146,324 +147,324 @@ The Elements panel is your gateway to the DOM (Document Object Model). Here you 
     },
     {
       id: "debugging",
-      title: "JavaScript Debugging",
+      title: "Depuración de JavaScript",
       icon: "🐛",
       topics: [
         {
           id: "console-basics",
-          title: "Console Fundamentals",
-          content: `# Console Panel Mastery
+          title: "Fundamentos de la Consola",
+          content: `# Dominio del Panel de Consola
 
-The Console is your primary interface for JavaScript debugging and interaction. It's both a REPL (Read-Eval-Print Loop) and a logging destination.
+La Consola es tu interfaz principal para la depuración e interacción con JavaScript. Es tanto un REPL (Read-Eval-Print Loop) como un destino de logging.
 
-## Console Methods
+## Métodos de Consola
 
-### Basic Logging
-- \`console.log()\` - General logging
-- \`console.error()\` - Error messages (red)
-- \`console.warn()\` - Warnings (yellow)
-- \`console.info()\` - Information (blue)
+### Logging Básico
+- \`console.log()\` - Logging general
+- \`console.error()\` - Mensajes de error (rojo)
+- \`console.warn()\` - Advertencias (amarillo)
+- \`console.info()\` - Información (azul)
 
-### Advanced Logging
-- \`console.table()\` - Display arrays/objects as tables
-- \`console.group()\` - Group related logs
-- \`console.time()\` - Performance timing
-- \`console.count()\` - Count function calls
+### Logging Avanzado
+- \`console.table()\` - Mostrar arrays/objetos como tablas
+- \`console.group()\` - Agrupar logs relacionados
+- \`console.time()\` - Timing de rendimiento
+- \`console.count()\` - Contar llamadas a funciones
 
-### Debugging Helpers
+### Ayudas de Depuración
 - \`console.trace()\` - Stack trace
-- \`console.assert()\` - Conditional logging
-- \`console.clear()\` - Clear console
+- \`console.assert()\` - Logging condicional
+- \`console.clear()\` - Limpiar consola
 
-## Console API Tricks
+## Trucos de API de Consola
 
-### Object Inspection
-Use \`%o\` to get expandable object output:
+### Inspección de Objetos
+Usa \`%o\` para obtener salida expandible de objetos:
 \`\`\`javascript
-console.log('User data: %o', userObject);
+console.log('Datos de usuario: %o', objetoUsuario);
 \`\`\`
 
-### Styling Console Output
+### Estilizar Salida de Consola
 \`\`\`javascript
-console.log('%c Styled Text', 'color: blue; font-size: 20px;');
+console.log('%c Texto Estilizado', 'color: blue; font-size: 20px;');
 \`\`\``
         },
         {
           id: "breakpoints",
-          title: "Setting Breakpoints",
-          content: `# Breakpoint Debugging
+          title: "Configurando Breakpoints",
+          content: `# Depuración con Breakpoints
 
-Breakpoints pause code execution, allowing you to inspect variables, call stack, and step through code line by line.
+Los breakpoints pausan la ejecución del código, permitiéndote inspeccionar variables, call stack y recorrer el código línea por línea.
 
-## Types of Breakpoints
+## Tipos de Breakpoints
 
-### Line Breakpoints
-- Click line numbers in Sources panel
-- **F9** to toggle breakpoint on current line
-- Blue dot indicates active breakpoint
+### Breakpoints de Línea
+- Haz clic en números de línea en el panel Sources
+- **F9** para alternar breakpoint en la línea actual
+- Punto azul indica breakpoint activo
 
-### Conditional Breakpoints
-- Right-click line number → "Add conditional breakpoint"
-- Only triggers when condition is true
-- Example: \`i > 10\` or \`user.name === 'admin'\`
+### Breakpoints Condicionales
+- Clic derecho en número de línea → "Agregar breakpoint condicional"
+- Solo se activa cuando la condición es verdadera
+- Ejemplo: \`i > 10\` o \`user.name === 'admin'\`
 
-### DOM Breakpoints
-- Right-click element in Elements panel
-- Choose: subtree modifications, attribute changes, or node removal
-- Pauses when DOM changes occur
+### Breakpoints del DOM
+- Clic derecho en elemento en el panel Elementos
+- Elegir: modificaciones de subárbol, cambios de atributos, o eliminación de nodo
+- Pausa cuando ocurren cambios en el DOM
 
-### Exception Breakpoints
-- Sources panel → Pause on exceptions button
-- Can pause on all exceptions or only uncaught ones
+### Breakpoints de Excepción
+- Panel Sources → botón Pausar en excepciones
+- Puede pausar en todas las excepciones o solo las no capturadas
 
-## Stepping Through Code
+## Recorriendo el Código
 
-When paused at a breakpoint:
-- **F10** - Step over (next line)
-- **F11** - Step into (enter functions)
-- **Shift+F11** - Step out (exit current function)
-- **F8** - Resume execution
+Cuando está pausado en un breakpoint:
+- **F10** - Step over (siguiente línea)
+- **F11** - Step into (entrar a funciones)
+- **Shift+F11** - Step out (salir de función actual)
+- **F8** - Reanudar ejecución
 - **Ctrl+Shift+F10** - Step to cursor
 
-## Call Stack & Scope
+## Call Stack y Scope
 
-- **Call Stack** shows function execution chain
-- **Scope** panel shows variable values
-- **Watch** panel for monitoring specific expressions`
+- **Call Stack** muestra la cadena de ejecución de funciones
+- Panel **Scope** muestra valores de variables
+- Panel **Watch** para monitorear expresiones específicas`
         }
       ]
     },
     {
       id: "ai-features",
-      title: "AI-Powered DevTools",
+      title: "DevTools con IA",
       icon: "🤖",
       topics: [
         {
           id: "ai-console",
-          title: "AI Console Assistant",
-          content: `# AI-Powered Console Features
+          title: "Asistente de IA para Consola",
+          content: `# Funciones de Consola con IA
 
-Chrome DevTools now includes AI assistance to help debug issues, explain errors, and suggest solutions.
+Chrome DevTools ahora incluye asistencia de IA para ayudar a depurar problemas, explicar errores y sugerir soluciones.
 
-## AI Console Integration
+## Integración de IA en Consola
 
-### Error Explanation
-When JavaScript errors occur, DevTools can now provide:
-- Plain English explanations of error messages
-- Common causes for the specific error type
-- Suggested fixes and debugging steps
+### Explicación de Errores
+Cuando ocurren errores de JavaScript, DevTools ahora puede proporcionar:
+- Explicaciones en lenguaje natural de mensajes de error
+- Causas comunes para el tipo específico de error
+- Correcciones sugeridas y pasos de depuración
 
-### Code Suggestions
-The AI can help with:
-- Writing console commands
-- Generating test data
-- Creating debugging scripts
-- Explaining complex stack traces
+### Sugerencias de Código
+La IA puede ayudar con:
+- Escribir comandos de consola
+- Generar datos de prueba
+- Crear scripts de depuración
+- Explicar stack traces complejos
 
-## Using AI Features
+## Usando Funciones de IA
 
-### Enabling AI Assistant
-1. Open DevTools Settings (F1)
-2. Navigate to Experiments tab
-3. Enable "AI assistance in Console"
-4. Restart DevTools
+### Habilitando el Asistente de IA
+1. Abre Configuración de DevTools (F1)
+2. Navega a la pestaña Experiments
+3. Habilita "Asistencia de IA en Consola"
+4. Reinicia DevTools
 
-### AI Commands
-- Type natural language questions in console
-- Prefix with \`AI:\` for direct AI queries
-- Ask about error messages or code behavior
+### Comandos de IA
+- Escribe preguntas en lenguaje natural en la consola
+- Usa el prefijo \`IA:\` para consultas directas de IA
+- Pregunta sobre mensajes de error o comportamiento del código
 
-### Example Queries
+### Consultas de Ejemplo
 \`\`\`
-AI: Why is my fetch request failing?
-AI: How do I debug a memory leak?
-AI: Explain this error: TypeError: Cannot read property 'length' of undefined
+IA: ¿Por qué falla mi petición fetch?
+IA: ¿Cómo depuro una fuga de memoria?
+IA: Explica este error: TypeError: Cannot read property 'length' of undefined
 \`\`\`
 
-## AI-Powered Performance Insights
+## Insights de Rendimiento con IA
 
-The AI can analyze:
-- Performance bottlenecks
-- Memory usage patterns
-- Network optimization opportunities
-- Bundle size recommendations`
+La IA puede analizar:
+- Cuellos de botella de rendimiento
+- Patrones de uso de memoria
+- Oportunidades de optimización de red
+- Recomendaciones de tamaño de bundle`
         },
         {
           id: "ai-debugging",
-          title: "AI Debugging Assistant",
-          content: `# AI-Enhanced Debugging Workflow
+          title: "Asistente de Depuración con IA",
+          content: `# Flujo de Depuración Mejorado con IA
 
-The new AI debugging features transform how you approach complex issues by providing intelligent insights and automated analysis.
+Las nuevas funciones de depuración con IA transforman cómo abordas problemas complejos proporcionando insights inteligentes y análisis automatizado.
 
-## Smart Error Analysis
+## Análisis Inteligente de Errores
 
-### Automatic Error Context
-When errors occur, AI provides:
-- Related code analysis
-- Variable state explanations
-- Potential fix suggestions
-- Similar issue patterns
+### Contexto Automático de Errores
+Cuando ocurren errores, la IA proporciona:
+- Análisis de código relacionado
+- Explicaciones del estado de variables
+- Sugerencias de correcciones potenciales
+- Patrones de problemas similares
 
-### Call Stack Intelligence
-AI can explain:
-- Why functions were called in specific order
-- Which parameters might be causing issues
-- Expected vs actual execution flow
+### Inteligencia de Call Stack
+La IA puede explicar:
+- Por qué las funciones fueron llamadas en orden específico
+- Qué parámetros podrían estar causando problemas
+- Flujo de ejecución esperado vs actual
 
-## AI Code Analysis
+## Análisis de Código con IA
 
-### Pattern Recognition
-The AI assistant can identify:
-- Common anti-patterns in your code
-- Performance issues
-- Security vulnerabilities
-- Best practice violations
+### Reconocimiento de Patrones
+El asistente de IA puede identificar:
+- Anti-patrones comunes en tu código
+- Problemas de rendimiento
+- Vulnerabilidades de seguridad
+- Violaciones de mejores prácticas
 
-### Refactoring Suggestions
-Get AI recommendations for:
-- Code optimization
-- Better error handling
-- Improved readability
-- Modern JavaScript features
+### Sugerencias de Refactoring
+Obtén recomendaciones de IA para:
+- Optimización de código
+- Mejor manejo de errores
+- Mejora de legibilidad
+- Características modernas de JavaScript
 
-## Debugging Workflow with AI
+## Flujo de Depuración con IA
 
-1. **Encounter Error** → AI explains the error type and common causes
-2. **Set Breakpoints** → AI suggests optimal breakpoint locations
-3. **Inspect Variables** → AI explains unexpected values
-4. **Trace Execution** → AI highlights suspicious execution paths
-5. **Apply Fixes** → AI validates your solution approach
+1. **Encontrar Error** → IA explica el tipo de error y causas comunes
+2. **Configurar Breakpoints** → IA sugiere ubicaciones óptimas de breakpoints
+3. **Inspeccionar Variables** → IA explica valores inesperados
+4. **Rastrear Ejecución** → IA resalta rutas de ejecución sospechosas
+5. **Aplicar Correcciones** → IA valida tu enfoque de solución
 
-## Advanced AI Features
+## Funciones Avanzadas de IA
 
-### Learning Mode
-- AI learns from your debugging patterns
-- Provides personalized suggestions
-- Adapts to your coding style
+### Modo de Aprendizaje
+- IA aprende de tus patrones de depuración
+- Proporciona sugerencias personalizadas
+- Se adapta a tu estilo de codificación
 
-### Team Insights
-- Share AI debugging sessions
-- Collaborative problem solving
-- Knowledge base building`
+### Insights de Equipo
+- Compartir sesiones de depuración con IA
+- Resolución colaborativa de problemas
+- Construcción de base de conocimientos`
         }
       ]
     },
     {
       id: "performance",
-      title: "Performance Analysis",
+      title: "Análisis de Rendimiento",
       icon: "⚡",
       topics: [
         {
           id: "network-panel",
-          title: "Network Analysis",
-          content: `# Network Performance Optimization
+          title: "Análisis de Red",
+          content: `# Optimización de Rendimiento de Red
 
-The Network panel helps you analyze loading performance, identify bottlenecks, and optimize resource delivery.
+El panel de Red te ayuda a analizar el rendimiento de carga, identificar cuellos de botella y optimizar la entrega de recursos.
 
-## Network Panel Overview
+## Resumen del Panel de Red
 
-### Request Information
-Each network request shows:
-- **Status** - HTTP response code
-- **Type** - Resource type (XHR, JS, CSS, IMG, etc.)
-- **Initiator** - What triggered the request
-- **Size** - Transfer size vs resource size
-- **Time** - Request duration
-- **Waterfall** - Visual timeline
+### Información de Peticiones
+Cada petición de red muestra:
+- **Status** - Código de respuesta HTTP
+- **Type** - Tipo de recurso (XHR, JS, CSS, IMG, etc.)
+- **Initiator** - Qué activó la petición
+- **Size** - Tamaño de transferencia vs tamaño de recurso
+- **Time** - Duración de la petición
+- **Waterfall** - Línea de tiempo visual
 
-### Key Metrics
-- **DOMContentLoaded** - HTML parsing complete
-- **Load** - All resources finished loading
-- **Finish** - Last network activity
-- **Transfer Size** - Data sent over network
-- **Resource Size** - Uncompressed resource size
+### Métricas Clave
+- **DOMContentLoaded** - Análisis HTML completo
+- **Load** - Todos los recursos terminaron de cargar
+- **Finish** - Última actividad de red
+- **Transfer Size** - Datos enviados por red
+- **Resource Size** - Tamaño de recurso sin comprimir
 
-## Performance Analysis
+## Análisis de Rendimiento
 
-### Identify Slow Requests
-- Sort by Time column to find slowest requests
-- Look for requests > 1 second
-- Check for failed requests (red status)
+### Identificar Peticiones Lentas
+- Ordenar por columna Time para encontrar peticiones más lentas
+- Buscar peticiones > 1 segundo
+- Verificar peticiones fallidas (estado rojo)
 
-### Waterfall Analysis
-- Blue line: DOMContentLoaded event
-- Red line: Load event
-- Stacked bars show request phases:
-  - Queueing (light gray)
-  - DNS lookup (dark gray)
-  - Connecting (orange)
-  - Waiting (green)
-  - Receiving (blue)
+### Análisis de Waterfall
+- Línea azul: evento DOMContentLoaded
+- Línea roja: evento Load
+- Barras apiladas muestran fases de petición:
+  - Queueing (gris claro)
+  - DNS lookup (gris oscuro)
+  - Connecting (naranja)
+  - Waiting (verde)
+  - Receiving (azul)
 
-### Common Issues
-- **Large bundle sizes** - Split code, lazy load
-- **Too many requests** - Bundle resources, use HTTP/2
-- **Slow server response** - Optimize backend, use CDN
-- **Render blocking** - Async/defer scripts, critical CSS`
+### Problemas Comunes
+- **Tamaños de bundle grandes** - Dividir código, carga lazy
+- **Demasiadas peticiones** - Agrupar recursos, usar HTTP/2
+- **Respuesta lenta del servidor** - Optimizar backend, usar CDN
+- **Bloqueo de renderizado** - Scripts async/defer, CSS crítico`
         },
         {
           id: "lighthouse",
-          title: "Lighthouse Audits",
-          content: `# Lighthouse Performance Audits
+          title: "Auditorías Lighthouse",
+          content: `# Auditorías de Rendimiento Lighthouse
 
-Lighthouse provides automated auditing for performance, accessibility, best practices, SEO, and Progressive Web App features.
+Lighthouse proporciona auditorías automatizadas para rendimiento, accesibilidad, mejores prácticas, SEO y características de Progressive Web App.
 
-## Running Lighthouse
+## Ejecutando Lighthouse
 
-### In DevTools
-1. Open DevTools
-2. Navigate to Lighthouse tab
-3. Select audit categories
-4. Choose device type (Mobile/Desktop)
-5. Click "Generate report"
+### En DevTools
+1. Abre DevTools
+2. Navega a la pestaña Lighthouse
+3. Selecciona categorías de auditoría
+4. Elige tipo de dispositivo (Móvil/Escritorio)
+5. Haz clic en "Generar reporte"
 
-### Audit Categories
+### Categorías de Auditoría
 
-#### Performance
+#### Rendimiento
 - First Contentful Paint (FCP)
 - Largest Contentful Paint (LCP)
 - Cumulative Layout Shift (CLS)
 - Time to Interactive (TTI)
 - Total Blocking Time (TBT)
 
-#### Accessibility
-- Color contrast ratios
-- Keyboard navigation
-- Screen reader compatibility
-- ARIA implementation
+#### Accesibilidad
+- Ratios de contraste de color
+- Navegación por teclado
+- Compatibilidad con lectores de pantalla
+- Implementación ARIA
 
-#### Best Practices
-- HTTPS usage
-- No deprecated APIs
-- Console error count
-- Security headers
+#### Mejores Prácticas
+- Uso de HTTPS
+- No APIs obsoletas
+- Conteo de errores de consola
+- Headers de seguridad
 
 #### SEO
-- Meta descriptions
-- Title elements
-- Mobile-friendly design
-- Structured data
+- Meta descripciones
+- Elementos de título
+- Diseño amigable para móviles
+- Datos estructurados
 
-## Performance Optimization
+## Optimización de Rendimiento
 
-### Critical Metrics
-- **LCP < 2.5s** - Optimize largest elements
-- **FID < 100ms** - Reduce JavaScript execution
-- **CLS < 0.1** - Prevent layout shifts
+### Métricas Críticas
+- **LCP < 2.5s** - Optimizar elementos más grandes
+- **FID < 100ms** - Reducir ejecución de JavaScript
+- **CLS < 0.1** - Prevenir cambios de layout
 
-### Common Fixes
-- Compress images (WebP format)
-- Minify CSS/JavaScript
-- Use Content Delivery Network (CDN)
-- Enable gzip compression
-- Lazy load non-critical resources
-- Preload critical resources
+### Correcciones Comunes
+- Comprimir imágenes (formato WebP)
+- Minificar CSS/JavaScript
+- Usar Content Delivery Network (CDN)
+- Habilitar compresión gzip
+- Carga lazy de recursos no críticos
+- Precargar recursos críticos
 
-### Monitoring Performance
-- Set performance budgets
-- Regular Lighthouse CI integration
+### Monitoreo de Rendimiento
+- Establecer presupuestos de rendimiento
+- Integración regular de Lighthouse CI
 - Real User Monitoring (RUM)
-- Synthetic testing in CI/CD`
+- Pruebas sintéticas en CI/CD`
         }
       ]
     }

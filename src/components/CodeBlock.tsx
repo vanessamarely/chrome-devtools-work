@@ -34,12 +34,12 @@ export function CodeBlock({ code, language }: CodeBlockProps) {
           {copied ? (
             <>
               <Check size={14} />
-              Copied!
+              ¡Copiado!
             </>
           ) : (
             <>
               <Copy size={14} />
-              Copy
+              Copiar
             </>
           )}
         </Button>

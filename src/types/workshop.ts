@@ -23,5 +23,6 @@ export interface WorkshopSection {
 
 export interface WorkshopData {
   title: string
+  description?: string
   sections: WorkshopSection[]
 }
