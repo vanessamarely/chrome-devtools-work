@@ -8,7 +8,11 @@ function App() {
   const [selectedTopic, setSelectedTopic] = useState<string>('introduction')
   const [completedTopicsString, setCompletedTopicsString] = useKV('completed-topics', '')
 
-  const completedTopics = new Set(completedTopicsString ? completedTopicsString.split(',') : [])
+  const completedTopics = new Set(
+    completedTopicsString && typeof completedTopicsString === 'string' 
+      ? completedTopicsString.split(',') 
+      : []
+  )
 
   const handleTopicSelect = (topicId: string) => {
     setSelectedTopic(topicId)
@@ -16,7 +20,9 @@ function App() {
 
   const handleTopicComplete = (topicId: string) => {
     if (!completedTopics.has(topicId)) {
-      const currentTopics = completedTopicsString ? completedTopicsString.split(',') : []
+      const currentTopics = completedTopicsString && typeof completedTopicsString === 'string' 
+        ? completedTopicsString.split(',') 
+        : []
       const newCompleted = [...currentTopics, topicId]
       setCompletedTopicsString(newCompleted.join(','))
     }
