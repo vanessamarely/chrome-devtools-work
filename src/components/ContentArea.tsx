@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CodeBlock } from './CodeBlock'
 import { InteractiveExercise } from './InteractiveExercise'
+import { MiniLabComponent } from './MiniLab'
 import { ProgressDashboard } from './ProgressDashboard'
 import { WorkshopTopic } from '../types/workshop'
 import { workshopData } from '../data/workshopData'
@@ -167,6 +168,13 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
               />
             ))}
           </div>
+        )}
+
+        {topic.miniLab && (
+          <MiniLabComponent
+            miniLab={topic.miniLab}
+            topicId={topic.id}
+          />
         )}
       </div>
     </div>

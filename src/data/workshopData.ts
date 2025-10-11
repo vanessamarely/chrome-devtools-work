@@ -2,11 +2,11 @@ import { WorkshopData } from '../types/workshop'
 
 export const workshopData: WorkshopData = {
   title: "DevTools + IA en Acción",
-  description: "Usa la IA integrada en DevTools para aclarar errores, proponer correcciones seguras y priorizar mejoras de performance. Cero humo: ejercicios guiados, métricas antes/después y un proceso paso a paso que acelera tu depuración diaria en JavaScript, HTML y CSS.",
+  description: "Usa la IA integrada en DevTools para aclarar errores, proponer correcciones seguras y priorizar mejoras de performance. Cero humo: mini labs guiados, métricas antes/después y un proceso paso a paso que acelera tu depuración diaria en JavaScript, HTML y CSS.",
   sections: [
     {
-      id: "basics",
-      title: "Fundamentos de DevTools",
+      id: "fundamentals",
+      title: "Conceptos Básicos y Paneles DevTools",
       icon: "🔧",
       topics: [
         {
@@ -19,11 +19,11 @@ Chrome DevTools es un conjunto de herramientas para desarrolladores web integrad
 ## Lo que Aprenderás
 
 En este taller, dominarás:
-- Paneles principales de DevTools y sus propósitos
-- Depuración de JavaScript con breakpoints y consola
-- Análisis de rendimiento de red
-- Uso de las nuevas funciones de depuración con IA
-- Optimización de CSS y manipulación del DOM
+- Paneles fundamentales de DevTools: Elements, Console, Sources, Network, Performance
+- Conceptos básicos de depuración y análisis
+- Técnicas de manipulación del DOM y CSS
+- Análisis de rendimiento y red
+- Integración de IA en cada panel para acelerar tu flujo de trabajo
 
 ## Comenzando
 
@@ -33,254 +33,145 @@ Abre Chrome DevTools con:
 - Clic derecho → "Inspeccionar Elemento"
 
 ¡Comencemos tu viaje para convertirte en un experto de DevTools!`,
-          exercises: [
-            {
-              id: "open-devtools",
-              title: "Abriendo DevTools",
-              description: "Practica abrir DevTools usando diferentes métodos",
-              code: `<!DOCTYPE html>
-<html>
-<head>
-    <title>Práctica de DevTools</title>
-</head>
-<body>
-    <h1>¡Hola DevTools!</h1>
-    <p id="demo">Haz clic en el botón para cambiar este texto.</p>
-    <button onclick="cambiarTexto()">Cambiar Texto</button>
-    
-    <script>
-        function cambiarTexto() {
-            document.getElementById("demo").innerHTML = "¡Texto cambiado!";
-        }
-    </script>
-</body>
-</html>`,
-              language: "html",
-              instructions: [
-                "Copia el código HTML en un nuevo archivo y guárdalo como 'practica.html'",
-                "Abre el archivo en Chrome",
-                "Intenta abrir DevTools usando F12",
-                "Intenta hacer clic derecho en el botón y seleccionar 'Inspeccionar Elemento'",
-                "Observa cómo DevTools resalta el elemento seleccionado"
-              ]
-            }
-          ],
-          interactiveExercises: [
-            {
-              id: "devtools-shortcut",
-              title: "Atajos de DevTools",
-              description: "Aprende los atajos de teclado principales para abrir DevTools",
-              type: "console-command",
-              solution: ["F12", "Ctrl+Shift+I", "Cmd+Option+I"],
-              validation: [
-                {
-                  type: "contains",
-                  value: "F12",
-                  message: "F12 es el atajo principal para abrir DevTools",
-                  points: 1
-                },
-                {
-                  type: "contains", 
-                  value: "Ctrl+Shift+I",
-                  message: "Ctrl+Shift+I es el atajo alternativo en Windows/Linux",
-                  points: 1
-                },
-                {
-                  type: "contains",
-                  value: "Cmd+Option+I",
-                  message: "Cmd+Option+I es el atajo para Mac",
-                  points: 1
-                }
-              ],
-              hints: [
-                "Hay tres atajos principales: uno con función, uno con Ctrl en Windows, y uno con Cmd en Mac",
-                "El atajo principal usa la tecla F12",
-                "Los atajos incluyen Shift e I en combinación con Ctrl o Cmd"
-              ]
-            },
-            {
-              id: "element-selection",
-              title: "Seleccionar Elementos",
-              description: "Aprende el atajo para activar la herramienta de selección de elementos",
-              type: "console-command",
-              solution: ["Ctrl+Shift+C", "Cmd+Shift+C"],
-              validation: [
-                {
-                  type: "contains",
-                  value: "Ctrl+Shift+C",
-                  message: "Ctrl+Shift+C activa la herramienta de selección en Windows/Linux",
-                  points: 1
-                },
-                {
-                  type: "contains",
-                  value: "Cmd+Shift+C", 
-                  message: "Cmd+Shift+C activa la herramienta de selección en Mac",
-                  points: 1
-                }
-              ],
-              hints: [
-                "El atajo usa la tecla C junto con Shift",
-                "En Windows/Linux usa Ctrl, en Mac usa Cmd"
-              ]
-            }
-          ]
+          miniLab: {
+            title: "Mini Lab: Explorando DevTools",
+            description: "Sigue estos pasos en Chrome para familiarizarte con DevTools",
+            steps: [
+              {
+                step: 1,
+                title: "Abriendo DevTools",
+                instructions: [
+                  "Abre una nueva pestaña en Chrome y navega a cualquier sitio web",
+                  "Presiona F12 para abrir DevTools",
+                  "Observa los diferentes paneles disponibles en la parte superior",
+                  "Prueba cambiar el tamaño del panel arrastrando la línea divisoria"
+                ]
+              },
+              {
+                step: 2,
+                title: "Navegando por los Paneles",
+                instructions: [
+                  "Haz clic en cada panel: Elements, Console, Sources, Network, Performance",
+                  "Nota las diferentes herramientas disponibles en cada panel",
+                  "Prueba el botón de configuración (⚙️) en la esquina superior derecha",
+                  "Experimenta con diferentes ubicaciones del dock (bottom, right, separate window)"
+                ]
+              },
+              {
+                step: 3,
+                title: "Herramienta de Selección",
+                instructions: [
+                  "Presiona Ctrl+Shift+C (Cmd+Shift+C en Mac) para activar la herramienta de selección",
+                  "Mueve el cursor sobre diferentes elementos de la página",
+                  "Observa cómo se resaltan los elementos y aparece información de dimensiones",
+                  "Haz clic en un elemento para seleccionarlo en el panel Elements"
+                ]
+              }
+            ]
+          }
         },
         {
           id: "elements-panel",
-          title: "Panel de Elementos",
-          content: `# El Panel de Elementos
+          title: "Panel Elements (DOM y CSS)",
+          content: `# Panel Elements: Maestro del DOM y CSS
 
-El panel de Elementos es tu puerta de entrada al DOM (Document Object Model). Aquí puedes inspeccionar, modificar y depurar la estructura HTML y estilos CSS en tiempo real.
+El panel Elements es tu puerta de entrada al DOM (Document Object Model) y los estilos CSS. Aquí puedes inspeccionar, modificar y depurar la estructura HTML y estilos CSS en tiempo real.
 
-## Características Clave
+## Características Principales
 
 ### Navegación del Árbol DOM
 - Expandir/contraer elementos usando los iconos de flecha
 - Usar las teclas de flecha para navegar por el árbol
 - Buscar elementos con **Ctrl+F**
+- Filtrar por tipo de nodo, atributos o texto
 
-### Edición en Vivo
+### Edición en Vivo del DOM
 - Doble clic en cualquier texto para editar contenido HTML
 - Modificar atributos haciendo doble clic en ellos
 - Agregar nuevos atributos presionando Tab después del último atributo
+- Arrastrar y soltar elementos para reorganizar la estructura
 
-### Inspección de CSS
+### Panel de Estilos CSS
 - Ver todos los estilos aplicados en el panel Styles
 - Ver valores calculados en la pestaña Computed
 - Identificar conflictos de estilo con texto tachado
+- Editar propiedades CSS en tiempo real
 
-## Consejos Pro
+## Funcionalidades Avanzadas
 
-- Tecla **H** alterna la ocultación de elementos
-- Tecla **Delete** elimina elementos seleccionados
-- **Ctrl+Z** deshace cambios del DOM`,
-          exercises: [
-            {
-              id: "dom-manipulation",
-              title: "Práctica de Manipulación del DOM",
-              description: "Aprende a editar HTML y CSS en vivo en el navegador",
-              code: `<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        .contenedor {
-            padding: 20px;
-            margin: 10px;
-            background-color: #f0f0f0;
-            border-radius: 8px;
-        }
-        
-        .resaltado {
-            background-color: yellow;
-            font-weight: bold;
-        }
-        
-        .oculto {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="contenedor">
-        <h2>Área de Práctica DOM</h2>
-        <p class="texto">Este es un texto de ejemplo.</p>
-        <button id="boton-alternar">Alternar Visibilidad</button>
-        <div class="oculto" id="secreto">¡Contenido secreto!</div>
-    </div>
-</body>
-</html>`,
-              language: "html",
-              instructions: [
-                "Abre este HTML en Chrome y abre DevTools",
-                "En el panel Elementos, encuentra el elemento <p> con clase 'texto'",
-                "Haz doble clic en el contenido de texto y cámbialo a '¡Texto modificado!'",
-                "Haz clic derecho en el elemento <p> y selecciona 'Editar como HTML'",
-                "Agrega class='resaltado' al elemento <p>",
-                "Encuentra el div con id='secreto' y elimina la clase 'oculto'",
-                "Observa cómo los cambios aparecen instantáneamente en el navegador"
-              ]
-            }
-          ],
-          interactiveExercises: [
-            {
-              id: "css-selector-practice",
-              title: "Práctica de Selectores CSS", 
-              description: "Escribe selectores CSS para encontrar elementos específicos",
-              type: "css-selector",
-              solution: ".contenedor p",
-              validation: [
-                {
-                  type: "regex",
-                  value: /\.contenedor\s+p/,
-                  message: "Selector correcto para párrafos dentro de .contenedor",
-                  points: 2
-                }
-              ],
-              hints: [
-                "Necesitas un selector que apunte a elementos <p> dentro de un elemento con clase 'contenedor'",
-                "Usa el selector de clase para .contenedor seguido de un espacio y luego p"
-              ]
-            },
-            {
-              id: "dom-manipulation-code",
-              title: "Código de Manipulación DOM",
-              description: "Escribe código JavaScript para cambiar el texto de un elemento",
-              type: "dom-manipulation",
-              initialCode: `// Cambiar el texto del elemento con id "demo"
-// a "¡Nuevo texto!"
-`,
-              solution: `document.getElementById("demo").innerHTML = "¡Nuevo texto!";`,
-              validation: [
-                {
-                  type: "contains",
-                  value: "document.getElementById",
-                  message: "Usa document.getElementById para obtener el elemento",
-                  points: 1
-                },
-                {
-                  type: "contains",
-                  value: '"demo"',
-                  message: "Busca el elemento con id 'demo'",
-                  points: 1
-                },
-                {
-                  type: "contains",
-                  value: "innerHTML",
-                  message: "Usa innerHTML para cambiar el contenido",
-                  points: 1
-                },
-                {
-                  type: "contains",
-                  value: "¡Nuevo texto!",
-                  message: "Establece el texto correcto",
-                  points: 1
-                }
-              ],
-              hints: [
-                "Usa document.getElementById() para obtener el elemento",
-                "Luego usa .innerHTML para cambiar su contenido",
-                "El texto debe ser exactamente '¡Nuevo texto!'"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: "debugging",
-      title: "Depuración de JavaScript",
-      icon: "🐛",
-      topics: [
+### Manipulación de Estado
+- **:hover**, **:active**, **:focus** - Simular estados de pseudo-clases
+- **:visited** - Probar estilos de enlaces visitados
+- **Force state** - Forzar estados específicos para testing
+
+### Debugging de Layout
+- Ver el modelo de caja (Box Model) visual
+- Inspeccionar márgenes, padding, bordes
+- Analizar problemas de overflow y positioning
+- Grid y Flexbox inspector para layouts complejos
+
+## Atajos Útiles
+- **H** - Ocultar/mostrar elemento seleccionado
+- **Delete** - Eliminar elemento seleccionado
+- **Ctrl+Z** - Deshacer último cambio
+- **F2** - Editar como HTML`,
+          miniLab: {
+            title: "Mini Lab: Manipulación DOM y CSS",
+            description: "Practica editando HTML y CSS en tiempo real",
+            steps: [
+              {
+                step: 1,
+                title: "Selección de Elementos",
+                instructions: [
+                  "Ve a cualquier sitio web (ej: wikipedia.org)",
+                  "Presiona Ctrl+Shift+C para activar el selector",
+                  "Haz clic en un título principal (h1 o h2)",
+                  "Observa cómo se resalta en el panel Elements"
+                ]
+              },
+              {
+                step: 2,
+                title: "Editando Contenido",
+                instructions: [
+                  "Con el título seleccionado, haz doble clic en el texto dentro del HTML",
+                  "Cambia el texto por 'Mi Título Modificado'",
+                  "Presiona Enter para confirmar el cambio",
+                  "Observa cómo cambia instantáneamente en la página"
+                ]
+              },
+              {
+                step: 3,
+                title: "Modificando Estilos CSS",
+                instructions: [
+                  "En el panel Styles (lado derecho), busca la propiedad 'color'",
+                  "Haz clic en el valor de color para abrrir el selector",
+                  "Cambia el color a rojo (#ff0000)",
+                  "Prueba agregar una nueva propiedad: background-color: yellow"
+                ]
+              },
+              {
+                step: 4,
+                title: "Estados de Pseudo-clases",
+                instructions: [
+                  "Busca un enlace (elemento <a>) en la página",
+                  "Selecciónalo en el panel Elements",
+                  "En el panel Styles, haz clic en ':hov'",
+                  "Activa la checkbox de ':hover' y observa los cambios"
+                ]
+              }
+            ]
+          }
+        },
         {
-          id: "console-basics",
-          title: "Fundamentos de la Consola",
-          content: `# Dominio del Panel de Consola
+          id: "console-panel",
+          title: "Panel Console (JavaScript)",
+          content: `# Panel Console: Tu Interfaz JavaScript
 
 La Consola es tu interfaz principal para la depuración e interacción con JavaScript. Es tanto un REPL (Read-Eval-Print Loop) como un destino de logging.
 
-## Métodos de Consola
+## Funcionalidades Básicas
 
-### Logging Básico
+### Métodos de Console
 - \`console.log()\` - Logging general
 - \`console.error()\` - Mensajes de error (rojo)
 - \`console.warn()\` - Advertencias (amarillo)
@@ -289,484 +180,1243 @@ La Consola es tu interfaz principal para la depuración e interacción con JavaS
 ### Logging Avanzado
 - \`console.table()\` - Mostrar arrays/objetos como tablas
 - \`console.group()\` - Agrupar logs relacionados
-- \`console.time()\` - Timing de rendimiento
+- \`console.time()\` / \`console.timeEnd()\` - Timing de rendimiento
 - \`console.count()\` - Contar llamadas a funciones
 
-### Ayudas de Depuración
-- \`console.trace()\` - Stack trace
+### Debugging Helpers
+- \`console.trace()\` - Stack trace completo
 - \`console.assert()\` - Logging condicional
 - \`console.clear()\` - Limpiar consola
 
-## Trucos de API de Consola
+## Comandos de Console API
 
-### Inspección de Objetos
-Usa \`%o\` para obtener salida expandible de objetos:
-\`\`\`javascript
-console.log('Datos de usuario: %o', objetoUsuario);
-\`\`\`
+### Variables Especiales
+- \`$0\` - Último elemento inspeccionado
+- \`$1, $2, $3, $4\` - Elementos previamente inspeccionados
+- \`$_\` - Resultado de la última expresión
 
-### Estilizar Salida de Consola
-\`\`\`javascript
-console.log('%c Texto Estilizado', 'color: blue; font-size: 20px;');
-\`\`\``,
-          interactiveExercises: [
-            {
-              id: "console-log-practice",
-              title: "Comandos de Consola Básicos",
-              description: "Practica escribir comandos de consola para registrar información",
-              type: "console-command",
-              initialCode: `// Escribe un comando para registrar "Hola DevTools" en la consola
-`,
-              solution: `console.log("Hola DevTools");`,
-              validation: [
-                {
-                  type: "contains",
-                  value: "console.log",
-                  message: "Usa console.log para mostrar mensajes",
-                  points: 1
-                },
-                {
-                  type: "contains",
-                  value: "Hola DevTools",
-                  message: "El mensaje debe ser 'Hola DevTools'",
-                  points: 1
-                }
-              ],
-              hints: [
-                "Usa console.log() para mostrar mensajes en la consola",
-                "El texto debe ir entre comillas dentro de los paréntesis"
-              ]
-            },
-            {
-              id: "console-error-practice", 
-              title: "Registro de Errores",
-              description: "Aprende a registrar mensajes de error en la consola",
-              type: "console-command",
-              initialCode: `// Registra un mensaje de error que diga "Error encontrado"
-`,
-              solution: `console.error("Error encontrado");`,
-              validation: [
-                {
-                  type: "contains",
-                  value: "console.error",
-                  message: "Usa console.error para mostrar errores",
-                  points: 1
-                },
-                {
-                  type: "contains",
-                  value: "Error encontrado",
-                  message: "El mensaje debe ser 'Error encontrado'",
-                  points: 1
-                }
-              ],
-              hints: [
-                "Usa console.error() para mostrar errores en rojo",
-                "El mensaje debe ser 'Error encontrado'"
-              ]
-            }
-          ]
+### Funciones Útiles
+- \`$(selector)\` - Equivalente a document.querySelector()
+- \`$$(selector)\` - Equivalente a document.querySelectorAll()
+- \`inspect(element)\` - Inspeccionar elemento en el panel Elements
+- \`copy()\` - Copiar al portapapeles
+
+## Técnicas Avanzadas
+
+### Filtrado de Mensajes
+- Filtrar por tipo: Errores, Advertencias, Info, Logs
+- Filtrar por texto específico
+- Usar expresiones regulares para filtros complejos
+
+### Multi-line Code
+- **Shift+Enter** - Nueva línea sin ejecutar
+- Editor incorporado para scripts más largos
+- Historial de comandos con teclas de flecha`,
+          miniLab: {
+            title: "Mini Lab: Dominando la Console",
+            description: "Explora las funcionalidades de la consola JavaScript",
+            steps: [
+              {
+                step: 1,
+                title: "Comandos Básicos",
+                instructions: [
+                  "Ve al panel Console en DevTools",
+                  "Escribe: console.log('Hola desde DevTools')",
+                  "Presiona Enter y observa el resultado",
+                  "Prueba: console.error('Este es un error') y nota el color rojo"
+                ]
+              },
+              {
+                step: 2,
+                title: "Variables Especiales",
+                instructions: [
+                  "Ve al panel Elements y selecciona cualquier elemento",
+                  "Regresa al Console y escribe: $0",
+                  "Observa que muestra el elemento seleccionado",
+                  "Prueba: $0.style.border = '3px solid red'"
+                ]
+              },
+              {
+                step: 3,
+                title: "Selectores Rápidos",
+                instructions: [
+                  "En la console, escribe: $('h1')",
+                  "Observa que encuentra el primer h1 de la página",
+                  "Prueba: $$('p') para obtener todos los párrafos",
+                  "Ejecuta: inspect($('h1')) para ir al panel Elements"
+                ]
+              },
+              {
+                step: 4,
+                title: "Timing y Performance",
+                instructions: [
+                  "Escribe: console.time('miTimer')",
+                  "Ejecuta alguna operación: for(let i=0; i<1000000; i++){}",
+                  "Escribe: console.timeEnd('miTimer')",
+                  "Observa el tiempo transcurrido en milisegundos"
+                ]
+              }
+            ]
+          }
         },
         {
-          id: "breakpoints",
-          title: "Configurando Breakpoints",
-          content: `# Depuración con Breakpoints
+          id: "sources-panel",
+          title: "Panel Sources (Debugging)",
+          content: `# Panel Sources: Depuración Avanzada
 
-Los breakpoints pausan la ejecución del código, permitiéndote inspeccionar variables, call stack y recorrer el código línea por línea.
+El panel Sources es el centro de comando para la depuración de JavaScript. Aquí puedes configurar breakpoints, recorrer código línea por línea y analizar el estado de tu aplicación.
+
+## Estructura del Panel Sources
+
+### File Navigator (Izquierda)
+- **Page** - Archivos de la página actual
+- **Filesystem** - Mapeo de archivos locales
+- **Overrides** - Sobrescribir archivos remotos localmente
+- **Content scripts** - Scripts de extensiones
+- **Snippets** - Fragmentos de código reutilizables
+
+### Code Editor (Centro)
+- Editor completo con syntax highlighting
+- Números de línea clicables para breakpoints
+- Búsqueda y reemplazo con Ctrl+F / Ctrl+H
+- Mapas de fuente (source maps) automáticos
+
+### Debugging Sidebar (Derecha)
+- **Call Stack** - Cadena de llamadas de funciones
+- **Scope** - Variables en el scope actual
+- **Watch** - Expresiones para monitorear
+- **Breakpoints** - Lista de breakpoints activos
 
 ## Tipos de Breakpoints
 
-### Breakpoints de Línea
-- Haz clic en números de línea en el panel Sources
-- **F9** para alternar breakpoint en la línea actual
+### Line Breakpoints
+- Clic en número de línea para crear/eliminar
+- **F9** para alternar en línea actual
 - Punto azul indica breakpoint activo
 
-### Breakpoints Condicionales
-- Clic derecho en número de línea → "Agregar breakpoint condicional"
-- Solo se activa cuando la condición es verdadera
-- Ejemplo: \`i > 10\` o \`user.name === 'admin'\`
+### Conditional Breakpoints
+- Clic derecho en línea → "Add conditional breakpoint"
+- Solo pausa cuando la condición es verdadera
+- Ejemplos: \`i > 10\`, \`user.name === 'admin'\`
 
-### Breakpoints del DOM
-- Clic derecho en elemento en el panel Elementos
-- Elegir: modificaciones de subárbol, cambios de atributos, o eliminación de nodo
-- Pausa cuando ocurren cambios en el DOM
+### Logpoints
+- Clic derecho → "Add logpoint"
+- Registra un mensaje sin pausar ejecución
+- Útil para debugging en producción
 
-### Breakpoints de Excepción
-- Panel Sources → botón Pausar en excepciones
-- Puede pausar en todas las excepciones o solo las no capturadas
+## Controles de Stepping
 
-## Recorriendo el Código
+### Navegación de Código
+- **F8** / ▶️ - Resume execution (Reanudar)
+- **F10** / ⬇️ - Step over (Saltar sobre función)
+- **F11** / ⬇️ - Step into (Entrar en función)
+- **Shift+F11** / ⬆️ - Step out (Salir de función)
 
-Cuando está pausado en un breakpoint:
-- **F10** - Step over (siguiente línea)
-- **F11** - Step into (entrar a funciones)
-- **Shift+F11** - Step out (salir de función actual)
-- **F8** - Reanudar ejecución
-- **Ctrl+Shift+F10** - Step to cursor
+### Call Stack Navigation
+- Clic en cualquier frame del call stack
+- Ver variables y estado en diferentes niveles
+- Entender la secuencia de llamadas
 
-## Call Stack y Scope
+## Funciones Avanzadas
 
-- **Call Stack** muestra la cadena de ejecución de funciones
-- Panel **Scope** muestra valores de variables
-- Panel **Watch** para monitorear expresiones específicas`,
-          interactiveExercises: [
-            {
-              id: "debug-fix-exercise",
-              title: "Corregir Bug en JavaScript",
-              description: "Encuentra y corrige el error en esta función",
-              type: "debug-fix",
-              initialCode: `function calcularPromedio(numeros) {
-    let suma = 0;
-    for (let i = 0; i <= numeros.length; i++) {
-        suma += numeros[i];
-    }
-    return suma / numeros.length;
-}
+### Watch Expressions
+- Monitorear variables específicas
+- Evaluar expresiones complejas
+- Actualizaciones automáticas en cada pausa
 
-// El error está en el bucle for`,
-              solution: `function calcularPromedio(numeros) {
-    let suma = 0;
-    for (let i = 0; i < numeros.length; i++) {
-        suma += numeros[i];
-    }
-    return suma / numeros.length;
-}`,
-              validation: [
-                {
-                  type: "contains",
-                  value: "i < numeros.length",
-                  message: "Condición del bucle corregida para evitar acceso fuera de límites",
-                  points: 2
-                },
-                {
-                  type: "regex",
-                  value: /for\s*\(\s*let\s+i\s*=\s*0;\s*i\s*<\s*numeros\.length;\s*i\+\+\s*\)/,
-                  message: "Bucle for correctamente formateado",
-                  points: 1
-                }
-              ],
-              hints: [
-                "El problema está en la condición del bucle for",
-                "Usar <= causa que el bucle acceda a un índice que no existe",
-                "Cambia <= por < en la condición del bucle"
-              ]
-            },
-            {
-              id: "breakpoint-condition",
-              title: "Condición de Breakpoint",
-              description: "Escribe una condición para un breakpoint que se active solo cuando la variable 'contador' sea mayor que 5",
-              type: "console-command",
-              solution: "contador > 5",
-              validation: [
-                {
-                  type: "exact",
-                  value: "contador > 5",
-                  message: "Condición correcta para breakpoint condicional",
-                  points: 2
-                }
-              ],
-              hints: [
-                "La condición debe comparar la variable 'contador' con el número 5",
-                "Usa el operador > para verificar que sea mayor que 5"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: "ai-features",
-      title: "DevTools con IA",
-      icon: "🤖",
-      topics: [
-        {
-          id: "ai-console",
-          title: "Asistente de IA para Consola",
-          content: `# Funciones de Consola con IA
+### Scope Inspection
+- **Local** - Variables de función actual
+- **Global** - Variables globales (window)
+- **Closure** - Variables capturadas por closures
 
-Chrome DevTools ahora incluye asistencia de IA para ayudar a depurar problemas, explicar errores y sugerir soluciones.
-
-## Integración de IA en Consola
-
-### Explicación de Errores
-Cuando ocurren errores de JavaScript, DevTools ahora puede proporcionar:
-- Explicaciones en lenguaje natural de mensajes de error
-- Causas comunes para el tipo específico de error
-- Correcciones sugeridas y pasos de depuración
-
-### Sugerencias de Código
-La IA puede ayudar con:
-- Escribir comandos de consola
-- Generar datos de prueba
-- Crear scripts de depuración
-- Explicar stack traces complejos
-
-## Usando Funciones de IA
-
-### Habilitando el Asistente de IA
-1. Abre Configuración de DevTools (F1)
-2. Navega a la pestaña Experiments
-3. Habilita "Asistencia de IA en Consola"
-4. Reinicia DevTools
-
-### Comandos de IA
-- Escribe preguntas en lenguaje natural en la consola
-- Usa el prefijo \`IA:\` para consultas directas de IA
-- Pregunta sobre mensajes de error o comportamiento del código
-
-### Consultas de Ejemplo
-\`\`\`
-IA: ¿Por qué falla mi petición fetch?
-IA: ¿Cómo depuro una fuga de memoria?
-IA: Explica este error: TypeError: Cannot read property 'length' of undefined
-\`\`\`
-
-## Insights de Rendimiento con IA
-
-La IA puede analizar:
-- Cuellos de botella de rendimiento
-- Patrones de uso de memoria
-- Oportunidades de optimización de red
-- Recomendaciones de tamaño de bundle`,
-          interactiveExercises: [
-            {
-              id: "ai-query-practice",
-              title: "Consultas de IA",
-              description: "Practica escribir consultas efectivas para el asistente de IA",
-              type: "console-command",
-              initialCode: `// Escribe una consulta de IA para explicar un error de TypeError
-// Usa el prefijo "IA:" seguido de tu pregunta
-`,
-              solution: `IA: ¿Qué significa TypeError: Cannot read property 'length' of undefined?`,
-              validation: [
-                {
-                  type: "contains",
-                  value: "IA:",
-                  message: "Usa el prefijo 'IA:' para consultas directas",
-                  points: 1
-                },
-                {
-                  type: "contains",
-                  value: "TypeError",
-                  message: "Menciona el tipo de error específico",
-                  points: 1
-                },
-                {
-                  type: "contains",
-                  value: "Cannot read property",
-                  message: "Incluye detalles del mensaje de error",
-                  points: 1
-                }
-              ],
-              hints: [
-                "Comienza con 'IA:' para indicar que es una consulta para el asistente",
-                "Pregunta específicamente sobre el error TypeError",
-                "Incluye parte del mensaje de error para contexto"
-              ]
-            },
-            {
-              id: "ai-debugging-question",
-              title: "Pregunta de Depuración con IA",
-              description: "Escribe una pregunta para el asistente de IA sobre depuración de performance",
-              type: "console-command",
-              solution: `IA: ¿Cómo puedo identificar cuellos de botella de rendimiento en mi aplicación?`,
-              validation: [
-                {
-                  type: "contains",
-                  value: "IA:",
-                  message: "Usa el prefijo correcto para consultas de IA",
-                  points: 1
-                },
-                {
-                  type: "regex",
-                  value: /(rendimiento|performance|cuellos de botella|optimización)/i,
-                  message: "Pregunta relacionada con rendimiento o optimización",
-                  points: 2
-                }
-              ],
-              hints: [
-                "Usa el prefijo 'IA:' para comenzar tu consulta",
-                "Pregunta sobre análisis de rendimiento o identificación de problemas",
-                "Palabras clave: rendimiento, cuellos de botella, optimización"
-              ]
-            }
-          ]
+### Source Maps
+- Mapeo automático de código minificado/transpilado
+- Debugging de TypeScript, Babel, Webpack
+- Configuración en bundlers para mejor experiencia`,
+          miniLab: {
+            title: "Mini Lab: Debugging con Sources",
+            description: "Aprende a usar breakpoints y stepping para depurar código",
+            steps: [
+              {
+                step: 1,
+                title: "Configurando tu Primer Breakpoint",
+                instructions: [
+                  "Ve a cualquier sitio con JavaScript (ej: github.com)",
+                  "Abre DevTools y ve al panel Sources",
+                  "En el File Navigator, busca un archivo .js",
+                  "Haz clic en un número de línea para crear un breakpoint (punto azul)",
+                  "Interactúa con la página para que ejecute ese código"
+                ]
+              },
+              {
+                step: 2,
+                title: "Navegación con Stepping",
+                instructions: [
+                  "Cuando el código se pause en tu breakpoint:",
+                  "Presiona F10 (Step over) varias veces",
+                  "Observa cómo se resalta la línea actual",
+                  "Revisa el panel Scope para ver las variables actuales"
+                ]
+              },
+              {
+                step: 3,
+                title: "Explorando Call Stack",
+                instructions: [
+                  "En el panel Call Stack, observa la cadena de funciones",
+                  "Haz clic en diferentes frames del stack",
+                  "Nota cómo cambian las variables en el panel Scope",
+                  "Usa esto para entender la secuencia de ejecución"
+                ]
+              },
+              {
+                step: 4,
+                title: "Watch Expressions",
+                instructions: [
+                  "En el panel Watch, haz clic en '+'",
+                  "Agrega una expresión como 'this' o una variable que veas",
+                  "Presiona F10 para avanzar y observa cómo cambia el valor",
+                  "Agrega expresiones más complejas como 'typeof variable'"
+                ]
+              }
+            ]
+          }
         },
-        {
-          id: "ai-debugging",
-          title: "Asistente de Depuración con IA",
-          content: `# Flujo de Depuración Mejorado con IA
-
-Las nuevas funciones de depuración con IA transforman cómo abordas problemas complejos proporcionando insights inteligentes y análisis automatizado.
-
-## Análisis Inteligente de Errores
-
-### Contexto Automático de Errores
-Cuando ocurren errores, la IA proporciona:
-- Análisis de código relacionado
-- Explicaciones del estado de variables
-- Sugerencias de correcciones potenciales
-- Patrones de problemas similares
-
-### Inteligencia de Call Stack
-La IA puede explicar:
-- Por qué las funciones fueron llamadas en orden específico
-- Qué parámetros podrían estar causando problemas
-- Flujo de ejecución esperado vs actual
-
-## Análisis de Código con IA
-
-### Reconocimiento de Patrones
-El asistente de IA puede identificar:
-- Anti-patrones comunes en tu código
-- Problemas de rendimiento
-- Vulnerabilidades de seguridad
-- Violaciones de mejores prácticas
-
-### Sugerencias de Refactoring
-Obtén recomendaciones de IA para:
-- Optimización de código
-- Mejor manejo de errores
-- Mejora de legibilidad
-- Características modernas de JavaScript
-
-## Flujo de Depuración con IA
-
-1. **Encontrar Error** → IA explica el tipo de error y causas comunes
-2. **Configurar Breakpoints** → IA sugiere ubicaciones óptimas de breakpoints
-3. **Inspeccionar Variables** → IA explica valores inesperados
-4. **Rastrear Ejecución** → IA resalta rutas de ejecución sospechosas
-5. **Aplicar Correcciones** → IA valida tu enfoque de solución
-
-## Funciones Avanzadas de IA
-
-### Modo de Aprendizaje
-- IA aprende de tus patrones de depuración
-- Proporciona sugerencias personalizadas
-- Se adapta a tu estilo de codificación
-
-### Insights de Equipo
-- Compartir sesiones de depuración con IA
-- Resolución colaborativa de problemas
-- Construcción de base de conocimientos`
-        }
-      ]
-    },
-    {
-      id: "performance",
-      title: "Análisis de Rendimiento",
-      icon: "⚡",
-      topics: [
         {
           id: "network-panel",
-          title: "Análisis de Red",
-          content: `# Optimización de Rendimiento de Red
+          title: "Panel Network (Red)",
+          content: `# Panel Network: Análisis de Rendimiento de Red
 
-El panel de Red te ayuda a analizar el rendimiento de carga, identificar cuellos de botella y optimizar la entrega de recursos.
+El panel Network te permite analizar todas las peticiones HTTP, identificar cuellos de botella de rendimiento y optimizar la carga de recursos.
 
-## Resumen del Panel de Red
+## Vista General del Panel
 
 ### Información de Peticiones
-Cada petición de red muestra:
-- **Status** - Código de respuesta HTTP
-- **Type** - Tipo de recurso (XHR, JS, CSS, IMG, etc.)
-- **Initiator** - Qué activó la petición
-- **Size** - Tamaño de transferencia vs tamaño de recurso
-- **Time** - Duración de la petición
-- **Waterfall** - Línea de tiempo visual
+Cada petición muestra:
+- **Status** - Código de respuesta HTTP (200, 404, 500, etc.)
+- **Type** - Tipo de recurso (XHR, JS, CSS, IMG, Doc, etc.)
+- **Initiator** - Qué activó la petición (script, parser, etc.)
+- **Size** - Tamaño transferido vs tamaño del recurso
+- **Time** - Duración total de la petición
+- **Waterfall** - Timeline visual de la petición
 
-### Métricas Clave
-- **DOMContentLoaded** - Análisis HTML completo
-- **Load** - Todos los recursos terminaron de cargar
-- **Finish** - Última actividad de red
-- **Transfer Size** - Datos enviados por red
-- **Resource Size** - Tamaño de recurso sin comprimir
+### Filtros de Peticiones
+- **All** - Todas las peticiones
+- **XHR/Fetch** - Peticiones AJAX
+- **JS** - Archivos JavaScript
+- **CSS** - Hojas de estilo
+- **Img** - Imágenes
+- **Media** - Audio/Video
+- **Font** - Fuentes web
+- **Doc** - Documentos HTML
+- **WS** - WebSockets
 
-## Análisis de Rendimiento
+## Métricas de Performance
 
-### Identificar Peticiones Lentas
-- Ordenar por columna Time para encontrar peticiones más lentas
-- Buscar peticiones > 1 segundo
-- Verificar peticiones fallidas (estado rojo)
+### Timeline Events
+- **DOMContentLoaded** (línea azul) - DOM completamente parseado
+- **Load** (línea roja) - Todos los recursos terminaron de cargar
+- **FCP** - First Contentful Paint
+- **LCP** - Largest Contentful Paint
 
 ### Análisis de Waterfall
-- Línea azul: evento DOMContentLoaded
-- Línea roja: evento Load
-- Barras apiladas muestran fases de petición:
-  - Queueing (gris claro)
-  - DNS lookup (gris oscuro)
-  - Connecting (naranja)
-  - Waiting (verde)
-  - Receiving (azul)
+Cada barra muestra las fases de la petición:
+- **Queueing** (gris claro) - Esperando en cola
+- **Stalled** (gris) - Stalled/bloqueado
+- **DNS Lookup** (verde oscuro) - Resolución DNS
+- **Initial Connection** (naranja) - Estableciendo conexión
+- **SSL** (marrón) - Handshake SSL/TLS
+- **Request sent** (verde claro) - Enviando petición
+- **Waiting (TTFB)** (verde) - Time to First Byte
+- **Content Download** (azul) - Descargando respuesta
+
+## Debugging de Red
 
 ### Problemas Comunes
-- **Tamaños de bundle grandes** - Dividir código, carga lazy
-- **Demasiadas peticiones** - Agrupar recursos, usar HTTP/2
-- **Respuesta lenta del servidor** - Optimizar backend, usar CDN
-- **Bloqueo de renderizado** - Scripts async/defer, CSS crítico`
-        },
-        {
-          id: "lighthouse",
-          title: "Auditorías Lighthouse",
-          content: `# Auditorías de Rendimiento Lighthouse
+- **Peticiones lentas** - Ordenar por columna Time
+- **Recursos grandes** - Revisar columna Size
+- **Demasiadas peticiones** - Contar peticiones por tipo
+- **Errores de red** - Filtrar por status codes 4xx/5xx
 
-Lighthouse proporciona auditorías automatizadas para rendimiento, accesibilidad, mejores prácticas, SEO y características de Progressive Web App.
-
-## Ejecutando Lighthouse
-
-### En DevTools
-1. Abre DevTools
-2. Navega a la pestaña Lighthouse
-3. Selecciona categorías de auditoría
-4. Elige tipo de dispositivo (Móvil/Escritorio)
-5. Haz clic en "Generar reporte"
-
-### Categorías de Auditoría
-
-#### Rendimiento
-- First Contentful Paint (FCP)
-- Largest Contentful Paint (LCP)
-- Cumulative Layout Shift (CLS)
-- Time to Interactive (TTI)
-- Total Blocking Time (TBT)
-
-#### Accesibilidad
-- Ratios de contraste de color
-- Navegación por teclado
-- Compatibilidad con lectores de pantalla
-- Implementación ARIA
-
-#### Mejores Prácticas
-- Uso de HTTPS
-- No APIs obsoletas
-- Conteo de errores de consola
-- Headers de seguridad
-
-#### SEO
-- Meta descripciones
-- Elementos de título
-- Diseño amigable para móviles
-- Datos estructurados
+### Headers y Response
+- **Headers** - Request/Response headers completos
+- **Preview** - Vista previa formateada del contenido
+- **Response** - Contenido raw de la respuesta
+- **Timing** - Breakdown detallado de timing
 
 ## Optimización de Rendimiento
 
-### Métricas Críticas
-- **LCP < 2.5s** - Optimizar elementos más grandes
-- **FID < 100ms** - Reducir ejecución de JavaScript
-- **CLS < 0.1** - Prevenir cambios de layout
+### Identificar Mejoras
+- Recursos sin comprimir (falta gzip/brotli)
+- Imágenes demasiado grandes
+- CSS/JS no minificados
+- Demasiadas peticiones HTTP
+- Recursos bloqueantes del render
 
-### Correcciones Comunes
-- Comprimir imágenes (formato WebP)
-- Minificar CSS/JavaScript
-- Usar Content Delivery Network (CDN)
-- Habilitar compresión gzip
-- Carga lazy de recursos no críticos
-- Precargar recursos críticos
+### Métricas Objetivo
+- **TTFB < 200ms** - Server response time
+- **FCP < 1.8s** - First Contentful Paint
+- **LCP < 2.5s** - Largest Contentful Paint
+- **Total page size < 1MB** - Tamaño total optimizado`,
+          miniLab: {
+            title: "Mini Lab: Análisis de Red",
+            description: "Analiza el performance de red de una página web",
+            steps: [
+              {
+                step: 1,
+                title: "Capturando Tráfico de Red",
+                instructions: [
+                  "Ve al panel Network en DevTools",
+                  "Asegúrate que la grabación esté activa (botón rojo)",
+                  "Haz clic en 'Clear' para limpiar peticiones anteriores",
+                  "Recarga la página (Ctrl+R) para capturar todas las peticiones"
+                ]
+              },
+              {
+                step: 2,
+                title: "Analizando Peticiones",
+                instructions: [
+                  "Ordena las peticiones por 'Time' (columna Time)",
+                  "Identifica la petición más lenta",
+                  "Haz clic en ella para ver detalles en el panel inferior",
+                  "Revisa las pestañas Headers, Preview, Response, Timing"
+                ]
+              },
+              {
+                step: 3,
+                title: "Filtros y Búsqueda",
+                instructions: [
+                  "Haz clic en 'Img' para ver solo imágenes",
+                  "Identifica la imagen más grande",
+                  "Usa el filtro 'JS' para ver archivos JavaScript",
+                  "En la caja de búsqueda, escribe '.css' para filtrar estilos"
+                ]
+              },
+              {
+                step: 4,
+                title: "Waterfall y Timing",
+                instructions: [
+                  "Observa la columna Waterfall (timeline visual)",
+                  "Identifica las líneas azul (DOMContentLoaded) y roja (Load)",
+                  "Busca gaps largos que indiquen problemas de red",
+                  "Haz clic en una petición y ve a la pestaña Timing para detalles"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          id: "performance-panel",
+          title: "Panel Performance (Rendimiento)",
+          content: `# Panel Performance: Profiling Avanzado
 
-### Monitoreo de Rendimiento
-- Establecer presupuestos de rendimiento
-- Integración regular de Lighthouse CI
-- Real User Monitoring (RUM)
-- Pruebas sintéticas en CI/CD`
+El panel Performance te permite analizar en detalle el rendimiento de tu aplicación, identificar cuellos de botella de JavaScript, problemas de rendering y optimizar la experiencia del usuario.
+
+## Capturando un Performance Profile
+
+### Preparación
+- Usa el modo incógnito para evitar interferencia de extensiones
+- Cierra otras pestañas para recursos dedicados
+- Considera usar simulación de CPU slower (4x/6x slowdown)
+
+### Grabación
+1. **Abre el panel Performance**
+2. **Configura opciones de grabación**:
+   - Screenshots - Capturas durante la grabación
+   - Memory - Uso de memoria
+   - Web Vitals - Métricas de Core Web Vitals
+3. **Presiona Record (⚫) o Ctrl+E**
+4. **Interactúa con tu aplicación**
+5. **Detén la grabación**
+
+## Anatomía del Performance Profile
+
+### Main Thread Timeline
+- **Tasks** - Bloques de trabajo en el hilo principal
+- **Parse HTML** - Parsing del documento
+- **Parse CSS** - Procesamiento de estilos
+- **Evaluate Script** - Ejecución de JavaScript
+- **Layout** - Cálculo de posiciones
+- **Paint** - Renderizado visual
+- **Composite** - Composición de capas
+
+### Call Tree
+- Jerarquía de llamadas de funciones
+- Tiempo total vs tiempo propio (self time)
+- Identificación de funciones costosas
+
+### Bottom-Up View
+- Funciones ordenadas por tiempo propio
+- Útil para encontrar el código más lento
+- Agregación de tiempo por función
+
+## Identificando Problemas
+
+### JavaScript Performance
+- **Long Tasks** - Tareas > 50ms (resaltadas en rojo)
+- **Function calls** - Tiempo en funciones específicas
+- **Idle time** - Tiempo disponible entre frames
+
+### Rendering Performance
+- **Layout thrashing** - Layouts repetitivos costosos
+- **Paint issues** - Pintura excesiva
+- **Compositing problems** - Problemas de capas
+
+### Memory Issues
+- **Memory leaks** - Uso creciente de memoria
+- **Garbage collection** - Pausas por GC
+- **DOM node count** - Nodos excesivos
+
+## Web Vitals Integration
+
+### Core Web Vitals
+- **LCP** (Largest Contentful Paint) - Carga percibida
+- **FID** (First Input Delay) - Interactividad
+- **CLS** (Cumulative Layout Shift) - Estabilidad visual
+
+### Performance Metrics
+- **FCP** (First Contentful Paint)
+- **TTI** (Time to Interactive)
+- **TBT** (Total Blocking Time)
+
+## Optimización Strategies
+
+### JavaScript Optimization
+- **Code splitting** - Dividir bundles grandes
+- **Lazy loading** - Carga diferida de componentes
+- **Web Workers** - Offload trabajo pesado
+- **Debouncing/Throttling** - Control de eventos frecuentes
+
+### Rendering Optimization
+- **Avoid layout thrashing** - Batch DOM changes
+- **Use CSS transforms** - Hardware acceleration
+- **Optimize images** - Formats modernos (WebP/AVIF)
+- **Reduce paint area** - Minimize repaints`,
+          miniLab: {
+            title: "Mini Lab: Performance Profiling",
+            description: "Aprende a hacer profiling de performance y identificar problemas",
+            steps: [
+              {
+                step: 1,
+                title: "Grabando un Performance Profile",
+                instructions: [
+                  "Ve al panel Performance en DevTools",
+                  "Asegúrate que Screenshots y Web Vitals estén activados",
+                  "Haz clic en el botón Record (⚫)",
+                  "Recarga la página y espera que termine de cargar",
+                  "Detén la grabación haciendo clic en Stop"
+                ]
+              },
+              {
+                step: 2,
+                title: "Navegando el Timeline",
+                instructions: [
+                  "Observa el overview en la parte superior",
+                  "Usa las barras de desplazamiento para hacer zoom en secciones",
+                  "Identifica las barras rojas que indican Long Tasks (>50ms)",
+                  "Haz clic en tareas específicas para ver detalles"
+                ]
+              },
+              {
+                step: 3,
+                title: "Analizando el Main Thread",
+                instructions: [
+                  "En la fila 'Main', observa la actividad del hilo principal",
+                  "Busca bloques grandes que indiquen JavaScript costoso",
+                  "Haz clic en bloques específicos para ver el call stack",
+                  "Identifica funciones que toman más tiempo"
+                ]
+              },
+              {
+                step: 4,
+                title: "Web Vitals y Métricas",
+                instructions: [
+                  "Busca las marcas de Web Vitals en el timeline",
+                  "Identifica FCP (First Contentful Paint)",
+                  "Busca LCP (Largest Contentful Paint)",
+                  "Observa si hay problemas de CLS (layout shifts)",
+                  "Revisa el summary para métricas generales"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      id: "ai-integration",
+      title: "DevTools + IA Integrada",
+      icon: "🤖",
+      topics: [
+        {
+          id: "ai-elements",
+          title: "IA en Panel Elements",
+          content: `# Asistencia de IA en el Panel Elements
+
+La integración de IA en el panel Elements revolutiona cómo inspeccionas y modificas el DOM y CSS, proporcionando insights inteligentes y sugerencias automáticas.
+
+## Funciones de IA para DOM
+
+### Análisis Automático de Estructura
+- **DOM Health Check** - La IA analiza la estructura del DOM buscando problemas comunes
+- **Accessibility Insights** - Identificación automática de problemas de accesibilidad
+- **SEO Recommendations** - Sugerencias para mejorar el SEO basado en la estructura HTML
+
+### Sugerencias de Optimización
+- **Semantic HTML** - Recomendaciones para usar elementos semánticos apropiados
+- **Performance Impact** - Análisis del impacto de cambios en el DOM
+- **Best Practices** - Alertas sobre violaciones de mejores prácticas
+
+## IA para CSS y Estilos
+
+### CSS Intelligent Analysis
+- **Unused CSS Detection** - Identificación de estilos no utilizados
+- **CSS Conflicts Resolution** - Sugerencias para resolver conflictos de estilos
+- **Performance Optimization** - Recomendaciones para CSS más eficiente
+
+### Design System Integration
+- **Pattern Recognition** - La IA identifica patrones de diseño en tu CSS
+- **Consistency Checks** - Detección de inconsistencias en spacing, colores, tipografía
+- **Component Suggestions** - Sugerencias para extractar componentes reutilizables
+
+### Responsive Design Assistant
+- **Breakpoint Optimization** - Análisis de breakpoints y sugerencias de mejora
+- **Mobile-First Recommendations** - Consejos para diseño mobile-first
+- **Cross-Browser Compatibility** - Alertas sobre problemas de compatibilidad
+
+## Comandos de IA Específicos
+
+### En el Panel Elements
+\`\`\`
+IA: Analiza la accesibilidad de este formulario
+IA: ¿Cómo puedo optimizar este CSS para mejor rendimiento?
+IA: Sugiéreme mejoras semánticas para este HTML
+IA: ¿Hay estilos redundantes en esta página?
+\`\`\`
+
+### Análisis de Layout
+\`\`\`
+IA: ¿Por qué este elemento no se está centrando?
+IA: Optimiza este grid layout para mobile
+IA: ¿Cómo puedo mejorar la performance de este CSS?
+IA: Detecta problemas de z-index en esta página
+\`\`\`
+
+## Beneficios de la IA en Elements
+
+### Aprendizaje Acelerado
+- Explicaciones instantáneas de propiedades CSS complejas
+- Sugerencias de alternativas modernas a técnicas obsoletas
+- Contexto histórico de por qué ciertas técnicas se usan
+
+### Debugging Inteligente
+- Identificación automática de la causa raíz de problemas de layout
+- Sugerencias paso a paso para resolver problemas comunes
+- Análisis predictivo de impacto de cambios
+
+### Optimización Continua
+- Monitoreo en tiempo real de métricas de rendimiento visual
+- Sugerencias proactivas de mejoras
+- Integración con Core Web Vitals para optimización automática`,
+          miniLab: {
+            title: "Mini Lab: IA en Elements",
+            description: "Explora las funciones de IA para análisis de DOM y CSS",
+            steps: [
+              {
+                step: 1,
+                title: "Activando IA en Elements",
+                instructions: [
+                  "Abre DevTools y ve al panel Elements",
+                  "Busca el ícono de IA (🤖) en la barra superior",
+                  "Si no está visible, ve a Settings > Experiments > AI assistance",
+                  "Selecciona cualquier elemento complejo de la página"
+                ]
+              },
+              {
+                step: 2,
+                title: "Análisis de Accesibilidad",
+                instructions: [
+                  "Selecciona un formulario o botón en la página",
+                  "En la console, escribe: 'IA: Analiza la accesibilidad de este elemento'",
+                  "Observa las recomendaciones de mejora",
+                  "Aplica una de las sugerencias y verifica el resultado"
+                ]
+              },
+              {
+                step: 3,
+                title: "Optimización de CSS",
+                instructions: [
+                  "Selecciona un elemento con muchos estilos CSS",
+                  "Pregunta: 'IA: ¿Cómo puedo optimizar estos estilos?'",
+                  "Revisa las sugerencias de propiedades redundantes",
+                  "Implementa las recomendaciones de performance"
+                ]
+              },
+              {
+                step: 4,
+                title: "Debugging de Layout",
+                instructions: [
+                  "Encuentra un elemento con problemas de layout",
+                  "Pregunta: 'IA: ¿Por qué este elemento no se comporta como esperado?'",
+                  "Sigue las sugerencias paso a paso",
+                  "Verifica la solución aplicando los cambios recomendados"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          id: "ai-console",
+          title: "IA en Panel Console",
+          content: `# Asistencia de IA en la Console
+
+La integración de IA en la consola transforma la experiencia de debugging, proporcionando explicaciones inteligentes de errores y sugerencias de código automáticas.
+
+## Explicación Inteligente de Errores
+
+### Error Context Analysis
+Cuando ocurren errores JavaScript, la IA proporciona:
+- **Root Cause Analysis** - Identificación de la causa raíz del error
+- **Context Explanation** - Explicación del estado del código cuando ocurrió el error
+- **Similar Patterns** - Referencias a errores similares y sus soluciones
+- **Fix Suggestions** - Pasos específicos para resolver el problema
+
+### Stack Trace Intelligence
+- **Call Chain Analysis** - Explicación de la cadena de llamadas
+- **Variable State Insights** - Análisis del estado de variables en cada nivel
+- **Function Responsibility** - Qué hace cada función en el stack
+- **Error Propagation** - Cómo se propagó el error a través del código
+
+## Asistente de Código IA
+
+### Code Generation
+\`\`\`javascript
+// Ejemplos de prompts para generación de código:
+IA: Crea una función para validar emails
+IA: Genera un debounce function
+IA: Escribe código para hacer una petición fetch con manejo de errores
+IA: Crea un observer para cambios en el DOM
+\`\`\`
+
+### Code Explanation
+\`\`\`javascript
+// Código complejo que no entiendes
+const throttle = (func, wait) => {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+// Pregunta a la IA:
+IA: Explica cómo funciona esta función throttle
+\`\`\`
+
+### Performance Analysis
+- **Complexity Analysis** - Análisis de complejidad algorítmica de tu código
+- **Memory Usage Insights** - Identificación de posibles leaks de memoria
+- **Optimization Suggestions** - Recomendaciones para mejorar performance
+
+## Debugging Colaborativo con IA
+
+### Interactive Debugging Sessions
+- **Step-by-Step Guidance** - La IA te guía a través del proceso de debugging
+- **Variable Inspection Help** - Explicación de valores de variables complejos
+- **Conditional Breakpoint Suggestions** - La IA sugiere dónde poner breakpoints
+
+### Learning Mode
+- **Explain as You Debug** - La IA explica cada paso del debugging
+- **Best Practices Teaching** - Enseñanza de mejores prácticas durante el debugging
+- **Anti-pattern Recognition** - Identificación y explicación de anti-patrones
+
+## Comandos Avanzados de IA
+
+### Análisis de Rendimiento
+\`\`\`javascript
+IA: ¿Por qué esta función es lenta?
+IA: Optimiza este código para mejor rendimiento
+IA: ¿Hay memory leaks en este componente?
+IA: Analiza la complejidad de este algoritmo
+\`\`\`
+
+### Debugging Específico
+\`\`\`javascript
+IA: ¿Por qué esta variable es undefined?
+IA: Explica este error: TypeError: Cannot read property 'map' of undefined
+IA: ¿Cómo puedo prevenir este race condition?
+IA: Ayúdame a entender este closure
+\`\`\`
+
+### Testing y Validación
+\`\`\`javascript
+IA: Genera casos de prueba para esta función
+IA: ¿Qué edge cases debería considerar?
+IA: Valida si este código maneja errores correctamente
+IA: ¿Este código es seguro contra XSS?
+\`\`\``,
+          miniLab: {
+            title: "Mini Lab: IA en Console",
+            description: "Usa la IA para debugging inteligente y explicación de errores",
+            steps: [
+              {
+                step: 1,
+                title: "Generación de Código con IA",
+                instructions: [
+                  "Abre la console en DevTools",
+                  "Escribe: 'IA: Crea una función para validar si un email es válido'",
+                  "Observa el código generado por la IA",
+                  "Copia y pega el código para probarlo",
+                  "Prueba la función con diferentes emails"
+                ]
+              },
+              {
+                step: 2,
+                title: "Explicación de Errores",
+                instructions: [
+                  "Escribe código que genere un error: let arr = null; arr.map(x => x)",
+                  "Cuando aparezca el error, pregunta: 'IA: Explica este error'",
+                  "Lee la explicación detallada de la IA",
+                  "Aplica la solución sugerida"
+                ]
+              },
+              {
+                step: 3,
+                title: "Análisis de Código Complejo",
+                instructions: [
+                  "Pega código complejo de cualquier sitio web",
+                  "Pregunta: 'IA: Explica qué hace este código línea por línea'",
+                  "Lee la explicación detallada",
+                  "Haz preguntas de seguimiento sobre partes específicas"
+                ]
+              },
+              {
+                step: 4,
+                title: "Optimización de Rendimiento",
+                instructions: [
+                  "Escribe un bucle ineficiente: for(let i=0; i<10000; i++) { document.body.style.color = 'red'; }",
+                  "Pregunta: 'IA: ¿Cómo puedo optimizar este código?'",
+                  "Implementa las sugerencias de la IA",
+                  "Compara el rendimiento antes y después"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          id: "ai-sources",
+          title: "IA en Panel Sources",
+          content: `# Asistencia de IA en Panel Sources
+
+La integración de IA en el panel Sources revolutiona el debugging al proporcionar análisis inteligente de código, sugerencias de breakpoints óptimos y explicaciones contextuales del flujo de ejecución.
+
+## Análisis Inteligente de Código Fuente
+
+### Code Understanding
+La IA puede analizar tu código fuente y proporcionar:
+- **Function Purpose Analysis** - Explicación de qué hace cada función
+- **Variable Flow Tracking** - Seguimiento del flujo de variables a través del código
+- **Dependency Mapping** - Mapeo de dependencias entre funciones y módulos
+- **Code Complexity Assessment** - Evaluación de la complejidad del código
+
+### Architecture Insights
+- **Module Structure Analysis** - Análisis de la estructura de módulos
+- **Design Pattern Recognition** - Identificación de patrones de diseño utilizados
+- **Code Organization Suggestions** - Recomendaciones para mejor organización
+- **Refactoring Opportunities** - Identificación de oportunidades de refactoring
+
+## Debugging Inteligente con IA
+
+### Smart Breakpoint Suggestions
+La IA puede sugerir dónde colocar breakpoints basándose en:
+- **Error Prone Areas** - Zonas propensas a errores
+- **Critical Code Paths** - Rutas críticas de ejecución
+- **State Change Points** - Puntos donde cambia el estado importante
+- **Function Entry/Exit Points** - Puntos estratégicos de entrada/salida
+
+### Execution Flow Analysis
+- **Call Stack Intelligence** - Explicación inteligente del call stack
+- **Variable State Prediction** - Predicción de estados de variables
+- **Execution Path Visualization** - Visualización de rutas de ejecución
+- **Bottleneck Identification** - Identificación de cuellos de botella
+
+## Funciones Avanzadas de IA en Sources
+
+### Source Map Intelligence
+- **Original Code Mapping** - Mapeo inteligente a código original
+- **Transpilation Understanding** - Comprensión de transformaciones de código
+- **Build Process Insights** - Insights sobre el proceso de build
+- **Development vs Production Analysis** - Análisis de diferencias
+
+### Code Quality Assessment
+- **Security Vulnerability Detection** - Detección de vulnerabilidades de seguridad
+- **Performance Anti-patterns** - Identificación de anti-patrones de rendimiento
+- **Memory Leak Prediction** - Predicción de posibles memory leaks
+- **Error Handling Analysis** - Análisis de manejo de errores
+
+## Comandos de IA para Sources
+
+### Análisis de Función
+\`\`\`javascript
+// Selecciona una función en el editor y pregunta:
+IA: ¿Qué hace esta función?
+IA: ¿Hay algún problema con esta función?
+IA: ¿Cómo puedo optimizar esta función?
+IA: ¿Esta función maneja todos los edge cases?
+\`\`\`
+
+### Debugging Guidance
+\`\`\`javascript
+IA: ¿Dónde debería poner breakpoints para debuggear este problema?
+IA: ¿Por qué esta variable tiene este valor aquí?
+IA: ¿Cuál es el flujo de ejecución hasta este punto?
+IA: ¿Qué función está causando este comportamiento inesperado?
+\`\`\`
+
+### Code Review Assistant
+\`\`\`javascript
+IA: Revisa este código para posibles problemas
+IA: ¿Hay vulnerabilidades de seguridad en este código?
+IA: ¿Este código sigue las mejores prácticas?
+IA: ¿Cómo puedo refactorizar este código?
+\`\`\`
+
+## Aplicaciones Prácticas de IA en Sources
+
+### Debugging de Aplicaciones Complejas
+- **Multi-threaded Analysis** - Análisis de aplicaciones multi-thread
+- **Async/Await Intelligence** - Comprensión inteligente de código asíncrono
+- **Promise Chain Analysis** - Análisis de cadenas de promesas
+- **Event Loop Understanding** - Comprensión del event loop
+
+### Legacy Code Understanding
+- **Code Archaeology** - Comprensión de código legacy sin documentación
+- **Migration Assistance** - Ayuda para migrar código antiguo
+- **Modernization Suggestions** - Sugerencias para modernizar código
+- **Documentation Generation** - Generación automática de documentación
+
+### Performance Debugging
+- **Hot Path Identification** - Identificación de rutas calientes de código
+- **Memory Usage Analysis** - Análisis de uso de memoria
+- **CPU Intensive Operations** - Identificación de operaciones intensivas
+- **Optimization Recommendations** - Recomendaciones específicas de optimización
+
+## Integración con Herramientas de Desarrollo
+
+### IDE-like Features
+- **Intelligent Code Completion** - Autocompletado inteligente
+- **Refactoring Suggestions** - Sugerencias de refactoring
+- **Code Navigation** - Navegación inteligente de código
+- **Symbol Understanding** - Comprensión de símbolos y referencias
+
+### Collaborative Debugging
+- **Team Insights Sharing** - Compartir insights con el equipo
+- **Knowledge Base Building** - Construcción de base de conocimientos
+- **Best Practices Enforcement** - Aplicación de mejores prácticas
+- **Code Review Integration** - Integración con procesos de code review`,
+          miniLab: {
+            title: "Mini Lab: IA en Sources para Debugging Avanzado",
+            description: "Explora las capacidades de IA para análisis y debugging de código",
+            steps: [
+              {
+                step: 1,
+                title: "Análisis de Función con IA",
+                instructions: [
+                  "Ve al panel Sources y abre cualquier archivo JavaScript",
+                  "Selecciona una función compleja haciendo clic en su nombre",
+                  "En la console, escribe: 'IA: Analiza esta función y explica qué hace'",
+                  "Lee el análisis detallado que proporciona la IA"
+                ]
+              },
+              {
+                step: 2,
+                title: "Sugerencias de Breakpoints Inteligentes",
+                instructions: [
+                  "Encuentra una función que cause un error o comportamiento inesperado",
+                  "Pregunta: 'IA: ¿Dónde debería poner breakpoints para debuggear esta función?'",
+                  "Implementa las sugerencias de la IA colocando breakpoints",
+                  "Ejecuta el código y observa cómo los breakpoints capturan información útil"
+                ]
+              },
+              {
+                step: 3,
+                title: "Análisis de Flujo de Ejecución",
+                instructions: [
+                  "Coloca un breakpoint en una función y pausa la ejecución",
+                  "Pregunta: 'IA: Explica el call stack actual y cómo llegamos aquí'",
+                  "Analiza la explicación del flujo de ejecución",
+                  "Usa F10/F11 para seguir el análisis paso a paso"
+                ]
+              },
+              {
+                step: 4,
+                title: "Optimización de Código con IA",
+                instructions: [
+                  "Selecciona código que parezca ineficiente o complejo",
+                  "Pregunta: 'IA: ¿Cómo puedo optimizar este código para mejor rendimiento?'",
+                  "Revisa las sugerencias de refactoring",
+                  "Implementa una de las mejoras sugeridas y compara el resultado"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          id: "ai-network-performance",
+          title: "IA en Network y Performance",
+          content: `# Asistencia de IA en Network y Performance
+
+La integración de IA en los paneles Network y Performance proporciona análisis automático de cuellos de botella, recomendaciones de optimización y insights predictivos sobre el rendimiento de tu aplicación.
+
+## IA en Panel Network
+
+### Análisis Automático de Peticiones
+La IA puede analizar automáticamente:
+- **Request Pattern Analysis** - Patrones de peticiones y eficiencia
+- **Resource Optimization Opportunities** - Oportunidades de optimización de recursos
+- **Caching Strategy Recommendations** - Estrategias de caché recomendadas
+- **Bundle Analysis** - Análisis de bundles y sugerencias de code splitting
+
+### Network Performance Intelligence
+- **Bottleneck Detection** - Detección automática de cuellos de botella de red
+- **Critical Resource Path** - Identificación del critical rendering path
+- **Waterfall Optimization** - Sugerencias para optimizar el waterfall de carga
+- **HTTP/2 Opportunities** - Identificación de oportunidades para HTTP/2
+
+### Predictive Analysis
+- **Load Time Prediction** - Predicción de tiempos de carga en diferentes condiciones
+- **Bandwidth Impact Assessment** - Evaluación del impacto de ancho de banda
+- **Mobile Performance Insights** - Insights específicos para rendimiento móvil
+- **Geographic Performance Analysis** - Análisis de rendimiento por ubicación geográfica
+
+## IA en Panel Performance
+
+### Intelligent Performance Profiling
+- **Automated Bottleneck Detection** - Detección automática de cuellos de botella
+- **JavaScript Performance Analysis** - Análisis profundo de rendimiento de JavaScript
+- **Rendering Performance Insights** - Insights sobre rendimiento de rendering
+- **Memory Usage Optimization** - Optimización inteligente de uso de memoria
+
+### Web Vitals Intelligence
+- **Core Web Vitals Analysis** - Análisis detallado de Core Web Vitals
+- **LCP Optimization Suggestions** - Sugerencias específicas para optimizar LCP
+- **CLS Problem Identification** - Identificación de problemas de Cumulative Layout Shift
+- **FID Improvement Recommendations** - Recomendaciones para mejorar First Input Delay
+
+### Advanced Performance Insights
+- **Frame Rate Analysis** - Análisis de frame rate y smoothness
+- **Paint Time Optimization** - Optimización de tiempos de paint
+- **Compositing Layer Insights** - Insights sobre capas de compositing
+- **GPU Usage Analysis** - Análisis de uso de GPU
+
+## Comandos Específicos de IA
+
+### Network Analysis
+\`\`\`javascript
+IA: Analiza las peticiones de red de esta página
+IA: ¿Cómo puedo optimizar la carga de recursos?
+IA: ¿Hay recursos que se cargan innecesariamente?
+IA: ¿Qué estrategia de caché recomiendas?
+IA: ¿Cómo puedo mejorar el Critical Rendering Path?
+\`\`\`
+
+### Performance Analysis
+\`\`\`javascript
+IA: ¿Cuáles son los principales cuellos de botella de rendimiento?
+IA: ¿Cómo puedo mejorar mi LCP score?
+IA: ¿Por qué mi página tiene layout shifts?
+IA: ¿Qué JavaScript está bloqueando el renderizado?
+IA: ¿Cómo puedo optimizar el uso de memoria?
+\`\`\`
+
+### Mobile Performance
+\`\`\`javascript
+IA: Analiza el rendimiento móvil de esta página
+IA: ¿Cómo se comporta en conexiones lentas?
+IA: ¿Qué optimizaciones son críticas para móvil?
+IA: ¿Cómo puedo mejorar la experiencia en 3G?
+\`\`\`
+
+## Optimización Automática con IA
+
+### Resource Optimization
+- **Image Optimization Suggestions** - Sugerencias automáticas para optimización de imágenes
+- **CSS Optimization** - Identificación de CSS no utilizado y optimizaciones
+- **JavaScript Bundle Analysis** - Análisis de bundles y sugerencias de splitting
+- **Font Loading Optimization** - Optimización de carga de fuentes
+
+### Caching Strategy Intelligence
+- **Cache-Control Optimization** - Optimización de headers de cache
+- **Service Worker Recommendations** - Recomendaciones para service workers
+- **CDN Strategy Suggestions** - Sugerencias de estrategia de CDN
+- **Browser Caching Analysis** - Análisis de caché del navegador
+
+### Performance Budget Assistant
+- **Budget Recommendations** - Recomendaciones de presupuesto de rendimiento
+- **Metric Tracking** - Seguimiento automático de métricas clave
+- **Regression Detection** - Detección de regresiones de rendimiento
+- **Goal Setting Assistance** - Asistencia para establecer objetivos de rendimiento
+
+## Real-time Performance Monitoring
+
+### Live Performance Insights
+- **Real-time Metrics** - Métricas en tiempo real con análisis de IA
+- **Performance Alerts** - Alertas automáticas de problemas de rendimiento
+- **Trend Analysis** - Análisis de tendencias de rendimiento
+- **Comparative Analysis** - Comparación con versiones anteriores
+
+### User Experience Impact
+- **UX Impact Assessment** - Evaluación del impacto en la experiencia de usuario
+- **Business Metrics Correlation** - Correlación con métricas de negocio
+- **A/B Testing Insights** - Insights para testing A/B de rendimiento
+- **User Journey Analysis** - Análisis del journey del usuario y puntos de fricción`,
+          miniLab: {
+            title: "Mini Lab: IA para Optimización de Network y Performance",
+            description: "Usa IA para analizar y optimizar el rendimiento de red y aplicación",
+            steps: [
+              {
+                step: 1,
+                title: "Análisis de Red con IA",
+                instructions: [
+                  "Ve al panel Network y captura el tráfico de una página compleja",
+                  "Pregunta: 'IA: Analiza estas peticiones de red y encuentra oportunidades de optimización'",
+                  "Revisa las recomendaciones sobre recursos grandes o innecesarios",
+                  "Identifica las sugerencias de optimización más impactantes"
+                ]
+              },
+              {
+                step: 2,
+                title: "Performance Profiling con IA",
+                instructions: [
+                  "Ve al panel Performance y graba un profile de la página",
+                  "Pregunta: 'IA: ¿Cuáles son los principales cuellos de botella en este profile?'",
+                  "Analiza las sugerencias sobre JavaScript bloqueante",
+                  "Identifica tareas largas (Long Tasks) y sus causas"
+                ]
+              },
+              {
+                step: 3,
+                title: "Web Vitals Intelligence",
+                instructions: [
+                  "En el performance profile, busca métricas de Web Vitals",
+                  "Pregunta: 'IA: ¿Cómo puedo mejorar el LCP de esta página?'",
+                  "Revisa sugerencias específicas para optimizar Largest Contentful Paint",
+                  "Analiza recomendaciones para reducir Cumulative Layout Shift"
+                ]
+              },
+              {
+                step: 4,
+                title: "Optimización de Recursos",
+                instructions: [
+                  "Pregunta: 'IA: ¿Qué imágenes debería optimizar primero?'",
+                  "Revisa sugerencias sobre formatos de imagen modernos",
+                  "Analiza recomendaciones de lazy loading",
+                  "Identifica oportunidades de code splitting en JavaScript"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      id: "practical-lab",
+      title: "Mini Lab Integral",
+      icon: "🧪",
+      topics: [
+        {
+          id: "complete-workflow",
+          title: "Flujo de Trabajo Completo con DevTools + IA",
+          content: `# Mini Lab Integral: DevTools + IA en Acción
+
+Este mini lab integra todas las herramientas de DevTools con asistencia de IA para proporcionar una experiencia completa de debugging y optimización.
+
+## Objetivo del Lab
+
+Simularemos un flujo de trabajo real donde:
+1. **Identificamos un problema** en una aplicación web
+2. **Usamos diferentes paneles** de DevTools para investigar
+3. **Aplicamos IA** para obtener insights y sugerencias
+4. **Implementamos soluciones** basadas en las recomendaciones
+5. **Verificamos mejoras** con métricas antes/después
+
+## Escenario: Aplicación Web con Problemas de Rendimiento
+
+Trabajaremos con una aplicación web que tiene varios problemas comunes:
+- Carga lenta de la página
+- JavaScript que bloquea el rendering
+- Imágenes no optimizadas
+- Problemas de accesibilidad
+- Layout shifts durante la carga
+
+## Metodología del Lab
+
+### Fase 1: Diagnóstico Inicial
+- Usar Lighthouse para auditoría general
+- Identificar métricas problemáticas
+- Consultar IA para priorización de problemas
+
+### Fase 2: Análisis Profundo
+- Network panel para análisis de recursos
+- Performance panel para profiling detallado
+- Sources panel para debugging de JavaScript
+- Elements panel para análisis de DOM/CSS
+
+### Fase 3: Optimización Guiada por IA
+- Aplicar sugerencias de IA panel por panel
+- Implementar cambios incrementales
+- Validar mejoras en tiempo real
+
+### Fase 4: Verificación y Medición
+- Comparar métricas antes/después
+- Verificar Web Vitals mejorados
+- Documentar lecciones aprendidas
+
+## Herramientas y Técnicas Utilizadas
+
+### DevTools Panels
+- **Elements**: Optimización de DOM y CSS
+- **Console**: Debugging de JavaScript con IA
+- **Sources**: Análisis de código y breakpoints inteligentes
+- **Network**: Optimización de recursos de red
+- **Performance**: Profiling y análisis de Web Vitals
+
+### Funciones de IA
+- **Error Analysis**: Explicación automática de errores
+- **Code Optimization**: Sugerencias de mejora de código
+- **Performance Insights**: Análisis predictivo de rendimiento
+- **Best Practices**: Recomendaciones automáticas
+
+## Resultados Esperados
+
+Al completar este lab, habrás:
+- Mejorado significativamente las métricas de rendimiento
+- Aprendido a usar IA para acelerar el debugging
+- Dominado el flujo de trabajo integrado de DevTools
+- Desarrollado intuición para identificar y resolver problemas comunes
+
+## Preparación para el Lab
+
+### Requisitos Técnicos
+- Chrome con DevTools habilitado
+- Conexión a internet estable
+- Funciones experimentales de IA activadas
+- Sitio web de prueba con problemas conocidos
+
+### Configuración Inicial
+- Habilitar todas las funciones experimentales de IA
+- Configurar simulación de red lenta
+- Preparar herramientas de medición
+- Establecer métricas baseline`,
+          miniLab: {
+            title: "🚀 Mini Lab Completo: Optimización Web con DevTools + IA",
+            description: "Sigue este workflow completo para diagnosticar y optimizar una aplicación web real usando todos los paneles de DevTools con asistencia de IA",
+            steps: [
+              {
+                step: 1,
+                title: "Configuración Inicial y Baseline",
+                instructions: [
+                  "Ve a un sitio web con problemas conocidos (ej: wordpress.com, amazon.com)",
+                  "Abre DevTools (F12) y ve a Settings > Experiments",
+                  "Habilita 'AI assistance in Console' y 'Performance insights'",
+                  "Ve al panel Lighthouse, selecciona todas las categorías",
+                  "Ejecuta la auditoría y guarda los resultados como baseline",
+                  "Toma nota de los scores iniciales: Performance, Accessibility, Best Practices, SEO"
+                ]
+              },
+              {
+                step: 2,
+                title: "Análisis de Red y Recursos",
+                instructions: [
+                  "Ve al panel Network y borra las peticiones anteriores",
+                  "Recarga la página para capturar todas las peticiones",
+                  "Ordena por 'Size' para identificar recursos más grandes",
+                  "En la console, pregunta: 'IA: Analiza estas peticiones y sugiere optimizaciones'",
+                  "Identifica: imágenes > 500KB, archivos JS/CSS grandes, recursos lentos",
+                  "Filtra por 'Img' y revisa formatos: ¿hay JPEGs que podrían ser WebP?"
+                ]
+              },
+              {
+                step: 3,
+                title: "Performance Profiling con IA",
+                instructions: [
+                  "Ve al panel Performance, activa 'Screenshots' y 'Web Vitals'",
+                  "Graba un profile durante la carga de la página (5-10 segundos)",
+                  "Pregunta: 'IA: ¿Cuáles son los principales cuellos de botella en este profile?'",
+                  "Identifica: Long Tasks (barras rojas), JavaScript bloqueante, layout shifts",
+                  "Busca métricas Web Vitals: FCP, LCP, CLS",
+                  "Pregunta: 'IA: ¿Cómo puedo mejorar el LCP de esta página?'"
+                ]
+              },
+              {
+                step: 4,
+                title: "Debugging de JavaScript con Sources + IA",
+                instructions: [
+                  "Ve al panel Console y busca errores en rojo",
+                  "Si hay errores, pregunta: 'IA: Explica este error y cómo solucionarlo'",
+                  "Ve al panel Sources, busca archivos JavaScript principales",
+                  "Pregunta: 'IA: ¿Hay código JavaScript que bloquee el rendering?'",
+                  "Busca scripts síncronos en <head>, ¿podrían ser async/defer?",
+                  "Identifica funciones que se ejecutan en el critical path"
+                ]
+              },
+              {
+                step: 5,
+                title: "Optimización de DOM y CSS con Elements",
+                instructions: [
+                  "Ve al panel Elements, selecciona el elemento más grande visible",
+                  "Pregunta: 'IA: ¿Cómo puedo optimizar el CSS de este elemento?'",
+                  "Busca elementos con muchas propiedades CSS redundantes",
+                  "En la console: 'IA: ¿Hay CSS no utilizado en esta página?'",
+                  "Revisa las fuentes cargadas: ¿se usan todas las variantes?",
+                  "Simula mobile (Device toolbar) y verifica responsive design"
+                ]
+              },
+              {
+                step: 6,
+                title: "Implementación de Mejoras Críticas",
+                instructions: [
+                  "Basándote en el análisis de IA, implementa cambios simulados:",
+                  "En Elements: edita CSS para reducir unused styles",
+                  "Simula lazy loading: marca imágenes offscreen como 'loading=lazy'",
+                  "Pregunta: 'IA: Si aplico estas optimizaciones, ¿cuánto mejoraría el performance?'",
+                  "Toma screenshots de antes/después de los cambios",
+                  "Documenta las 3 mejoras más impactantes identificadas"
+                ]
+              },
+              {
+                step: 7,
+                title: "Validación y Métricas Finales",
+                instructions: [
+                  "Ve al panel Lighthouse y ejecuta una nueva auditoría",
+                  "Compara los scores con el baseline inicial",
+                  "Pregunta: 'IA: ¿Qué otros optimizaciones recomendarías como siguiente paso?'",
+                  "Documenta mejoras potenciales:",
+                  "  - Performance score: [antes] → [después estimado]",
+                  "  - LCP: [antes] → [después estimado]",
+                  "  - CLS: [antes] → [después estimado]",
+                  "Crea un plan de acción con las optimizaciones priorizadas por impacto/esfuerzo"
+                ]
+              },
+              {
+                step: 8,
+                title: "Consolidación y Siguientes Pasos",
+                instructions: [
+                  "En la console, pregunta: 'IA: Resume los hallazgos clave de este análisis'",
+                  "Crea un reporte mental con:",
+                  "  - 3 problemas principales identificados",
+                  "  - 3 soluciones prioritarias",
+                  "  - Impacto estimado en métricas clave",
+                  "Pregunta: 'IA: ¿Qué herramientas adicionales recomendarías para monitoreo continuo?'",
+                  "Planifica implementación: ¿cuáles cambios puedes hacer inmediatamente vs cuáles requieren desarrollo?",
+                  "¡Felicidades! Has completado un flujo de trabajo profesional de optimización web"
+                ]
+              }
+            ]
+          }
         }
       ]
     }

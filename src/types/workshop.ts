@@ -1,9 +1,22 @@
+export interface MiniLabStep {
+  step: number
+  title: string
+  instructions: string[]
+}
+
+export interface MiniLab {
+  title: string
+  description: string
+  steps: MiniLabStep[]
+}
+
 export interface WorkshopTopic {
   id: string
   title: string
   content: string
   exercises?: CodeExercise[]
   interactiveExercises?: InteractiveExercise[]
+  miniLab?: MiniLab
 }
 
 export interface CodeExercise {

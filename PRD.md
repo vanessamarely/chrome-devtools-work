@@ -1,87 +1,87 @@
-# Chrome DevTools Workshop Documentation Platform
+# DevTools + IA Workshop Platform
 
-A comprehensive interactive workshop platform for learning Google Chrome DevTools and AI-powered debugging features through hands-on code exercises.
+Una plataforma de workshop interactivo y comprehensivo para aprender Google Chrome DevTools integrado con funciones de IA para depuración acelerada a través de mini labs prácticos paso a paso.
 
 **Experience Qualities**:
-1. **Educational** - Clear, progressive learning path with structured content and practical examples
-2. **Interactive** - Hands-on code exercises that demonstrate real DevTools usage scenarios
-3. **Professional** - Clean, focused interface that mirrors developer tool aesthetics
+1. **Educativo y Práctico** - Camino de aprendizaje claro y progresivo con contenido estructurado y mini labs hands-on
+2. **Asistido por IA** - Integración de asistencia de IA para explicar errores, sugerir optimizaciones y acelerar debugging
+3. **Profesional y Moderno** - Interfaz limpia y enfocada que refleja la estética de herramientas de desarrollo modernas
 
 **Complexity Level**: Light Application (multiple features with basic state)
-- Multiple workshop subjects with organized content delivery, code examples, and progress tracking
+- Workshop multi-sección con mini labs organizados, contenido progresivo y seguimiento de progreso por pasos
 
 ## Essential Features
 
-### Sidebar Navigation
-- **Functionality**: Display categorized workshop subjects with expandable sections
-- **Purpose**: Easy navigation between different DevTools topics and AI features
-- **Trigger**: Click on subject categories or individual topics
-- **Progression**: Click category → expand topics → select specific lesson → content loads in main area
-- **Success criteria**: Smooth navigation with visual feedback for current selection
+### Navegación por Secciones Reorganizada
+- **Functionality**: Estructura clara separando conceptos básicos de DevTools vs integración avanzada con IA
+- **Purpose**: Progresión lógica desde fundamentos hasta técnicas avanzadas con IA
+- **Trigger**: Click en secciones: Conceptos Básicos → DevTools + IA → Mini Lab Integral
+- **Progression**: Seleccionar sección → expandir temas → mini lab step-by-step → completar pasos
+- **Success criteria**: Navegación intuitiva con progreso visual por pasos completados
 
-### Content Display Area
-- **Functionality**: Render workshop content with formatted text, code examples, and exercises
-- **Purpose**: Primary learning interface with rich content presentation
-- **Trigger**: Selection from sidebar navigation
-- **Progression**: Select topic → content loads → scroll through material → interact with code examples
-- **Success criteria**: Clear typography, syntax-highlighted code, and responsive layout
+### Sistema de Mini Labs Interactivos
+- **Functionality**: Labs prácticos paso a paso que simulan flujos de trabajo reales con DevTools + IA
+- **Purpose**: Experiencia hands-on siguiendo metodología profesional de debugging y optimización
+- **Trigger**: Navegar a mini labs dentro de cada tema
+- **Progression**: Leer descripción → seguir pasos numerados → marcar pasos como completados → validar progreso
+- **Success criteria**: Pasos claros con instrucciones específicas para Chrome DevTools
 
-### Code Exercise System
-- **Functionality**: Interactive code snippets with DevTools integration instructions
-- **Purpose**: Hands-on practice with real-world debugging scenarios
-- **Trigger**: Navigate to exercise sections within topics
-- **Progression**: Read instructions → view code → follow DevTools steps → verify results
-- **Success criteria**: Clear step-by-step instructions with expected outcomes
+### Panel Sources con IA Integration
+- **Functionality**: Contenido específico sobre debugging avanzado en panel Sources con asistencia de IA
+- **Purpose**: Dominar debugging de JavaScript con ayuda de IA para análisis de código y sugerencias
+- **Trigger**: Seleccionar tema "IA en Panel Sources"
+- **Progression**: Aprender conceptos → practicar en mini lab → aplicar IA para análisis de código
+- **Success criteria**: Comprensión completa de debugging con IA en Sources panel
 
-### Progress Tracking
-- **Functionality**: Mark completed sections and track workshop progress
-- **Purpose**: Maintain learning momentum and provide sense of accomplishment
-- **Trigger**: Complete reading/exercise sections
-- **Progression**: Read content → mark as complete → visual progress updates
-- **Success criteria**: Persistent progress state across sessions
+### Flujo de Trabajo Completo (Mini Lab Integral)
+- **Functionality**: Lab comprehensivo que integra todos los paneles con metodología profesional
+- **Purpose**: Simular flujo real de optimización web usando DevTools + IA end-to-end
+- **Trigger**: Acceder al "Mini Lab Integral" final
+- **Progression**: Setup → diagnóstico → análisis con IA → implementación → validación → reporte
+- **Success criteria**: Completar workflow completo con métricas antes/después
 
 ## Edge Case Handling
-- **Empty Content**: Display placeholder with getting started guidance
-- **Long Code Blocks**: Horizontal scroll with syntax highlighting preservation
-- **Mobile Usage**: Collapsible sidebar with touch-friendly navigation
-- **Incomplete Exercises**: Clear indicators for partially completed sections
+- **Pasos Incompletos**: Indicadores claros de progreso con pasos faltantes resaltados
+- **Mini Labs Largos**: Navegación por pasos con scroll automático y estado persistente
+- **Contenido Técnico Complejo**: Explicaciones step-by-step con screenshots conceptuales
+- **Mobile Usage**: Mini labs adaptados para pantallas pequeñas con instrucciones simplificadas
 
 ## Design Direction
-The design should feel professional and educational, mirroring the clean aesthetics of modern developer tools while maintaining excellent readability for technical content.
+El diseño debe sentirse profesional y educativo, reflejando la estética limpia de herramientas de desarrollo modernas mientras mantiene excelente legibilidad para contenido técnico y flujos paso a paso.
 
 ## Color Selection
-Complementary (opposite colors) - Using a blue-based primary with warm orange accents to create a professional yet approachable developer-focused aesthetic.
+Complementary (opposite colors) - Usando un esquema azul profesional con acentos naranjas cálidos para crear una estética técnica pero accesible.
 
-- **Primary Color**: Deep Blue (oklch(0.4 0.15 240)) - Communicates trust, professionalism, and technical depth
-- **Secondary Colors**: Light Gray (oklch(0.95 0.01 240)) for backgrounds and Slate (oklch(0.6 0.05 240)) for supporting elements
-- **Accent Color**: Warm Orange (oklch(0.7 0.15 45)) - Highlights interactive elements and calls-to-action
+- **Primary Color**: Deep Blue (oklch(0.4 0.15 240)) - Comunica confianza, profesionalismo y profundidad técnica
+- **Secondary Colors**: Light Gray (oklch(0.95 0.01 240)) para fondos y Slate (oklch(0.6 0.05 240)) para elementos de soporte
+- **Accent Color**: Warm Orange (oklch(0.7 0.15 45)) - Resalta elementos interactivos, pasos completados y CTAs
 - **Foreground/Background Pairings**:
-  - Background (Light Gray #F8F9FA): Dark Blue text (oklch(0.2 0.1 240)) - Ratio 12.1:1 ✓
+  - Background (Light Gray): Dark Blue text (oklch(0.2 0.1 240)) - Ratio 12.1:1 ✓
   - Primary (Deep Blue): White text (oklch(1 0 0)) - Ratio 8.2:1 ✓
-  - Secondary (Light Gray): Dark Blue text (oklch(0.2 0.1 240)) - Ratio 12.1:1 ✓
   - Accent (Warm Orange): White text (oklch(1 0 0)) - Ratio 4.9:1 ✓
+  - Steps Progress: Accent background with white text for completed steps
 
 ## Font Selection
-Use Inter for its excellent readability in technical documentation and code-adjacent content, with JetBrains Mono for code blocks to maintain professional developer tool aesthetics.
+Inter para excelente legibilidad en documentación técnica y contenido educativo, con JetBrains Mono para bloques de código manteniendo estética profesional de developer tools.
 
 - **Typographic Hierarchy**:
   - H1 (Workshop Title): Inter Bold/32px/tight letter spacing
-  - H2 (Section Headers): Inter Semibold/24px/normal spacing
-  - H3 (Subsections): Inter Medium/20px/normal spacing
+  - H2 (Section Headers): Inter Semibold/24px/normal spacing  
+  - H3 (Mini Lab Steps): Inter Medium/18px/normal spacing
   - Body Text: Inter Regular/16px/relaxed line height
-  - Code Inline: JetBrains Mono Regular/14px/normal spacing
-  - Code Blocks: JetBrains Mono Regular/14px/1.6 line height
+  - Step Instructions: Inter Regular/14px/relaxed line height
+  - Code Commands: JetBrains Mono Regular/14px/normal spacing
 
 ## Animations
-Subtle functionality-focused animations that guide attention and provide smooth transitions between workshop sections without distracting from learning content.
+Animaciones sutiles enfocadas en funcionalidad que guían la atención durante el progreso de mini labs sin distraer del aprendizaje.
 
-- **Purposeful Meaning**: Smooth sidebar transitions reinforce navigation hierarchy, subtle hover states indicate interactivity
-- **Hierarchy of Movement**: Content area transitions take precedence, followed by sidebar state changes, with minimal decorative motion
+- **Purposeful Meaning**: Transiciones suaves de pasos completados, expansión/colapso de mini lab steps, feedback visual de progreso
+- **Hierarchy of Movement**: Progreso de pasos toma precedencia, seguido por transiciones de contenido, con movimiento decorativo mínimo
 
 ## Component Selection
-- **Components**: Sidebar for navigation, Card components for content sections, Accordion for expandable topics, Button for interactive elements, Badge for progress indicators
-- **Customizations**: Custom syntax highlighting component for code blocks, progress indicator system, collapsible content areas
-- **States**: Sidebar items show hover/active/completed states, buttons have clear press feedback, content areas load smoothly
-- **Icon Selection**: ChevronRight for expandable items, BookOpen for lessons, Code for exercises, CheckCircle for completed items
-- **Spacing**: Consistent 4-unit (16px) padding for content areas, 2-unit (8px) for compact elements
-- **Mobile**: Sidebar collapses to overlay on mobile, content area becomes full-width with touch-optimized navigation
+- **Components**: Collapsible para mini lab steps, Progress bars para avance, Badge para pasos completados, Card para contenido de pasos, Button para acciones de completar
+- **Customizations**: Componente MiniLab personalizado con tracking de progreso, step-by-step navigation, estado persistente por KV
+- **States**: Steps muestran estados pending/completed/active, buttons tienen feedback claro, progress bars animadas
+- **Icon Selection**: Flask para mini labs, CheckCircle para pasos completados, CaretRight/CaretDown para expandir, Target para ejercicios
+- **Spacing**: 6-unit (24px) entre pasos, 4-unit (16px) padding interno, 2-unit (8px) para elementos compactos
+- **Mobile**: Mini lab steps se adaptan a pantalla completa, instrucciones optimizadas para touch, navegación simplificada
