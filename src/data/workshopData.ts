@@ -159,7 +159,276 @@ El panel Elements es tu puerta de entrada al DOM (Document Object Model) y los e
                   "Activa la checkbox de ':hover' y observa los cambios"
                 ]
               }
-            ]
+            ],
+            practiceArea: {
+              title: "Área de Práctica: Página de Demostración",
+              description: "Usa esta página web para practicar las técnicas de manipulación DOM y CSS",
+              webPageCode: {
+                html: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTools Practice - Elements Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1 id="main-title">Práctica de DevTools</h1>
+        <nav class="navigation">
+            <a href="#home" class="nav-link">Inicio</a>
+            <a href="#about" class="nav-link">Acerca</a>
+            <a href="#contact" class="nav-link">Contacto</a>
+        </nav>
+    </header>
+    
+    <main class="content">
+        <section class="hero">
+            <h2 class="hero-title">Bienvenido al Lab de DevTools</h2>
+            <p class="hero-description">Practica manipulando elementos y estilos con las herramientas de desarrollador.</p>
+            <button class="cta-button" onclick="showAlert()">Probar Interacción</button>
+        </section>
+        
+        <section class="cards">
+            <div class="card">
+                <h3>Panel Elements</h3>
+                <p>Inspecciona y modifica el DOM en tiempo real.</p>
+            </div>
+            <div class="card highlighted">
+                <h3>Panel Styles</h3>
+                <p>Edita CSS y experimenta con estilos visuales.</p>
+            </div>
+            <div class="card">
+                <h3>Box Model</h3>
+                <p>Analiza márgenes, padding y dimensiones.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 DevTools Lab - Práctica educativa</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>`,
+                css: `/* Estilos base con algunos problemas intencionados para depurar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+}
+
+#main-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    /* Error intencional: color poco visible */
+    color: #ccc;
+}
+
+.navigation {
+    margin-top: 1rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    /* Error intencional: hover muy sutil */
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+}
+
+.content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 3rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hero-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #7f8c8d;
+    /* Error intencional: line-height muy estrecho */
+    line-height: 1.1;
+}
+
+.cta-button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* Error intencional: efecto hover roto */
+    &:hover {
+        background: #3498db; /* No cambia */
+    }
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    /* Error intencional: border no visible */
+    border: 1px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    /* Error intencional: shadow muy exagerado */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.card.highlighted {
+    /* Error intencional: texto poco legible */
+    background: #ecf0f1;
+    color: #bdc3c7;
+}
+
+.footer {
+    background: #34495e;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+/* Error intencional: media query rota */
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr 1fr 1fr; /* Muy estrecho en móvil */
+    }
+    
+    #main-title {
+        font-size: 4rem; /* Muy grande para móvil */
+    }
+}`,
+                javascript: `// JavaScript con errores intencionados para práctica de depuración
+
+// Error intencional: variable no declarada
+function showAlert() {
+    // Error: undefinedVariable no está definida
+    console.log(undefinedVariable);
+    
+    alert("¡Hola desde DevTools!");
+}
+
+// Error intencional: función con bug lógico
+function calculateTotal(price, tax) {
+    // Error: conversión incorrecta de string
+    return price + tax; // Debería ser price * (1 + tax)
+}
+
+// Error intencional: loop infinito (comentado para seguridad)
+// function problematicLoop() {
+//     let i = 0;
+//     while (i >= 0) {
+//         console.log("Loop infinito!");
+//         i++; // Error: nunca se cumple la condición de salida
+//     }
+// }
+
+// Error intencional: acceso a elementos que no existen
+document.addEventListener('DOMContentLoaded', function() {
+    // Error: elemento no existe
+    const nonExistentElement = document.getElementById('does-not-exist');
+    nonExistentElement.textContent = "Esto causará un error";
+    
+    // Error: typo en el selector
+    const wrongSelector = document.querySelector('.wrong-class-name');
+    if (wrongSelector) {
+        wrongSelector.style.color = 'red';
+    }
+    
+    // Ejemplo correcto para comparar
+    const correctElement = document.getElementById('main-title');
+    if (correctElement) {
+        console.log('Título encontrado:', correctElement.textContent);
+    }
+});
+
+// Error intencional: problema de scope
+var globalVar = "Soy global";
+
+function testScope() {
+    console.log(localVar); // Error: hoisting incorrecto
+    var localVar = "Soy local";
+}
+
+// Error intencional: async/await mal usado
+async function problematicAsync() {
+    // Error: no usar await
+    const result = fetch('https://api.ejemplo.com/datos');
+    console.log(result); // Mostrará Promise en lugar de datos
+}
+
+// Error intencional: manejo de eventos
+document.querySelector('.cta-button').addEventListener('click', function() {
+    // Error: no prevenir default en algunos casos
+    calculateTotal("100", "0.1"); // Error: strings en lugar de números
+});`
+              },
+              tips: [
+                "Usa Ctrl+Shift+C para activar el selector de elementos rápidamente",
+                "Los cambios en DevTools son temporales - recarga la página para revertir",
+                "Haz clic derecho en elementos para ver opciones como 'Copiar selector' o 'Editar como HTML'",
+                "El panel Styles muestra estilos tachados cuando hay conflictos - muy útil para depurar",
+                "Usa la pestaña Computed para ver exactamente qué estilos finales se aplican",
+                "Presiona 'H' para ocultar/mostrar elementos seleccionados temporalmente",
+                "Los pseudo-estados (:hover, :focus) se pueden forzar desde el panel Styles",
+                "El Box Model visual te ayuda a entender spacing y dimensiones problemáticas"
+              ]
+            }
           }
         },
         {

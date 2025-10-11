@@ -4,10 +4,32 @@ export interface MiniLabStep {
   instructions: string[]
 }
 
+export interface CodeExample {
+  title: string
+  language: string
+  code: string
+  description?: string
+  highlightLines?: number[]
+  editable?: boolean
+}
+
+export interface PracticeArea {
+  title: string
+  description: string
+  examples?: CodeExample[]
+  webPageCode?: {
+    html: string
+    css: string
+    javascript: string
+  }
+  tips?: string[]
+}
+
 export interface MiniLab {
   title: string
   description: string
   steps: MiniLabStep[]
+  practiceArea?: PracticeArea
 }
 
 export interface WorkshopTopic {

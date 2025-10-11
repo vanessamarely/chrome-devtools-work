@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { CaretRight, CaretDown, Flask, CheckCircle } from '@phosphor-icons/react'
+import { CaretRight, CaretDown, Flask, CheckCircle, Code } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Badge } from '@/components/ui/badge'
 import { useKV } from '@github/spark/hooks'
 import { MiniLab } from '../types/workshop'
+import { CodePracticeArea } from './CodePracticeArea'
 
 interface MiniLabProps {
   miniLab: MiniLab
@@ -182,6 +183,17 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
             </div>
           </CardContent>
         </Card>
+      )}
+
+      {/* Área de Práctica de Código */}
+      {miniLab.practiceArea && (
+        <CodePracticeArea
+          title={miniLab.practiceArea.title}
+          description={miniLab.practiceArea.description}
+          examples={miniLab.practiceArea.examples || []}
+          webPageCode={miniLab.practiceArea.webPageCode}
+          tips={miniLab.practiceArea.tips}
+        />
       )}
     </div>
   )

@@ -132,6 +132,10 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
                   <CodeBlock
                     code={exercise.code}
                     language={exercise.language}
+                    title={exercise.title}
+                    description={exercise.description}
+                    editable={true}
+                    showLineNumbers={true}
                   />
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Instrucciones:</h4>
