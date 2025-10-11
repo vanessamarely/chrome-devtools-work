@@ -1,4 +1,4 @@
-import { CaretRight, CaretDown, BookOpen, Code, CheckCircle } from '@phosphor-icons/react'
+import { CaretRight, CaretDown, BookOpen, Code, CheckCircle, Target } from '@phosphor-icons/react'
 import { useState } from 'react'
 import { WorkshopSection } from '../types/workshop'
 import { cn } from '../lib/utils'
@@ -64,6 +64,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
                     const isSelected = selectedTopic === topic.id
                     const isCompleted = completedTopics.has(topic.id)
                     const hasExercises = topic.exercises && topic.exercises.length > 0
+                    const hasInteractiveExercises = topic.interactiveExercises && topic.interactiveExercises.length > 0
                     
                     return (
                       <button
@@ -77,16 +78,23 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
                         )}
                       >
                         <div className="flex items-center gap-2 flex-1">
-                          {hasExercises ? (
+                          {hasInteractiveExercises ? (
+                            <Target size={16} className={isSelected ? "text-sidebar-primary-foreground/80" : "text-accent"} />
+                          ) : hasExercises ? (
                             <Code size={16} className={isSelected ? "text-sidebar-primary-foreground/80" : "text-sidebar-foreground/60"} />
                           ) : (
                             <BookOpen size={16} className={isSelected ? "text-sidebar-primary-foreground/80" : "text-sidebar-foreground/60"} />
                           )}
                           <span className="text-sm">{topic.title}</span>
                         </div>
-                        {isCompleted && (
-                          <CheckCircle size={16} className="text-accent flex-shrink-0" />
-                        )}
+                        <div className="flex items-center gap-1">
+                          {hasInteractiveExercises && (
+                            <div className="w-2 h-2 bg-accent rounded-full" title="Tiene ejercicios interactivos" />
+                          )}
+                          {isCompleted && (
+                            <CheckCircle size={16} className="text-accent flex-shrink-0" />
+                          )}
+                        </div>
                       </button>
                     )
                   })}

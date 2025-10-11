@@ -64,6 +64,65 @@ Abre Chrome DevTools con:
                 "Observa cómo DevTools resalta el elemento seleccionado"
               ]
             }
+          ],
+          interactiveExercises: [
+            {
+              id: "devtools-shortcut",
+              title: "Atajos de DevTools",
+              description: "Aprende los atajos de teclado principales para abrir DevTools",
+              type: "console-command",
+              solution: ["F12", "Ctrl+Shift+I", "Cmd+Option+I"],
+              validation: [
+                {
+                  type: "contains",
+                  value: "F12",
+                  message: "F12 es el atajo principal para abrir DevTools",
+                  points: 1
+                },
+                {
+                  type: "contains", 
+                  value: "Ctrl+Shift+I",
+                  message: "Ctrl+Shift+I es el atajo alternativo en Windows/Linux",
+                  points: 1
+                },
+                {
+                  type: "contains",
+                  value: "Cmd+Option+I",
+                  message: "Cmd+Option+I es el atajo para Mac",
+                  points: 1
+                }
+              ],
+              hints: [
+                "Hay tres atajos principales: uno con función, uno con Ctrl en Windows, y uno con Cmd en Mac",
+                "El atajo principal usa la tecla F12",
+                "Los atajos incluyen Shift e I en combinación con Ctrl o Cmd"
+              ]
+            },
+            {
+              id: "element-selection",
+              title: "Seleccionar Elementos",
+              description: "Aprende el atajo para activar la herramienta de selección de elementos",
+              type: "console-command",
+              solution: ["Ctrl+Shift+C", "Cmd+Shift+C"],
+              validation: [
+                {
+                  type: "contains",
+                  value: "Ctrl+Shift+C",
+                  message: "Ctrl+Shift+C activa la herramienta de selección en Windows/Linux",
+                  points: 1
+                },
+                {
+                  type: "contains",
+                  value: "Cmd+Shift+C", 
+                  message: "Cmd+Shift+C activa la herramienta de selección en Mac",
+                  points: 1
+                }
+              ],
+              hints: [
+                "El atajo usa la tecla C junto con Shift",
+                "En Windows/Linux usa Ctrl, en Mac usa Cmd"
+              ]
+            }
           ]
         },
         {
@@ -141,6 +200,68 @@ El panel de Elementos es tu puerta de entrada al DOM (Document Object Model). Aq
                 "Observa cómo los cambios aparecen instantáneamente en el navegador"
               ]
             }
+          ],
+          interactiveExercises: [
+            {
+              id: "css-selector-practice",
+              title: "Práctica de Selectores CSS", 
+              description: "Escribe selectores CSS para encontrar elementos específicos",
+              type: "css-selector",
+              solution: ".contenedor p",
+              validation: [
+                {
+                  type: "regex",
+                  value: /\.contenedor\s+p/,
+                  message: "Selector correcto para párrafos dentro de .contenedor",
+                  points: 2
+                }
+              ],
+              hints: [
+                "Necesitas un selector que apunte a elementos <p> dentro de un elemento con clase 'contenedor'",
+                "Usa el selector de clase para .contenedor seguido de un espacio y luego p"
+              ]
+            },
+            {
+              id: "dom-manipulation-code",
+              title: "Código de Manipulación DOM",
+              description: "Escribe código JavaScript para cambiar el texto de un elemento",
+              type: "dom-manipulation",
+              initialCode: `// Cambiar el texto del elemento con id "demo"
+// a "¡Nuevo texto!"
+`,
+              solution: `document.getElementById("demo").innerHTML = "¡Nuevo texto!";`,
+              validation: [
+                {
+                  type: "contains",
+                  value: "document.getElementById",
+                  message: "Usa document.getElementById para obtener el elemento",
+                  points: 1
+                },
+                {
+                  type: "contains",
+                  value: '"demo"',
+                  message: "Busca el elemento con id 'demo'",
+                  points: 1
+                },
+                {
+                  type: "contains",
+                  value: "innerHTML",
+                  message: "Usa innerHTML para cambiar el contenido",
+                  points: 1
+                },
+                {
+                  type: "contains",
+                  value: "¡Nuevo texto!",
+                  message: "Establece el texto correcto",
+                  points: 1
+                }
+              ],
+              hints: [
+                "Usa document.getElementById() para obtener el elemento",
+                "Luego usa .innerHTML para cambiar su contenido",
+                "El texto debe ser exactamente '¡Nuevo texto!'"
+              ]
+            }
           ]
         }
       ]
@@ -187,7 +308,63 @@ console.log('Datos de usuario: %o', objetoUsuario);
 ### Estilizar Salida de Consola
 \`\`\`javascript
 console.log('%c Texto Estilizado', 'color: blue; font-size: 20px;');
-\`\`\``
+\`\`\``,
+          interactiveExercises: [
+            {
+              id: "console-log-practice",
+              title: "Comandos de Consola Básicos",
+              description: "Practica escribir comandos de consola para registrar información",
+              type: "console-command",
+              initialCode: `// Escribe un comando para registrar "Hola DevTools" en la consola
+`,
+              solution: `console.log("Hola DevTools");`,
+              validation: [
+                {
+                  type: "contains",
+                  value: "console.log",
+                  message: "Usa console.log para mostrar mensajes",
+                  points: 1
+                },
+                {
+                  type: "contains",
+                  value: "Hola DevTools",
+                  message: "El mensaje debe ser 'Hola DevTools'",
+                  points: 1
+                }
+              ],
+              hints: [
+                "Usa console.log() para mostrar mensajes en la consola",
+                "El texto debe ir entre comillas dentro de los paréntesis"
+              ]
+            },
+            {
+              id: "console-error-practice", 
+              title: "Registro de Errores",
+              description: "Aprende a registrar mensajes de error en la consola",
+              type: "console-command",
+              initialCode: `// Registra un mensaje de error que diga "Error encontrado"
+`,
+              solution: `console.error("Error encontrado");`,
+              validation: [
+                {
+                  type: "contains",
+                  value: "console.error",
+                  message: "Usa console.error para mostrar errores",
+                  points: 1
+                },
+                {
+                  type: "contains",
+                  value: "Error encontrado",
+                  message: "El mensaje debe ser 'Error encontrado'",
+                  points: 1
+                }
+              ],
+              hints: [
+                "Usa console.error() para mostrar errores en rojo",
+                "El mensaje debe ser 'Error encontrado'"
+              ]
+            }
+          ]
         },
         {
           id: "breakpoints",
@@ -230,7 +407,69 @@ Cuando está pausado en un breakpoint:
 
 - **Call Stack** muestra la cadena de ejecución de funciones
 - Panel **Scope** muestra valores de variables
-- Panel **Watch** para monitorear expresiones específicas`
+- Panel **Watch** para monitorear expresiones específicas`,
+          interactiveExercises: [
+            {
+              id: "debug-fix-exercise",
+              title: "Corregir Bug en JavaScript",
+              description: "Encuentra y corrige el error en esta función",
+              type: "debug-fix",
+              initialCode: `function calcularPromedio(numeros) {
+    let suma = 0;
+    for (let i = 0; i <= numeros.length; i++) {
+        suma += numeros[i];
+    }
+    return suma / numeros.length;
+}
+
+// El error está en el bucle for`,
+              solution: `function calcularPromedio(numeros) {
+    let suma = 0;
+    for (let i = 0; i < numeros.length; i++) {
+        suma += numeros[i];
+    }
+    return suma / numeros.length;
+}`,
+              validation: [
+                {
+                  type: "contains",
+                  value: "i < numeros.length",
+                  message: "Condición del bucle corregida para evitar acceso fuera de límites",
+                  points: 2
+                },
+                {
+                  type: "regex",
+                  value: /for\s*\(\s*let\s+i\s*=\s*0;\s*i\s*<\s*numeros\.length;\s*i\+\+\s*\)/,
+                  message: "Bucle for correctamente formateado",
+                  points: 1
+                }
+              ],
+              hints: [
+                "El problema está en la condición del bucle for",
+                "Usar <= causa que el bucle acceda a un índice que no existe",
+                "Cambia <= por < en la condición del bucle"
+              ]
+            },
+            {
+              id: "breakpoint-condition",
+              title: "Condición de Breakpoint",
+              description: "Escribe una condición para un breakpoint que se active solo cuando la variable 'contador' sea mayor que 5",
+              type: "console-command",
+              solution: "contador > 5",
+              validation: [
+                {
+                  type: "exact",
+                  value: "contador > 5",
+                  message: "Condición correcta para breakpoint condicional",
+                  points: 2
+                }
+              ],
+              hints: [
+                "La condición debe comparar la variable 'contador' con el número 5",
+                "Usa el operador > para verificar que sea mayor que 5"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -287,7 +526,70 @@ La IA puede analizar:
 - Cuellos de botella de rendimiento
 - Patrones de uso de memoria
 - Oportunidades de optimización de red
-- Recomendaciones de tamaño de bundle`
+- Recomendaciones de tamaño de bundle`,
+          interactiveExercises: [
+            {
+              id: "ai-query-practice",
+              title: "Consultas de IA",
+              description: "Practica escribir consultas efectivas para el asistente de IA",
+              type: "console-command",
+              initialCode: `// Escribe una consulta de IA para explicar un error de TypeError
+// Usa el prefijo "IA:" seguido de tu pregunta
+`,
+              solution: `IA: ¿Qué significa TypeError: Cannot read property 'length' of undefined?`,
+              validation: [
+                {
+                  type: "contains",
+                  value: "IA:",
+                  message: "Usa el prefijo 'IA:' para consultas directas",
+                  points: 1
+                },
+                {
+                  type: "contains",
+                  value: "TypeError",
+                  message: "Menciona el tipo de error específico",
+                  points: 1
+                },
+                {
+                  type: "contains",
+                  value: "Cannot read property",
+                  message: "Incluye detalles del mensaje de error",
+                  points: 1
+                }
+              ],
+              hints: [
+                "Comienza con 'IA:' para indicar que es una consulta para el asistente",
+                "Pregunta específicamente sobre el error TypeError",
+                "Incluye parte del mensaje de error para contexto"
+              ]
+            },
+            {
+              id: "ai-debugging-question",
+              title: "Pregunta de Depuración con IA",
+              description: "Escribe una pregunta para el asistente de IA sobre depuración de performance",
+              type: "console-command",
+              solution: `IA: ¿Cómo puedo identificar cuellos de botella de rendimiento en mi aplicación?`,
+              validation: [
+                {
+                  type: "contains",
+                  value: "IA:",
+                  message: "Usa el prefijo correcto para consultas de IA",
+                  points: 1
+                },
+                {
+                  type: "regex",
+                  value: /(rendimiento|performance|cuellos de botella|optimización)/i,
+                  message: "Pregunta relacionada con rendimiento o optimización",
+                  points: 2
+                }
+              ],
+              hints: [
+                "Usa el prefijo 'IA:' para comenzar tu consulta",
+                "Pregunta sobre análisis de rendimiento o identificación de problemas",
+                "Palabras clave: rendimiento, cuellos de botella, optimización"
+              ]
+            }
+          ]
         },
         {
           id: "ai-debugging",

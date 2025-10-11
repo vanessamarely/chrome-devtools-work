@@ -1,9 +1,12 @@
-import { CheckCircle, ClipboardText, Code } from '@phosphor-icons/react'
+import { CheckCircle, ClipboardText, Code, Target } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CodeBlock } from './CodeBlock'
+import { InteractiveExercise } from './InteractiveExercise'
+import { ProgressDashboard } from './ProgressDashboard'
 import { WorkshopTopic } from '../types/workshop'
+import { workshopData } from '../data/workshopData'
 
 interface ContentAreaProps {
   topic?: WorkshopTopic
@@ -14,13 +17,18 @@ interface ContentAreaProps {
 export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps) {
   if (!topic) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-background">
-        <div className="text-center space-y-4">
-          <ClipboardText size={64} className="text-muted-foreground mx-auto" />
-          <h2 className="text-2xl font-semibold text-foreground">Selecciona un Tema</h2>
-          <p className="text-muted-foreground max-w-md">
-            Elige un tema de la barra lateral para comenzar a aprender sobre Chrome DevTools y las funciones de depuración con IA.
-          </p>
+      <div className="flex-1 flex flex-col bg-background">
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center space-y-4">
+            <ClipboardText size={64} className="text-muted-foreground mx-auto" />
+            <h2 className="text-2xl font-semibold text-foreground">Selecciona un Tema</h2>
+            <p className="text-muted-foreground max-w-md">
+              Elige un tema de la barra lateral para comenzar a aprender sobre Chrome DevTools y las funciones de depuración con IA.
+            </p>
+          </div>
+        </div>
+        <div className="p-8">
+          <ProgressDashboard workshopData={workshopData} />
         </div>
       </div>
     )
@@ -138,6 +146,25 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
                   </div>
                 </CardContent>
               </Card>
+            ))}
+          </div>
+        )}
+
+        {topic.interactiveExercises && topic.interactiveExercises.length > 0 && (
+          <div className="mt-12 space-y-6">
+            <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <Target size={24} className="text-primary" />
+              Ejercicios Interactivos
+            </h2>
+            <p className="text-muted-foreground">
+              Completa estos ejercicios con validación en tiempo real para practicar lo que has aprendido.
+            </p>
+            {topic.interactiveExercises.map((exercise) => (
+              <InteractiveExercise
+                key={exercise.id}
+                exercise={exercise}
+                topicId={topic.id}
+              />
             ))}
           </div>
         )}

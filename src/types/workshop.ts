@@ -3,6 +3,7 @@ export interface WorkshopTopic {
   title: string
   content: string
   exercises?: CodeExercise[]
+  interactiveExercises?: InteractiveExercise[]
 }
 
 export interface CodeExercise {
@@ -12,6 +13,25 @@ export interface CodeExercise {
   code: string
   language: string
   instructions: string[]
+}
+
+export interface InteractiveExercise {
+  id: string
+  title: string
+  description: string
+  type: 'code-completion' | 'css-selector' | 'debug-fix' | 'dom-manipulation' | 'console-command'
+  initialCode?: string
+  solution: string | string[]
+  hints?: string[]
+  validation: ValidationRule[]
+  language?: string
+}
+
+export interface ValidationRule {
+  type: 'contains' | 'regex' | 'exact' | 'function' | 'dom-check'
+  value: string | RegExp
+  message: string
+  points?: number
 }
 
 export interface WorkshopSection {
