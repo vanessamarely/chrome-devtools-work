@@ -1223,6 +1223,520 @@ IA: ¿Cómo puedo mejorar la experiencia en 3G?
       ]
     },
     {
+      id: "ai-prompts",
+      title: "Prompts de IA para DevTools",
+      icon: "💬",
+      topics: [
+        {
+          id: "english-prompts",
+          title: "Prompts en Inglés para DevTools + IA",
+          content: `# Colección de Prompts en Inglés para DevTools + IA
+
+Esta sección proporciona una biblioteca completa de prompts en inglés optimizados para usar con la asistencia de IA integrada en Chrome DevTools.
+
+## 🔍 Prompts para Panel Elements
+
+### DOM Analysis
+\`\`\`
+Analyze this HTML structure for semantic issues and accessibility problems
+What's the best way to optimize this DOM structure for performance?
+Explain why this element isn't displaying correctly
+How can I improve the semantic meaning of this HTML?
+Suggest accessible alternatives for this markup
+Review this HTML for SEO optimization opportunities
+\`\`\`
+
+### CSS Optimization
+\`\`\`
+Identify unused CSS rules in this stylesheet
+How can I optimize these CSS properties for better performance?
+Explain the cascade conflicts in these styles
+Suggest modern CSS alternatives to this legacy code
+What's causing the layout shift in this component?
+Optimize this CSS for mobile-first responsive design
+Convert this layout to use CSS Grid instead of floats
+\`\`\`
+
+### Layout Debugging
+\`\`\`
+Why isn't this element centering properly?
+Debug this flexbox layout issue
+Explain the z-index stacking context problem
+How can I fix this CSS positioning issue?
+What's causing the overflow in this container?
+Optimize this grid layout for better responsive behavior
+\`\`\`
+
+## 🖥️ Prompts para Panel Console
+
+### Error Analysis
+\`\`\`
+Explain this JavaScript error and provide a solution
+What's the root cause of this TypeError?
+How can I prevent this null reference error?
+Debug this async/await error handling issue
+Explain why this function is returning undefined
+Analyze this stack trace and suggest fixes
+\`\`\`
+
+### Code Generation
+\`\`\`
+Generate a debounce function for search input
+Create a throttle function for scroll events
+Write a utility function to validate email addresses
+Generate code for handling API errors gracefully
+Create a helper function for DOM manipulation
+Write a custom event handler for keyboard navigation
+\`\`\`
+
+### Performance Analysis
+\`\`\`
+Why is this function executing slowly?
+Optimize this loop for better performance
+Identify memory leaks in this component
+Analyze the computational complexity of this algorithm
+Suggest performance improvements for this code
+Review this code for potential bottlenecks
+\`\`\`
+
+## 🔧 Prompts para Panel Sources
+
+### Debugging Assistance
+\`\`\`
+Where should I place breakpoints to debug this issue?
+Explain the execution flow of this function
+Why is this variable undefined at this point?
+Help me understand this closure behavior
+Debug this race condition in asynchronous code
+Trace the call stack to find the error source
+\`\`\`
+
+### Code Quality Review
+\`\`\`
+Review this function for potential bugs
+Identify security vulnerabilities in this code
+Suggest refactoring opportunities for this module
+Analyze this code for best practices compliance
+Check this function for proper error handling
+Evaluate the testability of this code structure
+\`\`\`
+
+### Architecture Analysis
+\`\`\`
+Explain the design patterns used in this code
+Suggest improvements to this module structure
+Analyze the coupling between these components
+Review the separation of concerns in this architecture
+Identify opportunities for code reuse
+Suggest modernization strategies for this legacy code
+\`\`\`
+
+## 🌐 Prompts para Panel Network
+
+### Resource Optimization
+\`\`\`
+Analyze these network requests for optimization opportunities
+Which resources are blocking the critical rendering path?
+Suggest improvements for resource loading strategy
+Identify unnecessary network requests
+Recommend caching strategies for these resources
+Optimize the waterfall loading pattern
+\`\`\`
+
+### Performance Analysis
+\`\`\`
+What's causing the slow load times in this application?
+Analyze the impact of these large resources
+Suggest bundle splitting strategies for JavaScript
+Recommend image optimization techniques
+Evaluate the effectiveness of current caching headers
+Identify opportunities for lazy loading implementation
+\`\`\`
+
+### Security Review
+\`\`\`
+Review these requests for potential security issues
+Analyze the HTTPS implementation
+Check for exposed sensitive data in requests
+Evaluate CORS configuration
+Review authentication token handling
+Identify potential XSS vulnerabilities in requests
+\`\`\`
+
+## ⚡ Prompts para Panel Performance
+
+### Web Vitals Optimization
+\`\`\`
+How can I improve the Largest Contentful Paint (LCP)?
+What's causing the Cumulative Layout Shift (CLS)?
+Optimize the First Input Delay (FID) for this page
+Analyze the First Contentful Paint (FCP) bottlenecks
+Improve the Time to Interactive (TTI) metric
+Reduce the Total Blocking Time (TBT)
+\`\`\`
+
+### JavaScript Performance
+\`\`\`
+Identify the most expensive JavaScript operations
+Analyze the main thread blocking tasks
+Suggest optimizations for these long-running scripts
+Review the event loop performance
+Optimize garbage collection patterns
+Identify opportunities for Web Worker usage
+\`\`\`
+
+### Rendering Performance
+\`\`\`
+What's causing the frame rate drops?
+Optimize the paint and composite operations
+Analyze the render-blocking resources
+Improve the critical rendering path
+Optimize CSS animations for 60fps
+Reduce layout thrashing in this component
+\`\`\`
+
+## 🔄 Prompts Integrales (Multi-Panel)
+
+### Holistic Performance Analysis
+\`\`\`
+Perform a comprehensive performance audit of this application
+Prioritize the most impactful optimizations for this page
+Create an optimization roadmap based on current performance metrics
+Analyze the user experience impact of these performance issues
+Suggest a performance budget for this application
+\`\`\`
+
+### Problem-Solving Workflows
+\`\`\`
+Help me diagnose this intermittent bug
+Create a debugging strategy for this complex issue
+Suggest a systematic approach to optimize this slow page
+Guide me through performance profiling best practices
+Develop a testing strategy for these optimizations
+\`\`\`
+
+## 🎯 Prompts Específicos por Tipo de Problema
+
+### E-commerce Performance
+\`\`\`
+Optimize checkout flow performance
+Analyze product image loading strategies
+Improve search functionality responsiveness
+Optimize shopping cart state management
+\`\`\`
+
+### SPA (Single Page Application)
+\`\`\`
+Optimize client-side routing performance
+Analyze component mounting and unmounting costs
+Improve state management efficiency
+Optimize bundle size for code splitting
+\`\`\`
+
+### Content-Heavy Sites
+\`\`\`
+Optimize article loading and rendering
+Improve font loading strategies
+Analyze content layout shifts
+Optimize media-rich content delivery
+\`\`\`
+
+## 💡 Tips para Usar Prompts Efectivamente
+
+### Mejores Prácticas
+1. **Sé específico**: Include context about what you're trying to achieve
+2. **Provide details**: Share relevant code snippets or error messages
+3. **Ask follow-up questions**: Dig deeper into the AI's suggestions
+4. **Test iteratively**: Apply suggestions and ask for validation
+5. **Combine insights**: Use multiple panels and prompts for comprehensive analysis
+
+### Estructura de Prompts Efectivos
+\`\`\`
+Context: "I'm working on an e-commerce checkout page"
+Problem: "Users are experiencing slow interactions during payment"
+Current observation: "I see long tasks in the Performance panel"
+Question: "What's the most likely cause and how can I optimize it?"
+\`\`\``,
+          miniLab: {
+            title: "Práctica de Prompts de IA",
+            description: "Practica usando prompts efectivos con la IA de DevTools",
+            steps: [
+              {
+                step: 1,
+                title: "Configuración de IA en DevTools",
+                instructions: [
+                  "Abre Chrome Canary o Chrome Dev channel",
+                  "Ve a chrome://flags y busca 'devtools-ai'",
+                  "Habilita las funciones experimentales de IA",
+                  "Reinicia Chrome y abre DevTools",
+                  "Verifica que aparezca el ícono de IA (🤖) en la console"
+                ]
+              },
+              {
+                step: 2,
+                title: "Prompts Básicos de Análisis",
+                instructions: [
+                  "Ve a cualquier sitio web complejo (ej: reddit.com)",
+                  "En la console, prueba: 'Analyze this page for performance bottlenecks'",
+                  "Luego: 'What are the largest resources being loaded?'",
+                  "Pregunta: 'How can I improve the load time of this page?'",
+                  "Observa la calidad y especificidad de las respuestas"
+                ]
+              },
+              {
+                step: 3,
+                title: "Prompts de Debugging Específicos",
+                instructions: [
+                  "Abre el panel Sources y encuentra un archivo JavaScript",
+                  "Prueba: 'Explain what this function does and identify potential issues'",
+                  "Selecciona código complejo y pregunta: 'How can I optimize this code?'",
+                  "Para errores: 'What's the most likely cause of this error and how do I fix it?'",
+                  "Practica hacer preguntas de seguimiento basadas en las respuestas"
+                ]
+              },
+              {
+                step: 4,
+                title: "Prompts de Optimización Avanzados",
+                instructions: [
+                  "Ve al panel Performance y graba un profile",
+                  "Pregunta: 'What are the 3 most critical optimizations for this performance profile?'",
+                  "Luego: 'How would implementing these changes impact Core Web Vitals?'",
+                  "Finaliza con: 'Create a prioritized action plan for these optimizations'",
+                  "Compara la utilidad de prompts genéricos vs específicos"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          id: "test-sites",
+          title: "Sitios Web para Practicar DevTools + IA",
+          content: `# Sitios Web Recomendados para Practicar DevTools + IA
+
+Esta sección proporciona una lista curada de sitios web que presentan diferentes tipos de problemas comunes, perfectos para practicar las técnicas de DevTools con asistencia de IA.
+
+## 🎯 Sitios con Problemas de Performance Conocidos
+
+### 1. Heavy News Sites
+**CNN.com** / **BBC.com**
+- **Problemas típicos**: Carga lenta, muchos recursos, scripts pesados
+- **Ideal para practicar**: Network analysis, Performance profiling, Resource optimization
+- **Prompts sugeridos**:
+  - "Analyze the resource loading waterfall for optimization opportunities"
+  - "What's causing the slow First Contentful Paint on this news site?"
+  - "How can the Critical Rendering Path be optimized?"
+
+### 2. E-commerce Platforms
+**Amazon.com** / **eBay.com** 
+- **Problemas típicos**: Layout shifts, JavaScript bloqueante, imágenes grandes
+- **Ideal para practicar**: CLS debugging, Image optimization, JavaScript performance
+- **Prompts sugeridos**:
+  - "Identify sources of Cumulative Layout Shift during page load"
+  - "Analyze the image loading strategy and suggest improvements"
+  - "What JavaScript is blocking the main thread?"
+
+### 3. Social Media Platforms
+**Twitter.com** / **LinkedIn.com**
+- **Problemas típicos**: Infinite scroll performance, memory leaks, async loading
+- **Ideal para practicar**: Memory profiling, Event handling, Async debugging
+- **Prompts sugeridos**:
+  - "Analyze memory usage patterns during infinite scroll"
+  - "Debug the performance of dynamic content loading"
+  - "What's causing frame rate drops during scrolling?"
+
+## 🔧 Sitios Específicos para Testing
+
+### 4. TestMyCSS.com
+**Sitio especializado para debugging CSS**
+- **Problemas típicos**: CSS conflicts, specificity issues, layout problems
+- **Ideal para practicar**: CSS debugging, Specificity analysis, Layout debugging
+- **Prompts sugeridos**:
+  - "Analyze the CSS cascade conflicts in this layout"
+  - "Explain the specificity issues affecting these styles"
+  - "How can this CSS be refactored for better maintainability?"
+
+### 5. WebPageTest.org Demo Sites
+**Various demo pages with intentional performance issues**
+- **Problemas típicos**: Simulated slow connections, large bundles, render-blocking
+- **Ideal para practicar**: Comprehensive performance analysis
+- **Prompts sugeridos**:
+  - "Create a complete performance optimization strategy"
+  - "Prioritize fixes based on impact vs effort"
+  - "Predict the performance improvements from these optimizations"
+
+## 🌍 Sitios Internacionales con Desafíos Específicos
+
+### 6. Gobierno y Servicios Públicos
+**gov.uk** / **usa.gov**
+- **Problemas típicos**: Accessibility issues, legacy code, complex forms
+- **Ideal para practicar**: Accessibility debugging, Form optimization, Legacy code analysis
+- **Prompts sugeridos**:
+  - "Audit this government site for accessibility compliance"
+  - "How can these forms be optimized for better user experience?"
+  - "Suggest modernization strategies for this legacy codebase"
+
+### 7. Educational Platforms
+**coursera.org** / **edx.org**
+- **Problemas típicos**: Video loading, interactive content, mobile responsiveness
+- **Ideal para practicar**: Media optimization, Interactive debugging, Responsive design
+- **Prompts sugeridos**:
+  - "Optimize video loading and playback performance"
+  - "Debug interactive content performance issues"
+  - "Analyze mobile responsiveness and suggest improvements"
+
+## 🎪 Sitios Complejos para Usuarios Avanzados
+
+### 8. Figma.com
+- **Problemas típicos**: Canvas rendering, complex interactions, memory management
+- **Ideal para practicar**: Canvas performance, Event handling, Memory optimization
+- **Prompts sugeridos**:
+  - "Analyze canvas rendering performance bottlenecks"
+  - "Debug complex user interaction performance"
+  - "Optimize memory usage for graphics-intensive applications"
+
+### 9. GitHub.com
+- **Problemas típicos**: Code syntax highlighting, dynamic loading, search performance
+- **Ideal para practicar**: Code editor performance, Search optimization, Dynamic content
+- **Prompts sugeridos**:
+  - "Analyze syntax highlighting performance impact"
+  - "Optimize dynamic code loading strategies"
+  - "Debug search functionality performance"
+
+## 🏗️ Sitios para Problemas Específicos
+
+### Layout y CSS Issues
+**Wikipedia.org**
+- Dense content, complex layouts, multiple languages
+- Perfecto para: CSS analysis, Typography optimization, Content layout
+
+### JavaScript Heavy Applications
+**Gmail.com** / **Google Docs**
+- Complex JavaScript applications, real-time updates
+- Perfecto para: JavaScript debugging, Memory profiling, Real-time performance
+
+### Image-Heavy Sites
+**Pinterest.com** / **Instagram.com**
+- Large numbers of images, lazy loading, infinite scroll
+- Perfecto para: Image optimization, Lazy loading analysis, Scroll performance
+
+## 📋 Guía de Uso por Nivel
+
+### Principiante (Usar estos sitios primero)
+1. **Wikipedia.org** - Problemas básicos de performance
+2. **BBC.com** - Análisis simple de network
+3. **gov.uk** - Accesibilidad y formularios
+
+### Intermedio
+1. **Amazon.com** - E-commerce performance
+2. **Twitter.com** - Dynamic content loading
+3. **GitHub.com** - Code editor performance
+
+### Avanzado
+1. **Figma.com** - Canvas y graphics performance
+2. **Gmail.com** - Complex application debugging
+3. **Custom problematic sites** - Real-world scenarios
+
+## 🎯 Metodología de Práctica Recomendada
+
+### Paso 1: Selección de Sitio
+- Elige basándote en el tipo de problema que quieres practicar
+- Considera tu nivel de experiencia
+- Ten claro qué panel de DevTools quieres enfocar
+
+### Paso 2: Análisis Inicial
+- Ejecuta Lighthouse audit como baseline
+- Identifica 2-3 problemas principales
+- Formula prompts específicos para cada problema
+
+### Paso 3: Investigación Profunda
+- Usa múltiples paneles de DevTools
+- Aplica prompts de IA de diferentes categorías
+- Documenta hallazgos y soluciones sugeridas
+
+### Paso 4: Simulación de Mejoras
+- Implementa cambios temporales en DevTools
+- Verifica mejoras con métricas
+- Estima impacto real de las optimizaciones
+
+## ⚠️ Consideraciones Importantes
+
+### Ética y Términos de Uso
+- Usa estos sitios solo para propósitos educativos
+- No hagas modificaciones permanentes
+- Respeta los términos de servicio de cada sitio
+- No automatices requests o hagas scraping
+
+### Limitaciones de Testing
+- Los cambios en DevTools son temporales
+- Algunos problemas solo se pueden resolver en producción
+- Las métricas pueden variar según conexión y dispositivo
+- Usa resultados como guía, no como garantías absolutas
+
+## 🎁 Bonus: Sitios Controlados para Testing
+
+### Web.dev/measure
+- Herramienta oficial de Google para testing
+- Sitios de demo con problemas conocidos
+- Perfecto para comparar antes/después
+
+### GTmetrix Test Sites
+- Sitios específicamente diseñados para testing
+- Diferentes categorías de problemas
+- Resultados consistentes para comparación`,
+          miniLab: {
+            title: "Explorando Sitios de Prueba",
+            description: "Practica con diferentes tipos de sitios web y sus problemas característicos",
+            steps: [
+              {
+                step: 1,
+                title: "Sitio Básico: Wikipedia",
+                instructions: [
+                  "Ve a es.wikipedia.org y abre DevTools",
+                  "Ejecuta Lighthouse audit para obtener baseline",
+                  "Pregunta: 'Analyze this content-heavy site for performance opportunities'",
+                  "Identifica: imágenes sin optimizar, CSS no utilizado, problemas de accesibilidad",
+                  "Toma nota de las 3 mejoras más impactantes sugeridas"
+                ]
+              },
+              {
+                step: 2,
+                title: "E-commerce: Amazon",
+                instructions: [
+                  "Ve a amazon.com y navega a una página de producto",
+                  "Ve al panel Performance y graba durante la carga",
+                  "Pregunta: 'What are the main CLS (Layout Shift) causes on this e-commerce page?'",
+                  "Analiza: imágenes que cargan tarde, anuncios dinámicos, contenido recomendado",
+                  "Simula mobile y verifica responsive performance"
+                ]
+              },
+              {
+                step: 3,
+                title: "Aplicación Compleja: GitHub",
+                instructions: [
+                  "Ve a github.com y abre un repositorio con muchos archivos",
+                  "Ve al panel Network y analiza las peticiones",
+                  "Pregunta: 'How can this code editor interface be optimized for better performance?'",
+                  "Identifica: syntax highlighting cost, dynamic loading, search performance",
+                  "Compara performance entre diferentes tipos de archivos"
+                ]
+              },
+              {
+                step: 4,
+                title: "Comparación y Síntesis",
+                instructions: [
+                  "Compara los 3 sitios analizados",
+                  "Pregunta: 'What are the common performance patterns across these different site types?'",
+                  "Identifica problemas universales vs específicos por tipo de sitio",
+                  "Crea una lista de 'top 5 optimizaciones' aplicables a cualquier sitio",
+                  "Documenta las diferencias en estrategias de optimización por sector"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       id: "practical-lab",
       title: "Mini Lab Integral",
       icon: "🧪",
