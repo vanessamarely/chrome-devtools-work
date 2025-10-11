@@ -1180,47 +1180,73 @@ IA: ¿Cómo puedo mejorar la experiencia en 3G?
 - **A/B Testing Insights** - Insights para testing A/B de rendimiento
 - **User Journey Analysis** - Análisis del journey del usuario y puntos de fricción`,
           miniLab: {
-            title: "Mini Lab: IA para Optimización de Network y Performance",
-            description: "Usa IA para analizar y optimizar el rendimiento de red y aplicación",
+            title: "Mini Lab: Analizando una App Web Real",
+            description: "Usa DevTools + IA para analizar una aplicación web desplegada paso a paso",
             steps: [
               {
                 step: 1,
-                title: "Análisis de Red con IA",
+                title: "Preparar la Aplicación de Prueba",
                 instructions: [
-                  "Ve al panel Network y captura el tráfico de una página compleja",
-                  "Pregunta: 'IA: Analiza estas peticiones de red y encuentra oportunidades de optimización'",
-                  "Revisa las recomendaciones sobre recursos grandes o innecesarios",
-                  "Identifica las sugerencias de optimización más impactantes"
+                  "Crea un nuevo repositorio en GitHub llamado 'devtools-lab'",
+                  "Crea un archivo index.html con este código: <!DOCTYPE html><html><head><title>DevTools Lab App</title><link rel='stylesheet' href='styles.css'></head><body><div class='container'><h1>Mi App de Prueba</h1><form id='form'><input type='text' id='name' placeholder='Tu nombre'><button type='submit'>Enviar</button></form><div id='gallery'><img src='https://picsum.photos/800/600?random=1' alt='Imagen 1'><img src='https://picsum.photos/800/600?random=2' alt='Imagen 2'><img src='https://picsum.photos/800/600?random=3' alt='Imagen 3'></div></div><script src='app.js'></script></body></html>",
+                  "Crea styles.css con CSS básico y algunos problemas intencionados de performance",
+                  "Crea app.js con JavaScript que incluya algunos errores y problemas de performance",
+                  "Habilita GitHub Pages en Settings > Pages y accede a tu app"
                 ]
               },
               {
                 step: 2,
-                title: "Performance Profiling con IA",
+                title: "Inspeccionar el DOM con IA",
                 instructions: [
-                  "Ve al panel Performance y graba un profile de la página",
-                  "Pregunta: 'IA: ¿Cuáles son los principales cuellos de botella en este profile?'",
-                  "Analiza las sugerencias sobre JavaScript bloqueante",
-                  "Identifica tareas largas (Long Tasks) y sus causas"
+                  "Abre DevTools (F12) en tu aplicación desplegada",
+                  "Ve al panel Elements y selecciona el formulario",
+                  "Usa la IA preguntando: 'What accessibility issues does this form have?'",
+                  "Pregunta: 'How can I improve the HTML structure for SEO?'",
+                  "Implementa las sugerencias en tu repositorio"
                 ]
               },
               {
                 step: 3,
-                title: "Web Vitals Intelligence",
+                title: "Debugging JavaScript con IA",
                 instructions: [
-                  "En el performance profile, busca métricas de Web Vitals",
-                  "Pregunta: 'IA: ¿Cómo puedo mejorar el LCP de esta página?'",
-                  "Revisa sugerencias específicas para optimizar Largest Contentful Paint",
-                  "Analiza recomendaciones para reducir Cumulative Layout Shift"
+                  "Ve al panel Console - deberías ver errores",
+                  "Selecciona un error y pregunta: 'Explain this error and suggest a fix'",
+                  "Ve al panel Sources, encuentra tu app.js",
+                  "Pregunta a la IA: 'Review this JavaScript code for potential issues'",
+                  "Corrige los errores siguiendo las sugerencias"
                 ]
               },
               {
                 step: 4,
-                title: "Optimización de Recursos",
+                title: "Optimización de Performance",
                 instructions: [
-                  "Pregunta: 'IA: ¿Qué imágenes debería optimizar primero?'",
-                  "Revisa sugerencias sobre formatos de imagen modernos",
-                  "Analiza recomendaciones de lazy loading",
-                  "Identifica oportunidades de code splitting en JavaScript"
+                  "Ve al panel Performance y graba 5 segundos de interacción",
+                  "Pregunta: 'What performance bottlenecks do you see in this profile?'",
+                  "Ve al panel Network, recarga la página",
+                  "Pregunta sobre las imágenes: 'How can I optimize these image loading patterns?'",
+                  "Implementa lazy loading y optimizaciones sugeridas"
+                ]
+              },
+              {
+                step: 5,
+                title: "Auditoría de CSS con IA",
+                instructions: [
+                  "Ve al panel Elements > Computed styles",
+                  "Pregunta: 'What CSS optimizations would improve performance?'",
+                  "Selecciona reglas CSS complejas en Sources",
+                  "Pregunta: 'How can I modernize this CSS code?'",
+                  "Aplica las optimizaciones CSS sugeridas"
+                ]
+              },
+              {
+                step: 6,
+                title: "Testing y Validación Final",
+                instructions: [
+                  "Haz commit de todos los cambios sugeridos por la IA",
+                  "Despliega automáticamente en GitHub Pages",
+                  "Ejecuta una nueva auditoría de Performance",
+                  "Pregunta: 'Compare the before and after metrics - what improved?'",
+                  "Documenta las mejoras en el README.md del repositorio"
                 ]
               }
             ]
@@ -1515,6 +1541,720 @@ Question: "What's the most likely cause and how can I optimize it?"
               }
             ]
           }
+        },
+        {
+          id: "sample-app",
+          title: "Aplicación Web de Muestra para el Mini Lab",
+          content: `# Aplicación Web de Muestra para Practicar DevTools + IA
+
+Esta sección proporciona el código completo de una aplicación web que puedes desplegar fácilmente en GitHub Pages para practicar DevTools con IA.
+
+## 📁 Estructura del Proyecto
+
+\`\`\`
+devtools-lab/
+├── index.html
+├── styles.css
+├── app.js
+├── utils.js
+└── README.md
+\`\`\`
+
+## 🌐 index.html
+
+\`\`\`html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTools Lab - App de Prueba</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fuente pesada intencionalmente para testing -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 id="main-title">🚀 DevTools Lab App</h1>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Inicio</a>
+                <a href="#gallery" class="nav-link">Galería</a>
+                <a href="#contact" class="nav-link">Contacto</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <!-- Sección con problemas de accesibilidad intencionados -->
+            <section class="hero">
+                <div class="hero-text">
+                    <h2 style="color: #ccc;">Bienvenido a Nuestra App</h2>
+                    <p>Una aplicación con varios problemas de performance y accesibilidad para practicar</p>
+                    <div class="button" onclick="loadData()">Cargar Datos</div>
+                </div>
+            </section>
+
+            <!-- Formulario con problemas de validación -->
+            <section class="form-section">
+                <h3>Formulario de Contacto</h3>
+                <form id="contact-form">
+                    <input type="text" placeholder="Nombre" id="name">
+                    <input type="email" placeholder="Email" id="email">
+                    <textarea placeholder="Mensaje" id="message"></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+                <div id="form-status"></div>
+            </section>
+
+            <!-- Galería con imágenes grandes sin lazy loading -->
+            <section class="gallery">
+                <h3>Galería de Imágenes</h3>
+                <div class="image-grid">
+                    <img src="https://picsum.photos/800/600?random=1" alt="Imagen 1">
+                    <img src="https://picsum.photos/800/600?random=2" alt="Imagen 2">
+                    <img src="https://picsum.photos/800/600?random=3" alt="Imagen 3">
+                    <img src="https://picsum.photos/800/600?random=4" alt="Imagen 4">
+                    <img src="https://picsum.photos/800/600?random=5" alt="Imagen 5">
+                    <img src="https://picsum.photos/800/600?random=6" alt="Imagen 6">
+                </div>
+            </section>
+
+            <!-- Lista con problemas de performance -->
+            <section class="data-section">
+                <h3>Datos Dinámicos</h3>
+                <button onclick="generateList()">Generar Lista Grande</button>
+                <div id="data-container"></div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 DevTools Lab. Para fines educativos.</p>
+        </footer>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+\`\`\`
+
+## 🎨 styles.css
+
+\`\`\`css
+/* CSS con problemas intencionados para testing */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    /* Problema: forzar reflow en cada scroll */
+    overflow-x: auto;
+}
+
+/* Selector ineficiente intencionalmente */
+* * * .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem 0;
+    /* Problema: sombra costosa */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+/* Animación costosa que se ejecuta constantemente */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+#main-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    /* Problema: uso de !important innecesario */
+    font-weight: 700 !important;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: rgba(255,255,255,0.2);
+    /* Problema: transform en hover causa repaints */
+    transform: scale(1.1) rotate(1deg);
+}
+
+.nav-link.active {
+    background: rgba(255,255,255,0.3);
+}
+
+.main-content {
+    padding: 2rem 0;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+    background: #f8f9fa;
+    /* Problema: gradient costoso en elemento grande */
+    background: radial-gradient(circle at center, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.hero-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    /* Problema de contraste intencionado */
+    color: #ccc;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+/* Botón simulando comportamiento de div clickeable */
+.button {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    /* Problema: transition en todas las propiedades */
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: #0056b3;
+    /* Problema: shadow costosa en hover */
+    box-shadow: 0 10px 25px rgba(0,123,255,0.3);
+    transform: translateY(-3px);
+}
+
+.form-section {
+    background: white;
+    padding: 3rem;
+    margin: 2rem 0;
+    border-radius: 10px;
+    /* Problema: muchas sombras costosas */
+    box-shadow: 
+        0 4px 6px rgba(0,0,0,0.1),
+        0 1px 3px rgba(0,0,0,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.form-section h3 {
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Formulario sin labels apropiados */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#contact-form input,
+#contact-form textarea {
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    /* Problema: outline removido */
+    outline: none;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: #007bff;
+    /* Problema: sin indicador de focus visible */
+}
+
+#contact-form button {
+    background: #28a745;
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#contact-form button:hover {
+    background: #218838;
+}
+
+.gallery {
+    margin: 3rem 0;
+}
+
+.gallery h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+/* Problema: imágenes grandes sin dimensiones específicas */
+.image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    /* Problema: filter costoso */
+    filter: contrast(1.1) saturate(1.2);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.image-grid img:hover {
+    transform: scale(1.05);
+    /* Problema: filter aún más costoso en hover */
+    filter: contrast(1.3) saturate(1.5) brightness(1.1);
+}
+
+.data-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.data-section h3 {
+    margin-bottom: 1rem;
+}
+
+.data-section button {
+    background: #dc3545;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+/* Lista que será problemática cuando sea grande */
+#data-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.data-item {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: white;
+    border-radius: 5px;
+    border-left: 4px solid #007bff;
+    /* Problema: sombra en cada item de la lista */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+/* Media queries con problemas */
+@media (max-width: 768px) {
+    /* Problema: muchas reglas duplicadas */
+    .header { padding: 1rem 0; }
+    #main-title { font-size: 2rem; }
+    .nav { flex-direction: column; align-items: center; }
+    .nav-link { margin: 0.25rem 0; }
+    .hero { padding: 2rem 0; }
+    .hero-text h2 { font-size: 1.5rem; }
+    .form-section { padding: 2rem; }
+    .image-grid { grid-template-columns: 1fr; }
+}
+
+/* CSS no utilizado intencionalmente */
+.unused-class {
+    color: red;
+    background: yellow;
+    padding: 100px;
+}
+
+.another-unused {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.old-browser-support {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+\`\`\`
+
+## ⚡ app.js
+
+\`\`\`javascript
+// JavaScript con problemas intencionados para testing
+
+// Problema: Variable global sin const/let
+currentData = null;
+
+// Problema: función async mal manejada
+async function loadData() {
+    // Problema: no manejo de errores
+    const response = fetch('https://jsonplaceholder.typicode.com/posts');
+    const data = await response.json();
+    
+    // Problema: manipulación del DOM ineficiente
+    const statusDiv = document.getElementById('form-status');
+    statusDiv.innerHTML = 'Datos cargados: ' + data.length + ' items';
+    statusDiv.style.color = 'green';
+    
+    currentData = data;
+    
+    // Problema: timeout innecesario
+    setTimeout(() => {
+        console.log('Datos procesados');
+    }, 100);
+}
+
+// Problema: Event listener sin removeEventListener
+document.addEventListener('DOMContentLoaded', function() {
+    // Problema: querySelector repetitivo
+    const form = document.querySelector('#contact-form');
+    const nameInput = document.querySelector('#name');
+    const emailInput = document.querySelector('#email');
+    const messageInput = document.querySelector('#message');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Problema: validación ineficiente
+        if (nameInput.value.trim() === '') {
+            alert('Por favor ingresa tu nombre'); // Problema: usar alert
+            return;
+        }
+        
+        if (emailInput.value.trim() === '') {
+            alert('Por favor ingresa tu email');
+            return;
+        }
+        
+        if (messageInput.value.trim() === '') {
+            alert('Por favor ingresa un mensaje');
+            return;
+        }
+        
+        // Problema: regex innecesariamente compleja
+        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_\`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        
+        if (!emailRegex.test(emailInput.value)) {
+            alert('Email inválido');
+            return;
+        }
+        
+        // Simulación de envío con problemas
+        submitForm(nameInput.value, emailInput.value, messageInput.value);
+    });
+    
+    // Problema: event listener costoso en scroll
+    window.addEventListener('scroll', function() {
+        // Problema: acceso al DOM en cada scroll
+        const header = document.querySelector('.header');
+        const scrolled = window.pageYOffset;
+        
+        if (scrolled > 100) {
+            header.style.transform = 'translateY(-10px)';
+        } else {
+            header.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+// Problema: función que puede causar memory leak
+function submitForm(name, email, message) {
+    const statusDiv = document.getElementById('form-status');
+    statusDiv.innerHTML = 'Enviando...';
+    statusDiv.style.color = 'orange';
+    
+    // Simulación de API call con problema
+    setTimeout(() => {
+        // Problema: no verificar si el elemento aún existe
+        statusDiv.innerHTML = '¡Mensaje enviado exitosamente!';
+        statusDiv.style.color = 'green';
+        
+        // Problema: crear muchos objetos innecesarios
+        const userData = {
+            name: name,
+            email: email,
+            message: message,
+            timestamp: new Date(),
+            id: Math.random() * 10000,
+            metadata: {
+                userAgent: navigator.userAgent,
+                url: window.location.href,
+                referrer: document.referrer
+            }
+        };
+        
+        console.log('Usuario:', userData);
+        
+        // Problema: timeout sin cleanup
+        setTimeout(() => {
+            statusDiv.innerHTML = '';
+        }, 5000);
+    }, 2000);
+}
+
+// Problema: función que genera muchos elementos DOM
+function generateList() {
+    const container = document.getElementById('data-container');
+    
+    // Problema: no limpiar contenido anterior
+    // container.innerHTML = '';
+    
+    // Problema: loop que crea muchos elementos de una vez
+    for (let i = 0; i < 1000; i++) {
+        const item = document.createElement('div');
+        item.className = 'data-item';
+        
+        // Problema: innerHTML dentro de un loop
+        item.innerHTML = \`
+            <h4>Item #\${i + 1}</h4>
+            <p>Este es el contenido del item \${i + 1}</p>
+            <small>Generado en: \${new Date().toLocaleTimeString()}</small>
+        \`;
+        
+        // Problema: appendChild en cada iteración causa reflow
+        container.appendChild(item);
+        
+        // Problema: event listener en cada item
+        item.addEventListener('click', function() {
+            // Problema: función anónima que puede causar memory leak
+            console.log('Clicked item:', i);
+            item.style.backgroundColor = '#007bff';
+            item.style.color = 'white';
+        });
+    }
+}
+
+// Problema: setInterval sin clearInterval
+setInterval(() => {
+    // Problema: código que se ejecuta constantemente
+    console.log('App status check:', new Date());
+}, 10000);
+
+// Problema: función recursiva sin limite claro
+function infiniteDataProcessor(data, depth = 0) {
+    if (depth > 100) return data; // Límite arbitrario
+    
+    if (Array.isArray(data)) {
+        return data.map(item => infiniteDataProcessor(item, depth + 1));
+    }
+    
+    if (typeof data === 'object' && data !== null) {
+        const processed = {};
+        for (let key in data) {
+            processed[key] = infiniteDataProcessor(data[key], depth + 1);
+        }
+        return processed;
+    }
+    
+    return data;
+}
+
+// Export para testing (problema: variable global)
+window.appFunctions = {
+    loadData,
+    generateList,
+    submitForm,
+    infiniteDataProcessor
+};
+\`\`\`
+
+## 🛠️ utils.js
+
+\`\`\`javascript
+// Utilidades con problemas adicionales para testing
+
+// Problema: función que modifica prototipos nativos
+String.prototype.reverse = function() {
+    return this.split('').reverse().join('');
+};
+
+// Problema: función con memory leak potencial
+function createExpensiveObject() {
+    const largeArray = new Array(100000).fill(0).map((_, i) => ({
+        id: i,
+        data: 'Some data ' + i,
+        timestamp: new Date(),
+        randomValue: Math.random()
+    }));
+    
+    // Problema: closure que mantiene referencia a array grande
+    return function(index) {
+        return largeArray[index];
+    };
+}
+
+// Problema: polyfill innecesario para navegadores modernos
+if (!Array.prototype.includes) {
+    Array.prototype.includes = function(element) {
+        return this.indexOf(element) !== -1;
+    };
+}
+
+// Problema: función que puede bloquear el UI
+function heavyComputation() {
+    let result = 0;
+    for (let i = 0; i < 10000000; i++) {
+        result += Math.sqrt(i) * Math.sin(i);
+    }
+    return result;
+}
+
+// Problema: función con side effects ocultos
+function processUserData(userData) {
+    // Problema: modificar objeto de entrada
+    userData.processed = true;
+    userData.processedAt = new Date();
+    
+    // Problema: console.log en función de utilidad
+    console.log('Processing user:', userData);
+    
+    // Problema: operación síncrona que debería ser async
+    const processed = JSON.parse(JSON.stringify(userData));
+    
+    return processed;
+}
+
+// Problema: variable global accesible
+window.GLOBAL_CONFIG = {
+    apiUrl: 'https://api.example.com',
+    apiKey: 'secret-key-123', // Problema: clave expuesta
+    debugMode: true
+};
+
+// Export problemático
+window.utils = {
+    createExpensiveObject,
+    heavyComputation,
+    processUserData
+};
+\`\`\`
+
+## 📋 README.md
+
+\`\`\`markdown
+# DevTools Lab - Aplicación de Prueba
+
+Esta aplicación contiene problemas intencionados de performance, accesibilidad y JavaScript para practicar DevTools con IA.
+
+## 🚀 Despliegue Rápido
+
+1. Fork este repositorio
+2. Ve a Settings > Pages
+3. Selecciona "Deploy from a branch" > "main"
+4. Accede a \`https://tu-usuario.github.io/devtools-lab\`
+
+## 🐛 Problemas Incluidos
+
+### Performance
+- Imágenes grandes sin lazy loading
+- CSS con selectores ineficientes
+- JavaScript que bloquea el main thread
+- Animaciones costosas
+- Memory leaks potenciales
+
+### Accesibilidad
+- Contraste insuficiente en textos
+- Falta de labels en formularios
+- Elementos clickeables sin semántica apropiada
+- Falta de indicadores de focus
+
+### JavaScript
+- Funciones async mal manejadas
+- Event listeners sin cleanup
+- Manipulación del DOM ineficiente
+- Variables globales
+
+## 🔧 Para Practicar
+
+1. Abre DevTools (F12)
+2. Usa los prompts sugeridos en el workshop
+3. Implementa las mejoras sugeridas por la IA
+4. Compara métricas antes/después
+
+## 📝 Licencia
+
+MIT - Solo para fines educativos
+\`\`\`
+
+## 🎯 Prompts Sugeridos para esta Aplicación
+
+### Para Elements Panel
+- "What accessibility issues do you see in this contact form?"
+- "How can I improve the semantic structure of this HTML?"
+- "Analyze the CSS specificity issues in this stylesheet"
+
+### Para Console Panel
+- "Explain the JavaScript errors and suggest fixes"
+- "What global variables are polluting the namespace?"
+- "How can I improve error handling in this code?"
+
+### Para Performance Panel
+- "What are the main performance bottlenecks in this application?"
+- "How can I optimize the image loading strategy?"
+- "Analyze the impact of CSS animations on frame rate"
+
+### Para Network Panel
+- "Which resources are slowing down the initial page load?"
+- "How can I implement better caching strategies?"
+- "What's the critical rendering path optimization opportunity?"
+
+Esta aplicación está diseñada para ser un laboratorio completo donde los asistentes pueden practicar todas las técnicas de DevTools + IA de manera estructurada y con problemas reales comunes en el desarrollo web.`,
         },
         {
           id: "test-sites",
