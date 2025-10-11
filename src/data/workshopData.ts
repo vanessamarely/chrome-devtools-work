@@ -523,7 +523,7 @@ El panel Performance te permite analizar en detalle el rendimiento de tu aplicac
 2. **Configura opciones de grabación**:
    - Screenshots - Capturas durante la grabación
    - Memory - Uso de memoria
-   - Web Vitals - Métricas de Core Web Vitals
+   - **Nota**: Las métricas de Web Vitals ahora se incluyen automáticamente, no necesitas activar esta opción
 3. **Presiona Record (⚫) o Ctrl+E**
 4. **Interactúa con tu aplicación**
 5. **Detén la grabación**
@@ -570,13 +570,14 @@ El panel Performance te permite analizar en detalle el rendimiento de tu aplicac
 
 ### Core Web Vitals
 - **LCP** (Largest Contentful Paint) - Carga percibida
-- **FID** (First Input Delay) - Interactividad
+- **INP** (Interaction to Next Paint) - Responsividad de interacciones (reemplaza FID desde marzo 2024)
 - **CLS** (Cumulative Layout Shift) - Estabilidad visual
 
-### Performance Metrics
-- **FCP** (First Contentful Paint)
-- **TTI** (Time to Interactive)
-- **TBT** (Total Blocking Time)
+### Performance Metrics Adicionales
+- **FCP** (First Contentful Paint) - Primera renderización con contenido
+- **TTI** (Time to Interactive) - Tiempo hasta interactividad completa
+- **TBT** (Total Blocking Time) - Tiempo total de bloqueo del hilo principal
+- **FID** (First Input Delay) - Métrica heredada, reemplazada por INP
 
 ## Optimización Strategies
 
@@ -600,9 +601,10 @@ El panel Performance te permite analizar en detalle el rendimiento de tu aplicac
                 title: "Grabando un Performance Profile",
                 instructions: [
                   "Ve al panel Performance en DevTools",
-                  "Asegúrate que Screenshots y Web Vitals estén activados",
+                  "Asegúrate que Screenshots y Memory estén activados según necesites",
+                  "Nota: Las métricas de Web Vitals (LCP, INP, CLS) se incluyen automáticamente",
                   "Haz clic en el botón Record (⚫)",
-                  "Recarga la página y espera que termine de cargar",
+                  "Recarga la página y espera que termine de cargar, interactúa si quieres medir INP",
                   "Detén la grabación haciendo clic en Stop"
                 ]
               },
@@ -634,6 +636,7 @@ El panel Performance te permite analizar en detalle el rendimiento de tu aplicac
                   "Identifica FCP (First Contentful Paint)",
                   "Busca LCP (Largest Contentful Paint)",
                   "Observa si hay problemas de CLS (layout shifts)",
+                  "Nota: INP (Interaction to Next Paint) reemplaza a FID desde marzo 2024",
                   "Revisa el summary para métricas generales"
                 ]
               }
@@ -1104,7 +1107,8 @@ La IA puede analizar automáticamente:
 - **Core Web Vitals Analysis** - Análisis detallado de Core Web Vitals
 - **LCP Optimization Suggestions** - Sugerencias específicas para optimizar LCP
 - **CLS Problem Identification** - Identificación de problemas de Cumulative Layout Shift
-- **FID Improvement Recommendations** - Recomendaciones para mejorar First Input Delay
+- **INP Improvement Recommendations** - Recomendaciones para mejorar Interaction to Next Paint (nueva métrica que reemplaza FID)
+- **INP vs FID Analysis** - Comparación entre la nueva métrica INP y la antigua FID
 
 ### Advanced Performance Insights
 - **Frame Rate Analysis** - Análisis de frame rate y smoothness
@@ -1130,6 +1134,8 @@ IA: ¿Cómo puedo mejorar mi LCP score?
 IA: ¿Por qué mi página tiene layout shifts?
 IA: ¿Qué JavaScript está bloqueando el renderizado?
 IA: ¿Cómo puedo optimizar el uso de memoria?
+IA: ¿Por qué mis interacciones son lentas? (INP analysis)
+IA: ¿Cuál es la diferencia entre INP y FID?
 \`\`\`
 
 ### Mobile Performance
@@ -1369,10 +1375,12 @@ Identify potential XSS vulnerabilities in requests
 \`\`\`
 How can I improve the Largest Contentful Paint (LCP)?
 What's causing the Cumulative Layout Shift (CLS)?
-Optimize the First Input Delay (FID) for this page
+Optimize the Interaction to Next Paint (INP) for this page
 Analyze the First Contentful Paint (FCP) bottlenecks
 Improve the Time to Interactive (TTI) metric
 Reduce the Total Blocking Time (TBT)
+What's the difference between INP and the old FID metric?
+How can I debug slow interaction responses?
 \`\`\`
 
 ### JavaScript Performance
@@ -1857,11 +1865,12 @@ Al completar este lab, habrás:
                 step: 3,
                 title: "Performance Profiling con IA",
                 instructions: [
-                  "Ve al panel Performance, activa 'Screenshots' y 'Web Vitals'",
+                  "Ve al panel Performance, activa 'Screenshots' si deseas capturas visuales",
+                  "Nota: Las métricas de Web Vitals (LCP, INP, CLS) se incluyen automáticamente",
                   "Graba un profile durante la carga de la página (5-10 segundos)",
                   "Pregunta: 'IA: ¿Cuáles son los principales cuellos de botella en este profile?'",
                   "Identifica: Long Tasks (barras rojas), JavaScript bloqueante, layout shifts",
-                  "Busca métricas Web Vitals: FCP, LCP, CLS",
+                  "Busca métricas Web Vitals: FCP, LCP, CLS, y la nueva INP (reemplaza FID)",
                   "Pregunta: 'IA: ¿Cómo puedo mejorar el LCP de esta página?'"
                 ]
               },
