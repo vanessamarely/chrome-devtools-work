@@ -1,5 +1,5 @@
 import { CaretRight, CaretDown, BookOpen, Code, CheckCircle, Target } from '@phosphor-icons/react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { WorkshopSection } from '../types/workshop'
 import { cn } from '../lib/utils'
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useKV } from '@github/spark/hooks'
 import { Sidebar } from './components/Sidebar'
 import { ContentArea } from './components/ContentArea'

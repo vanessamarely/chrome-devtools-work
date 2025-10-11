@@ -1,3 +1,4 @@
+import React from 'react'
 import { CheckCircle, ClipboardText, Code, Target } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
