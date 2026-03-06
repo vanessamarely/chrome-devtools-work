@@ -168,7 +168,7 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
                         {!isCompleted ? (
                           <Button 
                             onClick={() => markStepComplete(step.step)}
-                            className="gap-2 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-200 hover:-translate-y-0.5"
+                            className="gap-2 btn-hover-gradient"
                             size="lg"
                           >
                             <CheckCircle size={20} weight="bold" />

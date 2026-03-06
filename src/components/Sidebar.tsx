@@ -76,7 +76,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
             >
               <button
                 onClick={() => toggleSection(section.id)}
-                className="w-full flex items-center justify-between p-3 rounded-xl hover:bg-sidebar-accent transition-all duration-200 text-left group hover:shadow-sm"
+                className="w-full flex items-center justify-between p-3 rounded-xl hover:bg-sidebar-accent text-left group btn-hover-shine"
               >
                 <div className="flex items-center gap-3 flex-1">
                   <div className="text-xl flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 group-hover:from-primary/15 group-hover:to-accent/15 transition-colors">
@@ -129,10 +129,10 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
                         transition={{ delay: topicIndex * 0.05, duration: 0.3 }}
                         onClick={() => onTopicSelect(topic.id)}
                         className={cn(
-                          "w-full flex items-center gap-3 p-2.5 rounded-lg transition-all duration-200 text-left group relative overflow-hidden",
+                          "w-full flex items-center gap-3 p-2.5 rounded-lg text-left group relative overflow-hidden",
                           isSelected
-                            ? "bg-gradient-to-r from-primary to-primary/90 text-sidebar-primary-foreground shadow-md shadow-primary/20"
-                            : "hover:bg-sidebar-accent text-sidebar-foreground hover:shadow-sm"
+                            ? "bg-gradient-to-r from-primary to-primary/90 text-sidebar-primary-foreground shadow-md shadow-primary/20 btn-hover-glow"
+                            : "hover:bg-sidebar-accent text-sidebar-foreground btn-hover-scale"
                         )}
                       >
                         {isSelected && (

@@ -199,7 +199,7 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
                 variant="outline"
                 size="sm"
                 onClick={showNextHint}
-                className="gap-2 hover:bg-accent/10 hover:text-accent hover:border-accent/30"
+                className="gap-2 btn-hover-bounce hover:bg-accent/10 hover:text-accent hover:border-accent/30"
               >
                 <Lightbulb size={16} weight="bold" />
                 Pista
@@ -209,7 +209,7 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
               variant="outline"
               size="sm"
               onClick={handleReset}
-              className="gap-2 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
+              className="gap-2 btn-hover-scale hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
             >
               <ArrowCounterClockwise size={16} weight="bold" />
               Reiniciar
@@ -247,7 +247,7 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
               <Button
                 size="sm"
                 onClick={runCode}
-                className="gap-2 shadow-md hover:shadow-lg transition-all duration-200"
+                className="gap-2 btn-hover-pulse"
               >
                 <Play size={16} weight="fill" />
                 Verificar

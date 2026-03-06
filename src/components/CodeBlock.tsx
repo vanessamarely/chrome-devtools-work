@@ -106,7 +106,7 @@ export function CodeBlock({
               variant={isEditing ? "default" : "ghost"}
               size="sm"
               onClick={() => setIsEditing(!isEditing)}
-              className="h-8 px-3 text-xs font-medium"
+              className="h-8 px-3 text-xs font-medium btn-hover-scale"
             >
               {isEditing ? '👁️ Vista' : '✏️ Editar'}
             </Button>
@@ -116,7 +116,7 @@ export function CodeBlock({
             size="sm"
             onClick={copyToClipboard}
             className={cn(
-              "h-8 px-3 transition-all duration-200 gap-2",
+              "h-8 px-3 gap-2 btn-hover-glow",
               copied ? "bg-accent/20 text-accent" : "opacity-0 group-hover:opacity-100"
             )}
           >
