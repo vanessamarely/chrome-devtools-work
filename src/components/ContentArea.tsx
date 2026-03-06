@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckCircle, ClipboardText, Code, Target } from '@phosphor-icons/react'
+import { CheckCircle, ClipboardText, Code, Target, Printer } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -10,6 +10,7 @@ import { MiniLabComponent } from './MiniLab'
 import { ProgressDashboard } from './ProgressDashboard'
 import { WorkshopTopic } from '../types/workshop'
 import { workshopData } from '../data/workshopData'
+import { toast } from 'sonner'
 
 interface ContentAreaProps {
   topic?: WorkshopTopic
@@ -18,6 +19,13 @@ interface ContentAreaProps {
 }
 
 export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps) {
+  const handlePrint = () => {
+    toast.info('Abriendo vista de impresión...')
+    setTimeout(() => {
+      window.print()
+    }, 300)
+  }
+
   if (!topic) {
     return (
       <motion.div 
@@ -53,7 +61,7 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
             </div>
           </motion.div>
         </div>
-        <div className="p-4 md:p-8 border-t border-border bg-gradient-to-br from-primary/5 to-accent/5">
+        <div className="p-4 md:p-8 border-t border-border bg-gradient-to-br from-primary/5 to-accent/5 print:hidden">
           <ProgressDashboard workshopData={workshopData} />
         </div>
       </motion.div>
@@ -73,29 +81,40 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
-          className="flex items-start justify-between mb-8 gap-6"
+          className="flex items-start justify-between mb-8 gap-4 flex-wrap"
         >
-          <div className="flex-1">
+          <div className="flex-1 min-w-[250px]">
             <h1 className="text-4xl font-bold text-foreground mb-3 leading-tight tracking-tight">
               {topic.title}
             </h1>
             {isCompleted && (
-              <Badge variant="secondary" className="gap-2 px-3 py-1 bg-gradient-to-r from-accent/10 to-accent/5 border-accent/30">
+              <Badge variant="secondary" className="gap-2 px-3 py-1 bg-gradient-to-r from-accent/10 to-accent/5 border-accent/30 print:hidden">
                 <CheckCircle size={16} className="text-accent" weight="fill" />
                 <span className="font-semibold">Completado</span>
               </Badge>
             )}
           </div>
-          {!isCompleted && (
+          <div className="flex gap-2 print:hidden">
             <Button 
-              onClick={onComplete} 
-              className="gap-2 btn-hover-gradient"
+              onClick={handlePrint} 
+              variant="outline"
+              className="gap-2 btn-hover-scale"
               size="lg"
             >
-              <CheckCircle size={18} weight="bold" />
-              Marcar como Completado
+              <Printer size={18} weight="bold" />
+              Imprimir
             </Button>
-          )}
+            {!isCompleted && (
+              <Button 
+                onClick={onComplete} 
+                className="gap-2 btn-hover-gradient"
+                size="lg"
+              >
+                <CheckCircle size={18} weight="bold" />
+                Completar
+              </Button>
+            )}
+          </div>
         </motion.div>
 
         <motion.div 

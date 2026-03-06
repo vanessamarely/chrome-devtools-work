@@ -43,9 +43,9 @@ function App() {
 
   return (
     <div className="flex h-screen bg-background relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-3xl opacity-50 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-accent/10 to-primary/10 rounded-full blur-3xl opacity-50 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 pointer-events-none print:hidden" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-3xl opacity-50 pointer-events-none print:hidden" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-accent/10 to-primary/10 rounded-full blur-3xl opacity-50 pointer-events-none print:hidden" />
       
       {isMobile ? (
         <>
@@ -57,7 +57,7 @@ function App() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+                  className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 print:hidden"
                   onClick={() => setIsSidebarOpen(false)}
                 />
                 <motion.div
@@ -65,7 +65,7 @@ function App() {
                   animate={{ x: 0 }}
                   exit={{ x: '-100%' }}
                   transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                  className="fixed left-0 top-0 bottom-0 z-50 w-80 max-w-[85vw]"
+                  className="fixed left-0 top-0 bottom-0 z-50 w-80 max-w-[85vw] print:hidden"
                 >
                   <Sidebar
                     sections={workshopData.sections}
@@ -87,7 +87,7 @@ function App() {
           </AnimatePresence>
 
           <div className="flex-1 flex flex-col relative z-10">
-            <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
+            <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm print:hidden">
               <div className="flex items-center gap-3 p-4">
                 <Button
                   variant="outline"
@@ -112,12 +112,14 @@ function App() {
         </>
       ) : (
         <>
-          <Sidebar
-            sections={workshopData.sections}
-            selectedTopic={selectedTopic}
-            completedTopics={completedTopics}
-            onTopicSelect={handleTopicSelect}
-          />
+          <div className="print:hidden">
+            <Sidebar
+              sections={workshopData.sections}
+              selectedTopic={selectedTopic}
+              completedTopics={completedTopics}
+              onTopicSelect={handleTopicSelect}
+            />
+          </div>
           <ContentArea
             topic={currentTopic}
             isCompleted={completedTopics.has(selectedTopic)}
