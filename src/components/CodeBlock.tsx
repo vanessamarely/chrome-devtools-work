@@ -1,5 +1,6 @@
 import { Copy, Check, Code, Terminal, FileCode } from '@phosphor-icons/react'
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '../lib/utils'
@@ -74,7 +75,13 @@ export function CodeBlock({
   const lines = editableCode.split('\n')
 
   return (
-    <div className="relative group rounded-xl overflow-hidden bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 border-border hover:border-primary/30">
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      whileHover={{ y: -2 }}
+      className="relative group rounded-xl overflow-hidden bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 border-border hover:border-primary/30"
+    >
       <div className="flex items-center justify-between bg-gradient-to-r from-muted/80 to-muted/60 px-5 py-3.5 border-b-2 border-border/50 backdrop-blur-sm">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10">
@@ -200,6 +207,6 @@ export function CodeBlock({
           </Button>
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { CheckCircle, XCircle, Lightbulb, Play, ArrowCounterClockwise } from '@phosphor-icons/react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -218,14 +219,23 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
       </CardHeader>
       
       <CardContent className="space-y-6 pt-6">
-        {showHints && exercise.hints && (
-          <Alert className="border-2 border-accent/30 bg-gradient-to-r from-accent/10 to-accent/5">
-            <Lightbulb className="h-5 w-5 text-accent" weight="fill" />
-            <AlertDescription className="text-foreground">
-              <strong className="text-accent">Pista {currentHintIndex + 1}:</strong> {exercise.hints[currentHintIndex]}
-            </AlertDescription>
-          </Alert>
-        )}
+        <AnimatePresence>
+          {showHints && exercise.hints && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, y: -10 }}
+              animate={{ opacity: 1, height: "auto", y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Alert className="border-2 border-accent/30 bg-gradient-to-r from-accent/10 to-accent/5">
+                <Lightbulb className="h-5 w-5 text-accent" weight="fill" />
+                <AlertDescription className="text-foreground">
+                  <strong className="text-accent">Pista {currentHintIndex + 1}:</strong> {exercise.hints[currentHintIndex]}
+                </AlertDescription>
+              </Alert>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="space-y-3">
           <div className="flex items-center justify-between">
@@ -254,8 +264,15 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
           />
         </div>
 
-        {validation && (
-          <div className="space-y-3">
+        <AnimatePresence>
+          {validation && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-3"
+            >
             <div className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-muted/50 to-muted/30 border-2 border-border">
               <div className="flex items-center gap-3">
                 {validation.isValid ? (
@@ -281,20 +298,30 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
                 {validation.message}
               </AlertDescription>
             </Alert>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
 
-        {validation?.isValid && (
-          <Alert className="border-2 border-accent bg-gradient-to-r from-accent/10 to-accent/5 shadow-lg">
-            <CheckCircle className="h-5 w-5 text-accent" weight="fill" />
-            <AlertDescription className="text-foreground leading-relaxed">
-              <strong className="text-accent">¡Excelente trabajo!</strong> Has completado este ejercicio correctamente. 
-              {exercise.type === 'debug-fix' && ' El bug ha sido corregido.'}
-              {exercise.type === 'css-selector' && ' El selector es correcto.'}
-              {exercise.type === 'dom-manipulation' && ' La manipulación DOM es correcta.'}
-            </AlertDescription>
-          </Alert>
-        )}
+        <AnimatePresence>
+          {validation?.isValid && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Alert className="border-2 border-accent bg-gradient-to-r from-accent/10 to-accent/5 shadow-lg">
+                <CheckCircle className="h-5 w-5 text-accent" weight="fill" />
+                <AlertDescription className="text-foreground leading-relaxed">
+                  <strong className="text-accent">¡Excelente trabajo!</strong> Has completado este ejercicio correctamente. 
+                  {exercise.type === 'debug-fix' && ' El bug ha sido corregido.'}
+                  {exercise.type === 'css-selector' && ' El selector es correcto.'}
+                  {exercise.type === 'dom-manipulation' && ' La manipulación DOM es correcta.'}
+                </AlertDescription>
+              </Alert>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </CardContent>
     </Card>
   )

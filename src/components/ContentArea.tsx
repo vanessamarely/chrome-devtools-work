@@ -1,5 +1,6 @@
 import React from 'react'
 import { CheckCircle, ClipboardText, Code, Target } from '@phosphor-icons/react'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -19,12 +20,28 @@ interface ContentAreaProps {
 export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps) {
   if (!topic) {
     return (
-      <div className="flex-1 flex flex-col bg-background">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="flex-1 flex flex-col bg-background"
+      >
         <div className="flex-1 flex items-center justify-center p-8">
-          <div className="text-center space-y-6 max-w-lg">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
+            className="text-center space-y-6 max-w-lg"
+          >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 blur-3xl opacity-50 rounded-full" />
-              <ClipboardText size={80} className="text-muted-foreground mx-auto relative z-10" weight="duotone" />
+              <motion.div
+                initial={{ rotate: -180, scale: 0 }}
+                animate={{ rotate: 0, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.6, type: "spring", stiffness: 150 }}
+              >
+                <ClipboardText size={80} className="text-muted-foreground mx-auto relative z-10" weight="duotone" />
+              </motion.div>
             </div>
             <div className="space-y-2">
               <h2 className="text-3xl font-bold text-foreground bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -34,19 +51,30 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
                 Elige un tema de la barra lateral para comenzar a aprender sobre Chrome DevTools y las funciones de depuración con IA.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
         <div className="p-8 border-t border-border bg-gradient-to-br from-primary/5 to-accent/5">
           <ProgressDashboard workshopData={workshopData} />
         </div>
-      </div>
+      </motion.div>
     )
   }
 
   return (
-    <div className="flex-1 overflow-y-auto bg-background">
+    <motion.div 
+      key={topic.id}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="flex-1 overflow-y-auto bg-background"
+    >
       <div className="max-w-4xl mx-auto p-8">
-        <div className="flex items-start justify-between mb-8 gap-6">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+          className="flex items-start justify-between mb-8 gap-6"
+        >
           <div className="flex-1">
             <h1 className="text-4xl font-bold text-foreground mb-3 leading-tight tracking-tight">
               {topic.title}
@@ -68,9 +96,14 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
               Marcar como Completado
             </Button>
           )}
-        </div>
+        </motion.div>
 
-        <div className="prose prose-slate max-w-none">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="prose prose-slate max-w-none"
+        >
           <div className="whitespace-pre-wrap text-foreground leading-relaxed">
             {topic.content.split('\n').map((line, index) => {
               if (line.startsWith('# ')) {
@@ -124,18 +157,29 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
               )
             })}
           </div>
-        </div>
+        </motion.div>
 
         {topic.exercises && topic.exercises.length > 0 && (
-          <div className="mt-16 space-y-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="mt-16 space-y-6"
+          >
             <div className="flex items-center gap-3 mb-8">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-md">
                 <Code size={20} className="text-white" weight="bold" />
               </div>
               <h2 className="text-3xl font-bold text-foreground">Ejercicios Prácticos</h2>
             </div>
-            {topic.exercises.map((exercise) => (
-              <Card key={exercise.id} className="border-2 border-border hover:border-primary/30 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-primary/10 overflow-hidden">
+            {topic.exercises.map((exercise, index) => (
+              <motion.div
+                key={exercise.id}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 + index * 0.1, duration: 0.4 }}
+              >
+                <Card className="border-2 border-border hover:border-primary/30 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-primary/10 overflow-hidden">
                 <CardHeader className="bg-gradient-to-br from-primary/5 to-accent/5 border-b border-border">
                   <CardTitle className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-sm">
@@ -172,12 +216,18 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
                   </div>
                 </CardContent>
               </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
         {topic.interactiveExercises && topic.interactiveExercises.length > 0 && (
-          <div className="mt-16 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+            className="mt-16 space-y-6"
+          >
             <div className="flex items-center gap-3 mb-8">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-md">
                 <Target size={20} className="text-white" weight="bold" />
@@ -189,23 +239,35 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
                 </p>
               </div>
             </div>
-            {topic.interactiveExercises.map((exercise) => (
-              <InteractiveExercise
+            {topic.interactiveExercises.map((exercise, index) => (
+              <motion.div
                 key={exercise.id}
-                exercise={exercise}
-                topicId={topic.id}
-              />
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
+              >
+                <InteractiveExercise
+                  exercise={exercise}
+                  topicId={topic.id}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
         {topic.miniLab && (
-          <MiniLabComponent
-            miniLab={topic.miniLab}
-            topicId={topic.id}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+          >
+            <MiniLabComponent
+              miniLab={topic.miniLab}
+              topicId={topic.id}
+            />
+          </motion.div>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }
