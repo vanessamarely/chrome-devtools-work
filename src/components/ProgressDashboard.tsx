@@ -122,15 +122,15 @@ export function ProgressDashboard({ workshopData }: ProgressDashboardProps) {
         <div className="grid grid-cols-2 gap-4">
           <div className={`text-center p-5 rounded-xl border-2 transition-all duration-300 ${
             completionPercentage >= 25 
-              ? 'bg-gradient-to-br from-green-50 to-green-100 border-green-300 shadow-md' 
+              ? 'bg-gradient-to-br from-accent/10 to-accent/20 border-accent/40 shadow-md' 
               : 'bg-muted border-border'
           }`}>
             <CheckCircle 
               size={32} 
               weight={completionPercentage >= 25 ? "fill" : "regular"}
-              className={`mx-auto mb-3 ${completionPercentage >= 25 ? 'text-green-600' : 'text-muted-foreground'}`} 
+              className={`mx-auto mb-3 ${completionPercentage >= 25 ? 'text-accent' : 'text-muted-foreground'}`} 
             />
-            <p className={`text-base font-bold mb-1 ${completionPercentage >= 25 ? 'text-green-800' : 'text-muted-foreground'}`}>
+            <p className={`text-base font-bold mb-1 ${completionPercentage >= 25 ? 'text-foreground' : 'text-muted-foreground'}`}>
               Principiante
             </p>
             <p className="text-xs font-medium text-muted-foreground">25% completado</p>
@@ -138,15 +138,15 @@ export function ProgressDashboard({ workshopData }: ProgressDashboardProps) {
 
           <div className={`text-center p-5 rounded-xl border-2 transition-all duration-300 ${
             completionPercentage >= 50 
-              ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 border-yellow-300 shadow-md' 
+              ? 'bg-gradient-to-br from-primary/10 to-primary/20 border-primary/40 shadow-md' 
               : 'bg-muted border-border'
           }`}>
             <Trophy 
               size={32} 
               weight={completionPercentage >= 50 ? "fill" : "regular"}
-              className={`mx-auto mb-3 ${completionPercentage >= 50 ? 'text-yellow-600' : 'text-muted-foreground'}`} 
+              className={`mx-auto mb-3 ${completionPercentage >= 50 ? 'text-primary' : 'text-muted-foreground'}`} 
             />
-            <p className={`text-base font-bold mb-1 ${completionPercentage >= 50 ? 'text-yellow-800' : 'text-muted-foreground'}`}>
+            <p className={`text-base font-bold mb-1 ${completionPercentage >= 50 ? 'text-foreground' : 'text-muted-foreground'}`}>
               Intermedio
             </p>
             <p className="text-xs font-medium text-muted-foreground">50% completado</p>
@@ -154,15 +154,15 @@ export function ProgressDashboard({ workshopData }: ProgressDashboardProps) {
 
           <div className={`text-center p-5 rounded-xl border-2 transition-all duration-300 ${
             completionPercentage >= 75 
-              ? 'bg-gradient-to-br from-blue-50 to-blue-100 border-blue-300 shadow-md' 
+              ? 'bg-gradient-to-br from-primary/10 to-accent/10 border-primary/40 shadow-md' 
               : 'bg-muted border-border'
           }`}>
             <Target 
               size={32} 
               weight={completionPercentage >= 75 ? "fill" : "regular"}
-              className={`mx-auto mb-3 ${completionPercentage >= 75 ? 'text-blue-600' : 'text-muted-foreground'}`} 
+              className={`mx-auto mb-3 ${completionPercentage >= 75 ? 'text-primary' : 'text-muted-foreground'}`} 
             />
-            <p className={`text-base font-bold mb-1 ${completionPercentage >= 75 ? 'text-blue-800' : 'text-muted-foreground'}`}>
+            <p className={`text-base font-bold mb-1 ${completionPercentage >= 75 ? 'text-foreground' : 'text-muted-foreground'}`}>
               Avanzado
             </p>
             <p className="text-xs font-medium text-muted-foreground">75% completado</p>
@@ -170,15 +170,15 @@ export function ProgressDashboard({ workshopData }: ProgressDashboardProps) {
 
           <div className={`text-center p-5 rounded-xl border-2 transition-all duration-300 ${
             completionPercentage >= 100 
-              ? 'bg-gradient-to-br from-purple-50 to-purple-100 border-purple-300 shadow-md' 
+              ? 'bg-gradient-to-br from-accent/10 to-primary/10 border-accent/40 shadow-md' 
               : 'bg-muted border-border'
           }`}>
             <Clock 
               size={32} 
               weight={completionPercentage >= 100 ? "fill" : "regular"}
-              className={`mx-auto mb-3 ${completionPercentage >= 100 ? 'text-purple-600' : 'text-muted-foreground'}`} 
+              className={`mx-auto mb-3 ${completionPercentage >= 100 ? 'text-accent' : 'text-muted-foreground'}`} 
             />
-            <p className={`text-base font-bold mb-1 ${completionPercentage >= 100 ? 'text-purple-800' : 'text-muted-foreground'}`}>
+            <p className={`text-base font-bold mb-1 ${completionPercentage >= 100 ? 'text-foreground' : 'text-muted-foreground'}`}>
               Experto
             </p>
             <p className="text-xs font-medium text-muted-foreground">100% completado</p>
@@ -205,16 +205,16 @@ export function ProgressDashboard({ workshopData }: ProgressDashboardProps) {
         )}
 
         {completionPercentage === 100 && (
-          <div className="relative overflow-hidden p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border-2 border-green-300 shadow-xl">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-200/50 to-transparent rounded-full blur-2xl" />
+          <div className="relative overflow-hidden p-6 bg-gradient-to-br from-accent/10 to-primary/10 rounded-xl border-2 border-accent/40 shadow-xl">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-accent/20 to-transparent rounded-full blur-2xl" />
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-lg">
                   <Trophy className="text-white" size={28} weight="fill" />
                 </div>
-                <h4 className="text-xl font-bold text-green-800">¡Felicitaciones!</h4>
+                <h4 className="text-xl font-bold text-foreground">¡Felicitaciones!</h4>
               </div>
-              <p className="text-base text-green-700 leading-relaxed">
+              <p className="text-base text-foreground/80 leading-relaxed">
                 Has completado todos los ejercicios del taller. ¡Ahora eres un experto en DevTools + IA!
               </p>
             </div>
