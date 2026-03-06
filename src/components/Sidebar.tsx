@@ -23,43 +23,69 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
     setExpandedSections(newExpanded)
   }
 
+  const totalTopics = sections.flatMap(s => s.topics).length
+  const progressPercentage = totalTopics > 0 ? Math.round((completedTopics.size / totalTopics) * 100) : 0
+
   return (
-    <div className="w-80 bg-sidebar border-r border-sidebar-border flex flex-col">
-      <div className="p-6 border-b border-sidebar-border">
-        <h1 className="text-xl font-bold text-sidebar-foreground">DevTools + IA en Acción</h1>
-        <p className="text-sm text-sidebar-foreground/70 mt-1">Domina la depuración con asistencia de IA</p>
+    <div className="w-80 bg-sidebar border-r border-sidebar-border flex flex-col shadow-sm">
+      <div className="p-6 border-b border-sidebar-border bg-gradient-to-br from-primary/5 to-accent/5">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-md">
+            <Code size={20} weight="bold" className="text-white" />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-sidebar-foreground tracking-tight">DevTools + IA</h1>
+            <p className="text-xs text-sidebar-foreground/60">Workshop Interactivo</p>
+          </div>
+        </div>
+        <p className="text-sm text-sidebar-foreground/70 leading-relaxed">
+          Domina la depuración con asistencia de IA
+        </p>
       </div>
       
-      <div className="flex-1 overflow-y-auto p-4 space-y-2">
+      <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {sections.map((section) => {
           const isExpanded = expandedSections.has(section.id)
           const completedCount = section.topics.filter(topic => completedTopics.has(topic.id)).length
           const totalCount = section.topics.length
+          const sectionProgress = totalCount > 0 ? (completedCount / totalCount) * 100 : 0
           
           return (
-            <div key={section.id} className="space-y-1">
+            <div key={section.id} className="space-y-1.5">
               <button
                 onClick={() => toggleSection(section.id)}
-                className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-sidebar-accent transition-colors text-left"
+                className="w-full flex items-center justify-between p-3 rounded-xl hover:bg-sidebar-accent transition-all duration-200 text-left group hover:shadow-sm"
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-lg">{section.icon}</span>
-                  <div>
-                    <div className="font-medium text-sidebar-foreground">{section.title}</div>
-                    <div className="text-xs text-sidebar-foreground/60">
-                      {completedCount}/{totalCount} completados
+                <div className="flex items-center gap-3 flex-1">
+                  <div className="text-xl flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 group-hover:from-primary/15 group-hover:to-accent/15 transition-colors">
+                    {section.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-sidebar-foreground text-sm mb-1 truncate">{section.title}</div>
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1 h-1.5 bg-sidebar-accent rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500 ease-out rounded-full"
+                          style={{ width: `${sectionProgress}%` }}
+                        />
+                      </div>
+                      <span className="text-xs text-sidebar-foreground/50 font-medium whitespace-nowrap">
+                        {completedCount}/{totalCount}
+                      </span>
                     </div>
                   </div>
                 </div>
-                {isExpanded ? (
-                  <CaretDown size={16} className="text-sidebar-foreground/60" />
-                ) : (
-                  <CaretRight size={16} className="text-sidebar-foreground/60" />
-                )}
+                <div className="ml-2">
+                  {isExpanded ? (
+                    <CaretDown size={18} className="text-sidebar-foreground/60 transition-transform" weight="bold" />
+                  ) : (
+                    <CaretRight size={18} className="text-sidebar-foreground/60 transition-transform" weight="bold" />
+                  )}
+                </div>
               </button>
               
               {isExpanded && (
-                <div className="ml-6 space-y-1">
+                <div className="ml-8 space-y-1 mt-2">
                   {section.topics.map((topic) => {
                     const isSelected = selectedTopic === topic.id
                     const isCompleted = completedTopics.has(topic.id)
@@ -71,28 +97,34 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
                         key={topic.id}
                         onClick={() => onTopicSelect(topic.id)}
                         className={cn(
-                          "w-full flex items-center gap-3 p-2 rounded-md transition-colors text-left",
+                          "w-full flex items-center gap-3 p-2.5 rounded-lg transition-all duration-200 text-left group relative overflow-hidden",
                           isSelected
-                            ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                            : "hover:bg-sidebar-accent text-sidebar-foreground"
+                            ? "bg-gradient-to-r from-primary to-primary/90 text-sidebar-primary-foreground shadow-md shadow-primary/20"
+                            : "hover:bg-sidebar-accent text-sidebar-foreground hover:shadow-sm"
                         )}
                       >
-                        <div className="flex items-center gap-2 flex-1">
+                        {isSelected && (
+                          <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-50" />
+                        )}
+                        <div className="flex items-center gap-2.5 flex-1 relative z-10">
                           {hasInteractiveExercises ? (
-                            <Target size={16} className={isSelected ? "text-sidebar-primary-foreground/80" : "text-accent"} />
+                            <Target size={16} weight="bold" className={isSelected ? "text-sidebar-primary-foreground" : "text-accent"} />
                           ) : hasExercises ? (
-                            <Code size={16} className={isSelected ? "text-sidebar-primary-foreground/80" : "text-sidebar-foreground/60"} />
+                            <Code size={16} weight="bold" className={isSelected ? "text-sidebar-primary-foreground" : "text-primary/70"} />
                           ) : (
-                            <BookOpen size={16} className={isSelected ? "text-sidebar-primary-foreground/80" : "text-sidebar-foreground/60"} />
+                            <BookOpen size={16} weight="bold" className={isSelected ? "text-sidebar-primary-foreground" : "text-sidebar-foreground/60"} />
                           )}
-                          <span className="text-sm">{topic.title}</span>
+                          <span className={cn(
+                            "text-sm font-medium flex-1",
+                            isSelected ? "font-semibold" : ""
+                          )}>{topic.title}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          {hasInteractiveExercises && (
-                            <div className="w-2 h-2 bg-accent rounded-full" title="Tiene ejercicios interactivos" />
+                        <div className="flex items-center gap-1.5 relative z-10">
+                          {hasInteractiveExercises && !isCompleted && (
+                            <div className="w-2 h-2 bg-accent rounded-full animate-pulse shadow-sm shadow-accent/50" title="Tiene ejercicios interactivos" />
                           )}
                           {isCompleted && (
-                            <CheckCircle size={16} className="text-accent flex-shrink-0" />
+                            <CheckCircle size={18} weight="fill" className={isSelected ? "text-sidebar-primary-foreground" : "text-accent"} />
                           )}
                         </div>
                       </button>
@@ -105,9 +137,21 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
         })}
       </div>
       
-      <div className="p-4 border-t border-sidebar-border">
-        <div className="text-xs text-sidebar-foreground/60 text-center">
-          Progreso: {completedTopics.size}/{sections.flatMap(s => s.topics).length} temas completados
+      <div className="p-4 border-t border-sidebar-border bg-gradient-to-br from-primary/5 to-accent/5">
+        <div className="space-y-3">
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-sidebar-foreground/70 font-medium">Progreso Total</span>
+            <span className="text-sidebar-foreground font-bold">{progressPercentage}%</span>
+          </div>
+          <div className="h-2 bg-sidebar-accent rounded-full overflow-hidden shadow-inner">
+            <div 
+              className="h-full bg-gradient-to-r from-primary via-accent to-primary transition-all duration-500 ease-out rounded-full shadow-sm"
+              style={{ width: `${progressPercentage}%` }}
+            />
+          </div>
+          <div className="text-xs text-center text-sidebar-foreground/60">
+            {completedTopics.size} de {totalTopics} temas completados
+          </div>
         </div>
       </div>
     </div>

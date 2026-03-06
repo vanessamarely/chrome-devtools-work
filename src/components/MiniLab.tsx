@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { useKV } from '@github/spark/hooks'
 import { MiniLab } from '../types/workshop'
 import { CodePracticeArea } from './CodePracticeArea'
+import { cn } from '../lib/utils'
 
 interface MiniLabProps {
   miniLab: MiniLab
@@ -49,68 +50,92 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
   const progressPercentage = Math.round((completedCount / totalSteps) * 100)
 
   return (
-    <div className="mt-12 space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-foreground flex items-center gap-3">
-          <Flask size={28} className="text-accent" />
-          {miniLab.title}
-        </h2>
-        <div className="flex items-center gap-3">
-          <Badge variant="outline" className="text-sm">
-            {completedCount}/{totalSteps} pasos completados
-          </Badge>
-          <div className="w-24 h-2 bg-secondary rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-accent transition-all duration-500 ease-out"
-              style={{ width: `${progressPercentage}%` }}
-            />
+    <div className="mt-16 space-y-8">
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 blur-3xl opacity-30 rounded-3xl" />
+        <div className="relative bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 rounded-2xl p-8 border-2 border-accent/30 shadow-xl">
+          <div className="flex items-start justify-between gap-6">
+            <div className="flex-1">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-lg shadow-accent/30">
+                  <Flask size={28} className="text-white" weight="bold" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-foreground mb-1">
+                    {miniLab.title}
+                  </h2>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    {completedCount === totalSteps ? '¡Completado!' : 'En progreso'}
+                  </p>
+                </div>
+              </div>
+              <p className="text-foreground/90 leading-relaxed text-base">
+                {miniLab.description}
+              </p>
+            </div>
+            <div className="flex flex-col items-end gap-3">
+              <Badge variant="outline" className="text-base px-4 py-2 bg-card/80 backdrop-blur-sm border-2 border-accent/30 shadow-sm">
+                <span className="font-bold text-accent">{completedCount}</span>
+                <span className="text-muted-foreground mx-1">/</span>
+                <span className="font-bold">{totalSteps}</span>
+              </Badge>
+              <div className="w-32 h-3 bg-muted rounded-full overflow-hidden shadow-inner border border-border">
+                <div 
+                  className="h-full bg-gradient-to-r from-accent via-primary to-accent transition-all duration-700 ease-out shadow-sm"
+                  style={{ width: `${progressPercentage}%` }}
+                />
+              </div>
+              <span className="text-xs font-bold text-muted-foreground">
+                {progressPercentage}% Completado
+              </span>
+            </div>
           </div>
         </div>
       </div>
-      
-      <p className="text-muted-foreground text-lg">
-        {miniLab.description}
-      </p>
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {miniLab.steps.map((step) => {
           const isCompleted = isStepCompleted(step.step)
           const isOpen = openSteps.has(step.step)
           
           return (
-            <Card key={step.step} className={`border-2 transition-all duration-200 ${
+            <Card key={step.step} className={cn(
+              "border-2 transition-all duration-300 overflow-hidden",
               isCompleted 
-                ? 'border-accent/50 bg-accent/5' 
-                : 'border-border hover:border-primary/50'
-            }`}>
+                ? "border-accent bg-gradient-to-r from-accent/5 to-accent/10 shadow-lg shadow-accent/10" 
+                : "border-border hover:border-primary/40 hover:shadow-md"
+            )}>
               <Collapsible open={isOpen} onOpenChange={() => toggleStep(step.step)}>
                 <CollapsibleTrigger asChild>
-                  <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
+                  <CardHeader className="cursor-pointer hover:bg-gradient-to-r hover:from-muted/50 hover:to-muted/30 transition-all duration-200 group">
                     <CardTitle className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                      <div className="flex items-center gap-4">
+                        <div className={cn(
+                          "w-12 h-12 rounded-xl flex items-center justify-center text-base font-bold shadow-md transition-all duration-300 group-hover:scale-105",
                           isCompleted 
-                            ? 'bg-accent text-accent-foreground' 
-                            : 'bg-primary text-primary-foreground'
-                        }`}>
+                            ? "bg-gradient-to-br from-accent to-primary text-white shadow-accent/30" 
+                            : "bg-gradient-to-br from-primary to-accent text-white shadow-primary/30"
+                        )}>
                           {isCompleted ? (
-                            <CheckCircle size={18} weight="bold" />
+                            <CheckCircle size={22} weight="bold" />
                           ) : (
-                            step.step
+                            <span className="font-bold">{step.step}</span>
                           )}
                         </div>
-                        <span className="text-lg">{step.title}</span>
-                        {isCompleted && (
-                          <Badge variant="secondary" className="ml-2">
-                            Completado
-                          </Badge>
-                        )}
+                        <div>
+                          <span className="text-xl font-bold">{step.title}</span>
+                          {isCompleted && (
+                            <Badge variant="secondary" className="ml-3 bg-accent/20 text-accent border border-accent/30 shadow-sm">
+                              ✓ Completado
+                            </Badge>
+                          )}
+                        </div>
                       </div>
                       <div className="flex items-center gap-2">
                         {isOpen ? (
-                          <CaretDown size={20} className="text-muted-foreground" />
+                          <CaretDown size={24} className="text-muted-foreground transition-transform group-hover:scale-110" weight="bold" />
                         ) : (
-                          <CaretRight size={20} className="text-muted-foreground" />
+                          <CaretRight size={24} className="text-muted-foreground transition-transform group-hover:scale-110" weight="bold" />
                         )}
                       </div>
                     </CardTitle>
@@ -118,20 +143,22 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
                 </CollapsibleTrigger>
                 
                 <CollapsibleContent>
-                  <CardContent className="pt-0">
-                    <div className="space-y-4">
-                      <div className="bg-muted/30 rounded-lg p-4">
-                        <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                          <span className="w-2 h-2 bg-primary rounded-full"></span>
+                  <CardContent className="pt-0 pb-6">
+                    <div className="space-y-6">
+                      <div className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-xl p-6 border-2 border-border shadow-inner">
+                        <h4 className="font-bold text-foreground mb-5 flex items-center gap-3 text-lg">
+                          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                            <span className="w-2.5 h-2.5 bg-gradient-to-br from-primary to-accent rounded-full animate-pulse shadow-sm" />
+                          </div>
                           Instrucciones paso a paso:
                         </h4>
-                        <ol className="space-y-3">
+                        <ol className="space-y-4">
                           {step.instructions.map((instruction, index) => (
-                            <li key={index} className="text-foreground flex gap-3 leading-relaxed">
-                              <span className="bg-secondary text-secondary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">
+                            <li key={index} className="text-foreground/90 flex gap-4 leading-relaxed group">
+                              <span className="bg-gradient-to-br from-primary to-accent text-primary-foreground rounded-xl w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5 shadow-md group-hover:scale-110 transition-transform">
                                 {index + 1}
                               </span>
-                              <span className="text-sm">{instruction}</span>
+                              <span className="text-[15px] leading-relaxed">{instruction}</span>
                             </li>
                           ))}
                         </ol>
@@ -141,19 +168,20 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
                         {!isCompleted ? (
                           <Button 
                             onClick={() => markStepComplete(step.step)}
-                            className="gap-2"
-                            variant="default"
+                            className="gap-2 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-200 hover:-translate-y-0.5"
+                            size="lg"
                           >
-                            <CheckCircle size={16} />
+                            <CheckCircle size={20} weight="bold" />
                             Marcar como Completado
                           </Button>
                         ) : (
                           <Button 
                             variant="outline" 
-                            className="gap-2 cursor-default"
+                            className="gap-2 cursor-default bg-accent/10 border-accent/30 text-accent hover:bg-accent/10 hover:border-accent/30"
                             disabled
+                            size="lg"
                           >
-                            <CheckCircle size={16} className="text-accent" />
+                            <CheckCircle size={20} weight="fill" />
                             Paso Completado
                           </Button>
                         )}
@@ -168,16 +196,20 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
       </div>
 
       {completedCount === totalSteps && (
-        <Card className="border-accent bg-accent/10">
-          <CardContent className="pt-6">
-            <div className="text-center space-y-3">
-              <div className="w-16 h-16 bg-accent text-accent-foreground rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle size={32} weight="bold" />
+        <Card className="border-2 border-accent bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 shadow-xl overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-primary/10 animate-pulse" />
+          <CardContent className="pt-8 pb-8 relative z-10">
+            <div className="text-center space-y-5">
+              <div className="relative inline-block">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/30 blur-2xl rounded-full" />
+                <div className="relative w-20 h-20 bg-gradient-to-br from-accent to-primary text-white rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-accent/40">
+                  <CheckCircle size={44} weight="bold" />
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-foreground">
+              <h3 className="text-3xl font-bold text-foreground">
                 ¡Mini Lab Completado! 🎉
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
                 Has completado todos los pasos del mini lab. ¡Excelente trabajo dominando DevTools con IA!
               </p>
             </div>
@@ -185,7 +217,6 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
         </Card>
       )}
 
-      {/* Área de Práctica de Código */}
       {miniLab.practiceArea && (
         <CodePracticeArea
           title={miniLab.practiceArea.title}

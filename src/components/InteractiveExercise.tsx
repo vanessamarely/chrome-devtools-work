@@ -176,28 +176,31 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
   }
 
   return (
-    <Card className="border-border">
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-3">
-            <span>{exercise.title}</span>
-            <Badge className={getTypeColor()}>{getTypeLabel()}</Badge>
-            {isExerciseCompleted && (
-              <Badge variant="secondary" className="gap-1">
-                <CheckCircle size={14} className="text-green-600" />
-                Completado
-              </Badge>
-            )}
-          </CardTitle>
+    <Card className="border-2 border-border hover:border-accent/30 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden">
+      <CardHeader className="bg-gradient-to-r from-accent/5 to-primary/5 border-b-2 border-border">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1">
+            <CardTitle className="flex flex-wrap items-center gap-3 mb-3">
+              <span className="text-xl">{exercise.title}</span>
+              <Badge className={`${getTypeColor()} font-semibold border`}>{getTypeLabel()}</Badge>
+              {isExerciseCompleted && (
+                <Badge variant="secondary" className="gap-2 bg-gradient-to-r from-accent/20 to-accent/10 text-accent border border-accent/30 shadow-sm">
+                  <CheckCircle size={16} weight="fill" />
+                  Completado
+                </Badge>
+              )}
+            </CardTitle>
+            <p className="text-muted-foreground leading-relaxed">{exercise.description}</p>
+          </div>
           <div className="flex gap-2">
             {exercise.hints && exercise.hints.length > 0 && (
               <Button
                 variant="outline"
                 size="sm"
                 onClick={showNextHint}
-                className="gap-1"
+                className="gap-2 hover:bg-accent/10 hover:text-accent hover:border-accent/30"
               >
-                <Lightbulb size={14} />
+                <Lightbulb size={16} weight="bold" />
                 Pista
               </Button>
             )}
@@ -205,36 +208,38 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
               variant="outline"
               size="sm"
               onClick={handleReset}
-              className="gap-1"
+              className="gap-2 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
             >
-              <ArrowCounterClockwise size={14} />
+              <ArrowCounterClockwise size={16} weight="bold" />
               Reiniciar
             </Button>
           </div>
         </div>
-        <p className="text-muted-foreground">{exercise.description}</p>
       </CardHeader>
       
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-6 pt-6">
         {showHints && exercise.hints && (
-          <Alert>
-            <Lightbulb className="h-4 w-4" />
-            <AlertDescription>
-              <strong>Pista {currentHintIndex + 1}:</strong> {exercise.hints[currentHintIndex]}
+          <Alert className="border-2 border-accent/30 bg-gradient-to-r from-accent/10 to-accent/5">
+            <Lightbulb className="h-5 w-5 text-accent" weight="fill" />
+            <AlertDescription className="text-foreground">
+              <strong className="text-accent">Pista {currentHintIndex + 1}:</strong> {exercise.hints[currentHintIndex]}
             </AlertDescription>
           </Alert>
         )}
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium">Tu solución:</label>
+            <label className="text-sm font-bold text-foreground flex items-center gap-2">
+              <span className="w-2 h-2 bg-gradient-to-br from-primary to-accent rounded-full" />
+              Tu solución:
+            </label>
             <div className="flex gap-2">
               <Button
                 size="sm"
                 onClick={runCode}
-                className="gap-1"
+                className="gap-2 shadow-md hover:shadow-lg transition-all duration-200"
               >
-                <Play size={14} />
+                <Play size={16} weight="fill" />
                 Verificar
               </Button>
             </div>
@@ -244,31 +249,35 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
             value={userCode}
             onChange={(e) => handleCodeChange(e.target.value)}
             placeholder={getPlaceholderText()}
-            className="font-mono text-sm min-h-[120px]"
+            className="font-mono text-sm min-h-[150px] border-2 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
             spellCheck={false}
           />
         </div>
 
         {validation && (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-muted/50 to-muted/30 border-2 border-border">
+              <div className="flex items-center gap-3">
                 {validation.isValid ? (
-                  <CheckCircle className="text-green-600" size={20} />
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg">
+                    <CheckCircle className="text-white" size={24} weight="fill" />
+                  </div>
                 ) : (
-                  <XCircle className="text-red-600" size={20} />
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-lg">
+                    <XCircle className="text-white" size={24} weight="fill" />
+                  </div>
                 )}
-                <span className={`font-medium ${validation.isValid ? 'text-green-600' : 'text-red-600'}`}>
+                <span className={`font-bold text-lg ${validation.isValid ? 'text-green-600' : 'text-red-600'}`}>
                   {validation.isValid ? '¡Correcto!' : 'Necesita mejoras'}
                 </span>
               </div>
-              <Badge variant="outline">
+              <Badge variant="outline" className="text-base px-4 py-2 font-bold border-2">
                 {validation.passedRules}/{validation.totalRules} puntos
               </Badge>
             </div>
             
-            <Alert className={validation.isValid ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}>
-              <AlertDescription className="whitespace-pre-line text-sm">
+            <Alert className={`border-2 ${validation.isValid ? 'border-green-300 bg-gradient-to-r from-green-50 to-green-100' : 'border-red-300 bg-gradient-to-r from-red-50 to-red-100'}`}>
+              <AlertDescription className="whitespace-pre-line leading-relaxed">
                 {validation.message}
               </AlertDescription>
             </Alert>
@@ -276,10 +285,10 @@ export function InteractiveExercise({ exercise, topicId }: InteractiveExerciseCo
         )}
 
         {validation?.isValid && (
-          <Alert className="border-green-200 bg-green-50">
-            <CheckCircle className="h-4 w-4 text-green-600" />
-            <AlertDescription>
-              <strong>¡Excelente trabajo!</strong> Has completado este ejercicio correctamente. 
+          <Alert className="border-2 border-accent bg-gradient-to-r from-accent/10 to-accent/5 shadow-lg">
+            <CheckCircle className="h-5 w-5 text-accent" weight="fill" />
+            <AlertDescription className="text-foreground leading-relaxed">
+              <strong className="text-accent">¡Excelente trabajo!</strong> Has completado este ejercicio correctamente. 
               {exercise.type === 'debug-fix' && ' El bug ha sido corregido.'}
               {exercise.type === 'css-selector' && ' El selector es correcto.'}
               {exercise.type === 'dom-manipulation' && ' La manipulación DOM es correcta.'}
