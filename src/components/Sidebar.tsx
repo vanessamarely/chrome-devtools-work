@@ -28,11 +28,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
   const progressPercentage = totalTopics > 0 ? Math.round((completedTopics.size / totalTopics) * 100) : 0
 
   return (
-    <motion.div 
-      initial={{ x: -320, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="w-80 bg-sidebar border-r border-sidebar-border flex flex-col shadow-sm"
+    <div className="w-80 bg-sidebar border-r border-sidebar-border flex flex-col shadow-sm"
     >
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
@@ -192,6 +188,6 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
           </div>
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   )
 }
