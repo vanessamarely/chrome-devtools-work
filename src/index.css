@@ -2,33 +2,33 @@
 @import "tw-animate-css";
 
 :root {
-  --background: oklch(0.99 0.005 260);
-  --foreground: oklch(0.15 0.08 260);
+  --background: oklch(0.98 0.005 260);
+  --foreground: oklch(0.20 0.10 260);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.08 260);
+  --card-foreground: oklch(0.20 0.10 260);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.08 260);
-  --primary: oklch(0.45 0.22 260);
+  --popover-foreground: oklch(0.20 0.10 260);
+  --primary: oklch(0.50 0.24 260);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.01 260);
-  --secondary-foreground: oklch(0.15 0.08 260);
-  --muted: oklch(0.96 0.01 260);
-  --muted-foreground: oklch(0.55 0.05 260);
-  --accent: oklch(0.68 0.20 35);
+  --secondary: oklch(0.95 0.01 260);
+  --secondary-foreground: oklch(0.20 0.10 260);
+  --muted: oklch(0.95 0.01 260);
+  --muted-foreground: oklch(0.45 0.08 260);
+  --accent: oklch(0.65 0.22 35);
   --accent-foreground: oklch(0.99 0 0);
   --destructive: oklch(0.60 0.24 27);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.92 0.01 260);
-  --input: oklch(0.95 0.01 260);
-  --ring: oklch(0.45 0.22 260);
-  --sidebar: oklch(0.97 0.008 260);
-  --sidebar-foreground: oklch(0.15 0.08 260);
-  --sidebar-primary: oklch(0.45 0.22 260);
+  --border: oklch(0.88 0.01 260);
+  --input: oklch(0.92 0.01 260);
+  --ring: oklch(0.50 0.24 260);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.20 0.10 260);
+  --sidebar-primary: oklch(0.50 0.24 260);
   --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.94 0.01 260);
-  --sidebar-accent-foreground: oklch(0.15 0.08 260);
+  --sidebar-accent: oklch(0.96 0.01 260);
+  --sidebar-accent-foreground: oklch(0.20 0.10 260);
   --sidebar-border: oklch(0.90 0.01 260);
-  --sidebar-ring: oklch(0.45 0.22 260);
+  --sidebar-ring: oklch(0.50 0.24 260);
   --radius: 0.625rem;
 }
 

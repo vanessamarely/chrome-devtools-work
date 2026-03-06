@@ -123,11 +123,11 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
           transition={{ delay: 0.3, duration: 0.5 }}
           className="prose prose-slate max-w-none"
         >
-          <div className="whitespace-pre-wrap text-foreground leading-relaxed">
+          <div className="whitespace-pre-wrap leading-relaxed">
             {topic.content.split('\n').map((line, index) => {
               if (line.startsWith('# ')) {
                 return (
-                  <h1 key={index} className="text-3xl font-bold text-foreground mt-12 mb-6 first:mt-0 pb-3 border-b-2 border-gradient-to-r from-primary to-accent">
+                  <h1 key={index} className="text-3xl font-bold text-foreground mt-12 mb-6 first:mt-0 pb-3 border-b-2 border-primary/20">
                     {line.substring(2)}
                   </h1>
                 )
@@ -154,7 +154,7 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
               
               if (line.startsWith('- ')) {
                 return (
-                  <li key={index} className="text-foreground ml-6 mb-2 leading-relaxed relative before:content-[''] before:absolute before:left-[-1.25rem] before:top-[0.6rem] before:w-2 before:h-2 before:bg-gradient-to-br before:from-primary before:to-accent before:rounded-full">
+                  <li key={index} className="text-foreground ml-6 mb-3 leading-relaxed relative before:content-[''] before:absolute before:left-[-1.25rem] before:top-[0.65rem] before:w-2 before:h-2 before:bg-gradient-to-br before:from-primary before:to-accent before:rounded-full">
                     {line.substring(2)}
                   </li>
                 )
@@ -169,10 +169,10 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
               
               let processedLine = line
               processedLine = processedLine.replace(boldRegex, '<strong class="font-bold text-foreground">$1</strong>')
-              processedLine = processedLine.replace(codeRegex, '<code class="bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-2 py-1 rounded-md text-sm font-mono border border-primary/20">$1</code>')
+              processedLine = processedLine.replace(codeRegex, '<code class="bg-muted text-foreground px-2 py-1 rounded-md text-sm font-mono border border-border">$1</code>')
               
               return (
-                <p key={index} className="text-foreground/90 mb-5 leading-relaxed text-[15px]" dangerouslySetInnerHTML={{ __html: processedLine }} />
+                <p key={index} className="text-foreground mb-5 leading-relaxed text-base" dangerouslySetInnerHTML={{ __html: processedLine }} />
               )
             })}
           </div>
@@ -198,17 +198,17 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 + index * 0.1, duration: 0.4 }}
               >
-                <Card className="border-2 border-border hover:border-primary/30 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-primary/10 overflow-hidden">
-                <CardHeader className="bg-gradient-to-br from-primary/5 to-accent/5 border-b border-border">
+                <Card className="border-2 border-border hover:border-primary/30 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-primary/10 overflow-hidden bg-card">
+                <CardHeader className="bg-muted/30 border-b border-border">
                   <CardTitle className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-sm">
                       <Code size={18} className="text-white" weight="bold" />
                     </div>
-                    <span className="text-xl">{exercise.title}</span>
+                    <span className="text-xl text-foreground">{exercise.title}</span>
                   </CardTitle>
                   <p className="text-muted-foreground leading-relaxed pl-11">{exercise.description}</p>
                 </CardHeader>
-                <CardContent className="space-y-6 pt-6">
+                <CardContent className="space-y-6 pt-6 bg-card">
                   <CodeBlock
                     code={exercise.code}
                     language={exercise.language}
@@ -217,14 +217,14 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
                     editable={true}
                     showLineNumbers={true}
                   />
-                  <div className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-xl p-5 border border-border">
+                  <div className="bg-muted/30 rounded-xl p-5 border border-border">
                     <h4 className="font-bold text-foreground mb-4 flex items-center gap-2 text-lg">
                       <span className="w-2 h-2 bg-gradient-to-br from-primary to-accent rounded-full animate-pulse" />
                       Instrucciones:
                     </h4>
                     <ol className="space-y-3">
                       {exercise.instructions.map((instruction, index) => (
-                        <li key={index} className="text-foreground/90 flex gap-4 leading-relaxed">
+                        <li key={index} className="text-foreground flex gap-4 leading-relaxed">
                           <span className="bg-gradient-to-br from-primary to-accent text-primary-foreground rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5 shadow-sm">
                             {index + 1}
                           </span>
