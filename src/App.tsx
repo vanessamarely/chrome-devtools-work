@@ -43,9 +43,9 @@ function App() {
 
   return (
     <div className="flex h-screen bg-background relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-background to-accent/3 pointer-events-none print:hidden" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-3xl opacity-30 pointer-events-none print:hidden" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-accent/5 to-primary/5 rounded-full blur-3xl opacity-30 pointer-events-none print:hidden" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.015] via-background to-accent/[0.015] pointer-events-none print:hidden" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/[0.025] to-accent/[0.025] rounded-full blur-3xl opacity-40 pointer-events-none print:hidden" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-accent/[0.025] to-primary/[0.025] rounded-full blur-3xl opacity-40 pointer-events-none print:hidden" />
       
       {isMobile ? (
         <>

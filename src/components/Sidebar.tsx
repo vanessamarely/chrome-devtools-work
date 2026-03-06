@@ -34,7 +34,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
-        className="p-6 border-b border-sidebar-border bg-gradient-to-br from-primary/5 to-accent/5"
+        className="p-6 border-b border-sidebar-border bg-gradient-to-br from-primary/[0.03] to-accent/[0.03]"
       >
         <div className="flex items-center gap-3 mb-2">
           <motion.div 
@@ -50,7 +50,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
             <p className="text-xs text-sidebar-foreground/60">Workshop Interactivo</p>
           </div>
         </div>
-        <p className="text-sm text-sidebar-foreground/70 leading-relaxed">
+        <p className="text-sm text-sidebar-foreground/75 leading-relaxed">
           Domina la depuración con asistencia de IA
         </p>
       </motion.div>
@@ -170,11 +170,11 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.4 }}
-        className="p-4 border-t border-sidebar-border bg-gradient-to-br from-primary/5 to-accent/5"
+        className="p-4 border-t border-sidebar-border bg-gradient-to-br from-primary/[0.03] to-accent/[0.03]"
       >
         <div className="space-y-3">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-sidebar-foreground/70 font-medium">Progreso Total</span>
+            <span className="text-sidebar-foreground/75 font-medium">Progreso Total</span>
             <span className="text-sidebar-foreground font-bold">{progressPercentage}%</span>
           </div>
           <div className="h-2 bg-sidebar-accent rounded-full overflow-hidden shadow-inner">
@@ -183,7 +183,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
-          <div className="text-xs text-center text-sidebar-foreground/60">
+          <div className="text-xs text-center text-sidebar-foreground/65">
             {completedTopics.size} de {totalTopics} temas completados
           </div>
         </div>
