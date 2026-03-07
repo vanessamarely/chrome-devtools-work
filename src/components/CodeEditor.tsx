@@ -181,20 +181,22 @@ export function CodeEditor({
               
               {currentResult && activeTab === example.title && (
                 <Card className={cn(
-                  "border",
-                  currentResult.success ? "border-green-500/20 bg-green-500/5" : "border-red-500/20 bg-red-500/5"
+                  "border-2",
+                  currentResult.success 
+                    ? "border-accent/30 bg-accent/5" 
+                    : "border-destructive/30 bg-destructive/5"
                 )}>
                   <CardHeader className="pb-3">
                     <CardTitle className="text-sm flex items-center gap-2">
                       {currentResult.success ? (
                         <>
-                          <CheckCircle size={16} className="text-green-500" />
-                          <span className="text-green-700">Ejecución Exitosa</span>
+                          <CheckCircle size={16} className="text-accent" weight="fill" />
+                          <span className="text-foreground">Ejecución Exitosa</span>
                         </>
                       ) : (
                         <>
-                          <XCircle size={16} className="text-red-500" />
-                          <span className="text-red-700">Error de Ejecución</span>
+                          <XCircle size={16} className="text-destructive" weight="fill" />
+                          <span className="text-foreground">Error de Ejecución</span>
                         </>
                       )}
                     </CardTitle>
@@ -202,8 +204,8 @@ export function CodeEditor({
                   <CardContent className="pt-0">
                     {currentResult.logs && currentResult.logs.length > 0 && (
                       <div className="space-y-2">
-                        <h4 className="font-medium text-sm">Salida:</h4>
-                        <div className="bg-black text-green-400 p-3 rounded font-mono text-sm">
+                        <h4 className="font-medium text-sm text-foreground">Salida:</h4>
+                        <div className="bg-black text-green-400 p-3 rounded font-mono text-sm border border-border">
                           {currentResult.logs.map((log: string, index: number) => (
                             <div key={index}>{log}</div>
                           ))}
@@ -213,8 +215,8 @@ export function CodeEditor({
                     
                     {currentResult.error && (
                       <div className="space-y-2">
-                        <h4 className="font-medium text-sm text-red-700">Error:</h4>
-                        <div className="bg-red-50 border border-red-200 p-3 rounded text-sm text-red-800">
+                        <h4 className="font-medium text-sm text-foreground">Error:</h4>
+                        <div className="bg-destructive/10 border border-destructive/30 p-3 rounded text-sm text-destructive">
                           {currentResult.error}
                         </div>
                       </div>

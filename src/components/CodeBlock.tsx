@@ -1,5 +1,6 @@
 import { Copy, Check, Code, Terminal, FileCode } from '@phosphor-icons/react'
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '../lib/utils'
@@ -58,36 +59,43 @@ export function CodeBlock({
     switch (lang.toLowerCase()) {
       case 'javascript':
       case 'js':
-        return 'bg-yellow-500/10 text-yellow-700 border-yellow-500/20'
+        return 'bg-gradient-to-r from-yellow-500/15 to-yellow-600/15 text-yellow-700 border border-yellow-500/30'
       case 'html':
-        return 'bg-orange-500/10 text-orange-700 border-orange-500/20'
+        return 'bg-gradient-to-r from-orange-500/15 to-orange-600/15 text-orange-700 border border-orange-500/30'
       case 'css':
-        return 'bg-blue-500/10 text-blue-700 border-blue-500/20'
+        return 'bg-gradient-to-r from-blue-500/15 to-blue-600/15 text-blue-700 border border-blue-500/30'
       case 'console':
       case 'bash':
-        return 'bg-green-500/10 text-green-700 border-green-500/20'
+        return 'bg-gradient-to-r from-green-500/15 to-green-600/15 text-green-700 border border-green-500/30'
       default:
-        return 'bg-muted text-muted-foreground border-border'
+        return 'bg-muted text-muted-foreground border border-border'
     }
   }
 
   const lines = editableCode.split('\n')
 
   return (
-    <div className="relative group border border-border rounded-lg overflow-hidden bg-card">
-      {/* Header */}
-      <div className="flex items-center justify-between bg-muted/50 px-4 py-3 border-b border-border">
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      whileHover={{ y: -2 }}
+      className="relative group rounded-xl overflow-hidden bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 border-border hover:border-primary/30"
+    >
+      <div className="flex items-center justify-between bg-gradient-to-r from-muted/80 to-muted/60 px-5 py-3.5 border-b-2 border-border/50 backdrop-blur-sm">
         <div className="flex items-center gap-3">
-          {getLanguageIcon(language)}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10">
+            {getLanguageIcon(language)}
+          </div>
+          <div className="flex items-center gap-2.5">
             <Badge 
               variant="outline" 
-              className={cn("text-xs font-medium", getLanguageColor(language))}
+              className={cn("text-xs font-semibold px-3 py-1", getLanguageColor(language))}
             >
               {language.toUpperCase()}
             </Badge>
             {title && (
-              <span className="text-sm font-medium text-foreground">{title}</span>
+              <span className="text-sm font-semibold text-foreground">{title}</span>
             )}
           </div>
         </div>
@@ -95,49 +103,50 @@ export function CodeBlock({
         <div className="flex items-center gap-2">
           {editable && (
             <Button
-              variant="ghost"
+              variant={isEditing ? "default" : "ghost"}
               size="sm"
               onClick={() => setIsEditing(!isEditing)}
-              className="h-8 px-3 text-xs"
+              className="h-8 px-3 text-xs font-medium btn-hover-scale"
             >
-              {isEditing ? 'Vista' : 'Editar'}
+              {isEditing ? '👁️ Vista' : '✏️ Editar'}
             </Button>
           )}
           <Button
             variant="ghost"
             size="sm"
             onClick={copyToClipboard}
-            className="h-8 px-3 opacity-0 group-hover:opacity-100 transition-opacity gap-2"
+            className={cn(
+              "h-8 px-3 gap-2 btn-hover-glow",
+              copied ? "bg-accent/20 text-accent" : "opacity-0 group-hover:opacity-100"
+            )}
           >
             {copied ? (
               <>
-                <Check size={14} />
-                <span className="text-xs">¡Copiado!</span>
+                <Check size={16} weight="bold" />
+                <span className="text-xs font-medium">¡Copiado!</span>
               </>
             ) : (
               <>
-                <Copy size={14} />
-                <span className="text-xs">Copiar</span>
+                <Copy size={16} />
+                <span className="text-xs font-medium">Copiar</span>
               </>
             )}
           </Button>
         </div>
       </div>
 
-      {/* Description */}
       {description && (
-        <div className="px-4 py-2 bg-muted/20 border-b border-border">
-          <p className="text-sm text-muted-foreground">{description}</p>
+        <div className="px-5 py-3 bg-gradient-to-r from-muted/40 to-muted/20 border-b border-border/50">
+          <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
         </div>
       )}
 
-      {/* Code Content */}
-      <div className="relative">
+      <div className="relative bg-gradient-to-br from-card to-muted/20">
         {isEditing && editable ? (
           <textarea
             value={editableCode}
             onChange={(e) => setEditableCode(e.target.value)}
-            className="w-full bg-transparent border-0 p-4 font-mono text-sm leading-relaxed text-card-foreground resize-none focus:outline-none min-h-[200px]"
+            className="w-full bg-transparent border-0 p-5 font-mono text-sm leading-relaxed text-card-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[200px]"
             style={{ 
               fontFamily: 'var(--font-mono)',
               tabSize: 2
@@ -145,15 +154,16 @@ export function CodeBlock({
           />
         ) : (
           <div className="flex">
-            {/* Line Numbers */}
             {showLineNumbers && (
-              <div className="select-none bg-muted/30 px-3 py-4 text-right border-r border-border">
+              <div className="select-none bg-gradient-to-r from-muted/60 to-muted/40 px-4 py-4 text-right border-r-2 border-border/50">
                 {lines.map((_, index) => (
                   <div
                     key={index}
                     className={cn(
-                      "text-xs font-mono leading-relaxed text-muted-foreground/70",
-                      highlightLines.includes(index + 1) && "text-accent font-medium"
+                      "text-xs font-mono leading-relaxed font-medium",
+                      highlightLines.includes(index + 1) 
+                        ? "text-accent" 
+                        : "text-muted-foreground/70"
                     )}
                   >
                     {index + 1}
@@ -162,15 +172,14 @@ export function CodeBlock({
               </div>
             )}
             
-            {/* Code */}
-            <pre className="flex-1 p-4 overflow-x-auto">
+            <pre className="flex-1 p-5 overflow-x-auto">
               <code className="text-sm font-mono leading-relaxed text-card-foreground block">
                 {lines.map((line, index) => (
                   <div 
                     key={index}
                     className={cn(
-                      "leading-relaxed",
-                      highlightLines.includes(index + 1) && "bg-accent/10 px-2 -mx-2 rounded border-l-2 border-accent"
+                      "leading-relaxed transition-colors duration-150",
+                      highlightLines.includes(index + 1) && "bg-gradient-to-r from-accent/15 to-accent/5 px-3 -mx-3 rounded-md border-l-3 border-accent shadow-sm"
                     )}
                   >
                     {line || '\u00A0'}
@@ -182,23 +191,22 @@ export function CodeBlock({
         )}
       </div>
 
-      {/* Footer for editable mode */}
       {editable && isEditing && (
-        <div className="flex items-center justify-between bg-muted/30 px-4 py-2 border-t border-border">
+        <div className="flex items-center justify-between bg-gradient-to-r from-muted/50 to-muted/30 px-5 py-3 border-t-2 border-border/50">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Terminal size={12} />
-            <span>Presiona Tab para indentar • Ctrl+A para seleccionar todo</span>
+            <Terminal size={14} />
+            <span className="font-medium">Presiona Tab para indentar • Ctrl+A para seleccionar todo</span>
           </div>
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
             onClick={() => setEditableCode(code)}
-            className="h-7 px-2 text-xs"
+            className="h-7 px-3 text-xs font-medium hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
           >
-            Resetear
+            🔄 Resetear
           </Button>
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }
