@@ -52,7 +52,6 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
   return (
     <div className="mt-16 space-y-8">
       <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 blur-3xl opacity-30 rounded-3xl" />
         <div className="relative bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 rounded-2xl p-8 border-2 border-accent/30 shadow-xl">
           <div className="flex items-start justify-between gap-6">
             <div className="flex-1">
@@ -197,11 +196,9 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
 
       {completedCount === totalSteps && (
         <Card className="border-2 border-accent bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 shadow-xl overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-primary/10 animate-pulse" />
           <CardContent className="pt-8 pb-8 relative z-10">
             <div className="text-center space-y-5">
               <div className="relative inline-block">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/30 blur-2xl rounded-full" />
                 <div className="relative w-20 h-20 bg-gradient-to-br from-accent to-primary text-white rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-accent/40">
                   <CheckCircle size={44} weight="bold" />
                 </div>

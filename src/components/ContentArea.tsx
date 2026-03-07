@@ -42,7 +42,6 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
             className="text-center space-y-6 max-w-lg"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 blur-3xl opacity-50 rounded-full" />
               <motion.div
                 initial={{ rotate: -180, scale: 0 }}
                 animate={{ rotate: 0, scale: 1 }}
