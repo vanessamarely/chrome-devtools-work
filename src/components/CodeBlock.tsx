@@ -1,4 +1,4 @@
-import { Copy, Check, Code, Terminal, FileCode } from '@phosphor-icons/react'
+import { Copy, Check, Code, Terminal, FileCode, MagicWand } from '@phosphor-icons/react'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
@@ -6,6 +6,8 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '../lib/utils'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { formatCode } from '@/lib/codeFormatter'
+import { toast } from 'sonner'
 
 interface CodeBlockProps {
   code: string
@@ -31,6 +33,7 @@ export function CodeBlock({
   const [copied, setCopied] = useState(false)
   const [editableCode, setEditableCode] = useState(code)
   const [isEditing, setIsEditing] = useState(false)
+  const [isFormatting, setIsFormatting] = useState(false)
 
   const copyToClipboard = async () => {
     try {
@@ -48,6 +51,31 @@ export function CodeBlock({
       onCodeChange(newCode)
     }
   }
+
+  const handleFormat = async () => {
+    setIsFormatting(true)
+    try {
+      const result = await formatCode(editableCode, language)
+      if (result.success) {
+        handleCodeChange(result.code)
+        toast.success('¡Código formateado!', {
+          description: 'El código ha sido formateado correctamente'
+        })
+      } else {
+        toast.error('Error al formatear', {
+          description: result.error || 'No se pudo formatear el código'
+        })
+      }
+    } catch (error) {
+      toast.error('Error al formatear', {
+        description: 'Ocurrió un error inesperado'
+      })
+    } finally {
+      setIsFormatting(false)
+    }
+  }
+
+  const canFormat = ['javascript', 'js', 'html', 'css', 'markup'].includes(language.toLowerCase())
 
   const getLanguageIcon = (lang: string) => {
     switch (lang.toLowerCase()) {
@@ -125,6 +153,20 @@ export function CodeBlock({
         </div>
         
         <div className="flex items-center gap-2">
+          {editable && canFormat && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleFormat}
+              disabled={isFormatting}
+              className="h-8 px-3 gap-2 btn-hover-glow"
+            >
+              <MagicWand size={16} weight={isFormatting ? 'fill' : 'regular'} />
+              <span className="text-xs font-medium">
+                {isFormatting ? 'Formateando...' : 'Formatear'}
+              </span>
+            </Button>
+          )}
           {editable && (
             <Button
               variant={isEditing ? "default" : "ghost"}

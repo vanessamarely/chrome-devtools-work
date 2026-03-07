@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Play, ArrowCounterClockwise, Download, Eye, CheckCircle, XCircle, SplitVertical } from '@phosphor-icons/react'
+import { Play, ArrowCounterClockwise, Download, Eye, CheckCircle, XCircle, SplitVertical, MagicWand } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { CodeBlock } from './CodeBlock'
 import { cn } from '../lib/utils'
+import { formatCode } from '@/lib/codeFormatter'
+import { toast } from 'sonner'
 
 interface CodeExample {
   title: string
@@ -36,12 +38,17 @@ export function CodeEditor({
   const [isExecuting, setIsExecuting] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
   const [codeStates, setCodeStates] = useState<Record<string, string>>({})
+  const [isFormattingAll, setIsFormattingAll] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const currentExample = examples.find(ex => ex.title === activeTab) || examples[0]
 
   const hasWebCode = examples.some(ex => 
     ['html', 'css', 'javascript', 'js'].includes(ex.language.toLowerCase())
+  )
+
+  const hasFormattableCode = examples.some(ex =>
+    ['html', 'css', 'javascript', 'js', 'markup'].includes(ex.language.toLowerCase())
   )
 
   useEffect(() => {
@@ -186,6 +193,50 @@ export function CodeEditor({
     URL.revokeObjectURL(url)
   }
 
+  const formatAllCode = async () => {
+    setIsFormattingAll(true)
+    let successCount = 0
+    let failCount = 0
+    
+    try {
+      const newStates = { ...codeStates }
+      
+      for (const example of examples) {
+        const code = codeStates[example.title] || example.code
+        const result = await formatCode(code, example.language)
+        
+        if (result.success) {
+          newStates[example.title] = result.code
+          successCount++
+        } else {
+          failCount++
+        }
+      }
+      
+      setCodeStates(newStates)
+      
+      if (successCount > 0 && failCount === 0) {
+        toast.success('¡Todo formateado!', {
+          description: `${successCount} archivo${successCount > 1 ? 's' : ''} formateado${successCount > 1 ? 's' : ''} correctamente`
+        })
+      } else if (successCount > 0 && failCount > 0) {
+        toast.warning('Formateado parcial', {
+          description: `${successCount} exitoso${successCount > 1 ? 's' : ''}, ${failCount} fallido${failCount > 1 ? 's' : ''}`
+        })
+      } else {
+        toast.error('No se pudo formatear', {
+          description: 'Ningún archivo pudo ser formateado'
+        })
+      }
+    } catch (error) {
+      toast.error('Error al formatear', {
+        description: 'Ocurrió un error inesperado'
+      })
+    } finally {
+      setIsFormattingAll(false)
+    }
+  }
+
   const currentResult = executionResults[activeTab]
   const currentCode = codeStates[currentExample?.title] || currentExample?.code || ''
 
@@ -213,6 +264,19 @@ export function CodeEditor({
               >
                 {showPreview ? <SplitVertical size={14} /> : <Eye size={14} />}
                 {showPreview ? 'Vista Dividida' : 'Vista Previa'}
+              </Button>
+            )}
+
+            {hasFormattableCode && examples.length > 1 && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={formatAllCode}
+                disabled={isFormattingAll}
+                className="gap-2 btn-hover-glow"
+              >
+                <MagicWand size={14} weight={isFormattingAll ? 'fill' : 'regular'} />
+                {isFormattingAll ? 'Formateando...' : 'Formatear Todo'}
               </Button>
             )}
             
