@@ -16,7 +16,9 @@ interface SidebarProps {
 }
 
 export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelect, isCollapsed = false, onToggleCollapse }: SidebarProps) {
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['basics']))
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(() => {
+    return new Set(sections.map(section => section.id))
+  })
 
   const toggleSection = (sectionId: string) => {
     const newExpanded = new Set(expandedSections)
