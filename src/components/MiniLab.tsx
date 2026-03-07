@@ -199,7 +199,6 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
           <CardContent className="pt-8 pb-8 relative z-10">
             <div className="text-center space-y-5">
               <div className="relative inline-block">
-                <div className="relative w-20 h-20 bg-gradient-to-br from-accent to-primary text-white rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-accent/40">
                   <CheckCircle size={44} weight="bold" />
                 </div>
               </div>
