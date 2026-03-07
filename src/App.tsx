@@ -12,7 +12,13 @@ function App() {
   const [selectedTopic, setSelectedTopic] = useState<string>('introduction')
   const [completedTopicsString, setCompletedTopicsString] = useKV('completed-topics', '')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [sidebarCollapsedString, setSidebarCollapsedString] = useKV('sidebar-collapsed', '')
   const isMobile = useIsMobile()
+  
+  const isSidebarCollapsed = sidebarCollapsedString === 'true'
+  const toggleSidebarCollapse = () => {
+    setSidebarCollapsedString(isSidebarCollapsed ? '' : 'true')
+  }
 
   const completedTopics = new Set(
     completedTopicsString && typeof completedTopicsString === 'string' 
@@ -43,9 +49,6 @@ function App() {
 
   return (
     <div className="flex h-screen bg-background relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.015] via-background to-accent/[0.015] pointer-events-none print:hidden" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/[0.025] to-accent/[0.025] rounded-full blur-3xl opacity-40 pointer-events-none print:hidden" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-accent/[0.025] to-primary/[0.025] rounded-full blur-3xl opacity-40 pointer-events-none print:hidden" />
       
       {isMobile ? (
         <>
@@ -118,6 +121,8 @@ function App() {
               selectedTopic={selectedTopic}
               completedTopics={completedTopics}
               onTopicSelect={handleTopicSelect}
+              isCollapsed={isSidebarCollapsed}
+              onToggleCollapse={toggleSidebarCollapse}
             />
           </div>
           <ContentArea
