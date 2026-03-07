@@ -12,13 +12,7 @@ function App() {
   const [selectedTopic, setSelectedTopic] = useState<string>('introduction')
   const [completedTopicsString, setCompletedTopicsString] = useKV('completed-topics', '')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [sidebarCollapsedString, setSidebarCollapsedString] = useKV('sidebar-collapsed', '')
   const isMobile = useIsMobile()
-  
-  const isSidebarCollapsed = sidebarCollapsedString === 'true'
-  const toggleSidebarCollapse = () => {
-    setSidebarCollapsedString(isSidebarCollapsed ? '' : 'true')
-  }
 
   const completedTopics = new Set(
     completedTopicsString && typeof completedTopicsString === 'string' 
@@ -121,8 +115,6 @@ function App() {
               selectedTopic={selectedTopic}
               completedTopics={completedTopics}
               onTopicSelect={handleTopicSelect}
-              isCollapsed={isSidebarCollapsed}
-              onToggleCollapse={toggleSidebarCollapse}
             />
           </div>
           <div className="flex-1 flex flex-col relative">
