@@ -33,19 +33,19 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
 
   if (isCollapsed) {
     return (
-      <div className="w-20 bg-sidebar border-r border-sidebar-border flex flex-col shadow-sm relative">
+      <div className="w-20 bg-sidebar border-r border-sidebar-border flex flex-col shadow-sm relative overflow-hidden">
         <TooltipProvider delayDuration={300}>
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="p-4 border-b border-sidebar-border bg-gradient-to-br from-primary/[0.03] to-accent/[0.03] flex items-center justify-center"
+            className="p-4 border-b border-sidebar-border bg-gradient-to-br from-primary/[0.03] to-accent/[0.03] flex items-center justify-center flex-shrink-0"
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-md">
               <Code size={20} weight="bold" className="text-white" />
             </div>
           </motion.div>
           
-          <div className="flex-1 overflow-y-auto p-2 space-y-2">
+          <div className="flex-1 overflow-y-auto p-2 space-y-2 scrollbar-thin scrollbar-thumb-sidebar-border scrollbar-track-transparent">
             {sections.map((section) => {
               const completedCount = section.topics.filter(topic => completedTopics.has(topic.id)).length
               const totalCount = section.topics.length
@@ -115,7 +115,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
             })}
           </div>
           
-          <div className="p-2 border-t border-sidebar-border">
+          <div className="p-2 border-t border-sidebar-border flex-shrink-0">
             <Tooltip>
               <TooltipTrigger asChild>
                 <div className="w-full aspect-square rounded-xl bg-sidebar-accent flex items-center justify-center mb-2">
@@ -147,7 +147,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  Expandir menú
+                  <p className="font-semibold">Expandir menú lateral</p>
                 </TooltipContent>
               </Tooltip>
             )}
@@ -158,13 +158,13 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
   }
 
   return (
-    <div className="w-80 bg-sidebar border-r border-sidebar-border flex flex-col shadow-sm relative"
+    <div className="w-80 bg-sidebar border-r border-sidebar-border flex flex-col shadow-sm relative overflow-hidden"
     >
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
-        className="p-6 border-b border-sidebar-border bg-gradient-to-br from-primary/[0.03] to-accent/[0.03]"
+        className="p-6 border-b border-sidebar-border bg-gradient-to-br from-primary/[0.03] to-accent/[0.03] flex-shrink-0"
       >
         <div className="flex items-center gap-3 mb-2">
           <motion.div 
@@ -185,7 +185,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
         </p>
       </motion.div>
       
-      <div className="flex-1 overflow-y-auto p-4 space-y-3">
+      <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin scrollbar-thumb-sidebar-border scrollbar-track-transparent">
         {sections.map((section, sectionIndex) => {
           const isExpanded = expandedSections.has(section.id)
           const completedCount = section.topics.filter(topic => completedTopics.has(topic.id)).length
@@ -300,7 +300,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.4 }}
-        className="p-4 border-t border-sidebar-border bg-gradient-to-br from-primary/[0.03] to-accent/[0.03]"
+        className="p-4 border-t border-sidebar-border bg-gradient-to-br from-primary/[0.03] to-accent/[0.03] flex-shrink-0"
       >
         <div className="space-y-3">
           <div className="flex items-center justify-between text-xs">
@@ -324,7 +324,7 @@ export function Sidebar({ sections, selectedTopic, completedTopics, onTopicSelec
               className="w-full gap-2 mt-2"
             >
               <CaretLeft size={16} weight="bold" />
-              Colapsar menú
+              <span>Contraer menú lateral</span>
             </Button>
           )}
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckCircle, ClipboardText, Code, Target, Printer } from '@phosphor-icons/react'
+import { CheckCircle, ClipboardText, Code, Target, Printer, Star, GitBranch } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -26,6 +26,18 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
     }, 300)
   }
 
+  const handleStarRepo = () => {
+    const repoUrl = 'https://github.com/YOUR_USERNAME/YOUR_REPO'
+    window.open(`${repoUrl}/stargazers`, '_blank', 'noopener,noreferrer')
+    toast.success('¡Gracias por apoyar el proyecto! 🌟')
+  }
+
+  const handleCreateIssue = () => {
+    const repoUrl = 'https://github.com/YOUR_USERNAME/YOUR_REPO'
+    window.open(`${repoUrl}/issues/new`, '_blank', 'noopener,noreferrer')
+    toast.info('Abriendo formulario para crear un issue...')
+  }
+
   if (!topic) {
     return (
       <motion.div 
@@ -34,6 +46,26 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
         transition={{ duration: 0.5 }}
         className="flex-1 flex flex-col bg-background"
       >
+        <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-sm border-b border-border px-4 md:px-8 py-3 flex justify-end gap-2 print:hidden">
+          <Button 
+            onClick={handleStarRepo} 
+            variant="outline"
+            size="sm"
+            className="gap-2 btn-hover-glow"
+          >
+            <Star size={16} weight="bold" />
+            <span className="hidden sm:inline">Dar Estrella</span>
+          </Button>
+          <Button 
+            onClick={handleCreateIssue} 
+            variant="outline"
+            size="sm"
+            className="gap-2 btn-hover-scale"
+          >
+            <GitBranch size={16} weight="bold" />
+            <span className="hidden sm:inline">Reportar Issue</span>
+          </Button>
+        </div>
         <div className="flex-1 flex items-center justify-center p-8">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -75,6 +107,26 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="flex-1 overflow-y-auto bg-background"
     >
+      <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-sm border-b border-border px-4 md:px-8 py-3 flex justify-end gap-2 print:hidden">
+        <Button 
+          onClick={handleStarRepo} 
+          variant="outline"
+          size="sm"
+          className="gap-2 btn-hover-glow"
+        >
+          <Star size={16} weight="bold" />
+          <span className="hidden sm:inline">Dar Estrella</span>
+        </Button>
+        <Button 
+          onClick={handleCreateIssue} 
+          variant="outline"
+          size="sm"
+          className="gap-2 btn-hover-scale"
+        >
+          <GitBranch size={16} weight="bold" />
+          <span className="hidden sm:inline">Reportar Issue</span>
+        </Button>
+      </div>
       <div className="max-w-4xl mx-auto p-4 md:p-8">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
