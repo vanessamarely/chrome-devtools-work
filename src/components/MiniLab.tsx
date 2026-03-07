@@ -200,6 +200,7 @@ export function MiniLabComponent({ miniLab, topicId }: MiniLabProps) {
             <div className="text-center space-y-5">
               <div className="relative inline-block">
                 <CheckCircle size={44} weight="bold" />
+              </div>
               <h3 className="text-3xl font-bold text-foreground">
                 ¡Mini Lab Completado! 🎉
               </h3>
