@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 import { useKV } from '@github/spark/hooks'
-import { List, X, Star, GitBranch } from '@phosphor-icons/react'
+import { List, X } from '@phosphor-icons/react'
 import { Button } from './components/ui/button'
 import { Sidebar } from './components/Sidebar'
 import { ContentArea } from './components/ContentArea'
 import { workshopData } from './data/workshopData'
 import { useIsMobile } from './hooks/use-mobile'
 import { motion, AnimatePresence } from 'framer-motion'
-import { toast } from 'sonner'
-
-const GITHUB_REPO_OWNER = 'vanessamarely'
-const GITHUB_REPO_NAME = 'chrome-devtools-work'
 
 function App() {
   const [selectedTopic, setSelectedTopic] = useState<string>('introduction')
@@ -22,20 +18,6 @@ function App() {
   const isSidebarCollapsed = sidebarCollapsedString === 'true'
   const toggleSidebarCollapse = () => {
     setSidebarCollapsedString(isSidebarCollapsed ? '' : 'true')
-  }
-
-  const handleStarRepo = () => {
-    window.open(`https://github.com/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}`, '_blank')
-    toast.info('Abriendo GitHub', {
-      description: 'Por favor, da una estrella al proyecto'
-    })
-  }
-
-  const handleCreateIssue = () => {
-    window.open(`https://github.com/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/issues/new`, '_blank')
-    toast.info('Abriendo GitHub Issues', {
-      description: 'Crea un issue para reportar errores o sugerir mejoras'
-    })
   }
 
   const completedTopics = new Set(
@@ -122,26 +104,6 @@ function App() {
                   <h1 className="text-lg font-bold text-foreground">DevTools + IA</h1>
                   <p className="text-xs text-muted-foreground">Workshop Interactivo</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="btn-hover-glow gap-2"
-                    onClick={handleStarRepo}
-                  >
-                    <Star size={18} weight="bold" />
-                    <span className="hidden sm:inline">Estrella</span>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="btn-hover-scale gap-2"
-                    onClick={handleCreateIssue}
-                  >
-                    <GitBranch size={18} weight="bold" />
-                    <span className="hidden sm:inline">Issue</span>
-                  </Button>
-                </div>
               </div>
             </div>
             <ContentArea
@@ -164,28 +126,6 @@ function App() {
             />
           </div>
           <div className="flex-1 flex flex-col relative">
-            <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm print:hidden">
-              <div className="flex items-center justify-end gap-2 p-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="btn-hover-glow gap-2"
-                  onClick={handleStarRepo}
-                >
-                  <Star size={18} weight="bold" />
-                  <span>Dar Estrella</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="btn-hover-scale gap-2"
-                  onClick={handleCreateIssue}
-                >
-                  <GitBranch size={18} weight="bold" />
-                  <span>Crear Issue</span>
-                </Button>
-              </div>
-            </div>
             <ContentArea
               topic={currentTopic}
               isCompleted={completedTopics.has(selectedTopic)}
