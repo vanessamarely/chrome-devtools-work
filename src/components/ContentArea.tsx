@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { CheckCircle, ClipboardText, Code, Target, Printer, Star, GitBranch } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
@@ -11,6 +11,7 @@ import { ProgressDashboard } from './ProgressDashboard'
 import { WorkshopTopic } from '../types/workshop'
 import { workshopData } from '../data/workshopData'
 import { toast } from 'sonner'
+import { Octokit } from 'octokit'
 
 interface ContentAreaProps {
   topic?: WorkshopTopic
@@ -19,6 +20,51 @@ interface ContentAreaProps {
 }
 
 export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps) {
+  const [repoInfo, setRepoInfo] = useState<{ owner: string; repo: string } | null>(null)
+  const [isStarred, setIsStarred] = useState(false)
+  const [isCheckingStarred, setIsCheckingStarred] = useState(false)
+
+  useEffect(() => {
+    const getRepoInfo = async () => {
+      try {
+        const user = await window.spark.user()
+        if (user && user.login) {
+          const url = window.location.href
+          const match = url.match(/github\.dev\/([^\/]+)\/([^\/]+)/)
+          
+          if (match) {
+            const owner = match[1]
+            const repo = match[2]
+            setRepoInfo({ owner, repo })
+            
+            checkIfStarred(owner, repo)
+          }
+        }
+      } catch (error) {
+        console.error('Error getting repo info:', error)
+      }
+    }
+
+    getRepoInfo()
+  }, [])
+
+  const checkIfStarred = async (owner: string, repo: string) => {
+    try {
+      setIsCheckingStarred(true)
+      const response = await fetch(`https://api.github.com/user/starred/${owner}/${repo}`, {
+        headers: {
+          'Accept': 'application/vnd.github.v3+json',
+        },
+        credentials: 'include'
+      })
+      setIsStarred(response.status === 204)
+    } catch (error) {
+      console.error('Error checking star status:', error)
+    } finally {
+      setIsCheckingStarred(false)
+    }
+  }
+
   const handlePrint = () => {
     toast.info('Abriendo vista de impresión...')
     setTimeout(() => {
@@ -26,14 +72,71 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
     }, 300)
   }
 
-  const handleStarRepo = () => {
-    const repoUrl = 'https://github.com/YOUR_USERNAME/YOUR_REPO'
-    window.open(`${repoUrl}/stargazers`, '_blank', 'noopener,noreferrer')
-    toast.success('¡Gracias por apoyar el proyecto! 🌟')
+  const handleStarRepo = async () => {
+    if (!repoInfo) {
+      toast.error('No se pudo obtener la información del repositorio')
+      return
+    }
+
+    try {
+      const user = await window.spark.user()
+      
+      if (!user) {
+        toast.error('Debes iniciar sesión en GitHub')
+        return
+      }
+
+      const repoUrl = `https://github.com/${repoInfo.owner}/${repoInfo.repo}`
+      
+      toast.loading('Procesando tu estrella...', { id: 'star-loading' })
+      
+      const octokit = new Octokit()
+      
+      try {
+        if (isStarred) {
+          await octokit.request('DELETE /user/starred/{owner}/{repo}', {
+            owner: repoInfo.owner,
+            repo: repoInfo.repo,
+            headers: {
+              'X-GitHub-Api-Version': '2022-11-28'
+            }
+          })
+          setIsStarred(false)
+          toast.success('Estrella removida', { id: 'star-loading' })
+        } else {
+          await octokit.request('PUT /user/starred/{owner}/{repo}', {
+            owner: repoInfo.owner,
+            repo: repoInfo.repo,
+            headers: {
+              'X-GitHub-Api-Version': '2022-11-28'
+            }
+          })
+          setIsStarred(true)
+          toast.success('¡Gracias por tu estrella! 🌟', { id: 'star-loading' })
+        }
+      } catch (apiError: any) {
+        toast.dismiss('star-loading')
+        
+        if (apiError.status === 401 || apiError.status === 403) {
+          window.open(repoUrl, '_blank', 'noopener,noreferrer')
+          toast.info('Abriendo el repositorio en GitHub para dar estrella')
+        } else {
+          throw apiError
+        }
+      }
+    } catch (error) {
+      console.error('Error starring repo:', error)
+      toast.error('Error al dar estrella. Intenta nuevamente.')
+    }
   }
 
-  const handleCreateIssue = () => {
-    const repoUrl = 'https://github.com/YOUR_USERNAME/YOUR_REPO'
+  const handleCreateIssue = async () => {
+    if (!repoInfo) {
+      toast.error('No se pudo obtener la información del repositorio')
+      return
+    }
+
+    const repoUrl = `https://github.com/${repoInfo.owner}/${repoInfo.repo}`
     window.open(`${repoUrl}/issues/new`, '_blank', 'noopener,noreferrer')
     toast.info('Abriendo formulario para crear un issue...')
   }
@@ -49,12 +152,13 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
         <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-sm border-b border-border px-4 md:px-8 py-3 flex justify-end gap-2 print:hidden">
           <Button 
             onClick={handleStarRepo} 
-            variant="outline"
+            variant={isStarred ? "default" : "outline"}
             size="sm"
             className="gap-2 btn-hover-glow"
+            disabled={isCheckingStarred}
           >
-            <Star size={16} weight="bold" />
-            <span className="hidden sm:inline">Dar Estrella</span>
+            <Star size={16} weight={isStarred ? "fill" : "bold"} />
+            <span className="hidden sm:inline">{isStarred ? "★ Con estrella" : "Dar Estrella"}</span>
           </Button>
           <Button 
             onClick={handleCreateIssue} 
@@ -110,12 +214,13 @@ export function ContentArea({ topic, isCompleted, onComplete }: ContentAreaProps
       <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-sm border-b border-border px-4 md:px-8 py-3 flex justify-end gap-2 print:hidden">
         <Button 
           onClick={handleStarRepo} 
-          variant="outline"
+          variant={isStarred ? "default" : "outline"}
           size="sm"
           className="gap-2 btn-hover-glow"
+          disabled={isCheckingStarred}
         >
-          <Star size={16} weight="bold" />
-          <span className="hidden sm:inline">Dar Estrella</span>
+          <Star size={16} weight={isStarred ? "fill" : "bold"} />
+          <span className="hidden sm:inline">{isStarred ? "★ Con estrella" : "Dar Estrella"}</span>
         </Button>
         <Button 
           onClick={handleCreateIssue} 
