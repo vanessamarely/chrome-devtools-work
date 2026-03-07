@@ -12,7 +12,7 @@ function App() {
   const [selectedTopic, setSelectedTopic] = useState<string>('introduction')
   const [completedTopicsString, setCompletedTopicsString] = useKV('completed-topics', '')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [sidebarCollapsedString, setSidebarCollapsedString] = useKV('sidebar-collapsed', '')
+  const [sidebarCollapsedString, setSidebarCollapsedString] = useKV('sidebar-collapsed', 'false')
   const isMobile = useIsMobile()
   
   const isSidebarCollapsed = sidebarCollapsedString === 'true'
