@@ -7,7 +7,7 @@ export const workshopData: WorkshopData = {
     {
       id: "fundamentals",
       title: "Conceptos Básicos y Paneles DevTools",
-      icon: "🔧",
+      icon: "🛠️",
       topics: [
         {
           id: "introduction",
