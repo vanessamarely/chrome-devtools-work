@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '../lib/utils'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 interface CodeBlockProps {
   code: string
@@ -13,6 +15,7 @@ interface CodeBlockProps {
   editable?: boolean
   showLineNumbers?: boolean
   highlightLines?: number[]
+  onCodeChange?: (code: string) => void
 }
 
 export function CodeBlock({ 
@@ -22,7 +25,8 @@ export function CodeBlock({
   description,
   editable = false,
   showLineNumbers = true,
-  highlightLines = []
+  highlightLines = [],
+  onCodeChange
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false)
   const [editableCode, setEditableCode] = useState(code)
@@ -35,6 +39,13 @@ export function CodeBlock({
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
       console.error('Failed to copy: ', err)
+    }
+  }
+
+  const handleCodeChange = (newCode: string) => {
+    setEditableCode(newCode)
+    if (onCodeChange) {
+      onCodeChange(newCode)
     }
   }
 
@@ -72,7 +83,20 @@ export function CodeBlock({
     }
   }
 
-  const lines = editableCode.split('\n')
+  const normalizeLanguage = (lang: string) => {
+    const lower = lang.toLowerCase()
+    if (lower === 'js') return 'javascript'
+    if (lower === 'html') return 'markup'
+    return lower
+  }
+
+  const customStyle = {
+    margin: 0,
+    padding: '1.25rem',
+    background: 'transparent',
+    fontSize: '0.875rem',
+    lineHeight: '1.7',
+  }
 
   return (
     <motion.div 
@@ -141,53 +165,39 @@ export function CodeBlock({
         </div>
       )}
 
-      <div className="relative bg-gradient-to-br from-card to-muted/20">
+      <div className="relative bg-gradient-to-br from-muted/5 to-muted/20">
         {isEditing && editable ? (
           <textarea
             value={editableCode}
-            onChange={(e) => setEditableCode(e.target.value)}
-            className="w-full bg-transparent border-0 p-5 font-mono text-sm leading-relaxed text-card-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[200px]"
+            onChange={(e) => handleCodeChange(e.target.value)}
+            className="w-full bg-muted/20 border-0 p-5 font-mono text-sm leading-relaxed text-card-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[200px]"
             style={{ 
               fontFamily: 'var(--font-mono)',
               tabSize: 2
             }}
           />
         ) : (
-          <div className="flex">
-            {showLineNumbers && (
-              <div className="select-none bg-gradient-to-r from-muted/60 to-muted/40 px-4 py-4 text-right border-r-2 border-border/50">
-                {lines.map((_, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      "text-xs font-mono leading-relaxed font-medium",
-                      highlightLines.includes(index + 1) 
-                        ? "text-accent" 
-                        : "text-muted-foreground/70"
-                    )}
-                  >
-                    {index + 1}
-                  </div>
-                ))}
-              </div>
-            )}
-            
-            <pre className="flex-1 p-5 overflow-x-auto">
-              <code className="text-sm font-mono leading-relaxed text-card-foreground block">
-                {lines.map((line, index) => (
-                  <div 
-                    key={index}
-                    className={cn(
-                      "leading-relaxed transition-colors duration-150",
-                      highlightLines.includes(index + 1) && "bg-gradient-to-r from-accent/15 to-accent/5 px-3 -mx-3 rounded-md border-l-3 border-accent shadow-sm"
-                    )}
-                  >
-                    {line || '\u00A0'}
-                  </div>
-                ))}
-              </code>
-            </pre>
-          </div>
+          <SyntaxHighlighter
+            language={normalizeLanguage(language)}
+            style={oneDark}
+            showLineNumbers={showLineNumbers}
+            customStyle={customStyle}
+            wrapLines={true}
+            lineProps={(lineNumber) => ({
+              style: {
+                backgroundColor: highlightLines.includes(lineNumber) 
+                  ? 'rgba(234, 179, 8, 0.15)' 
+                  : 'transparent',
+                borderLeft: highlightLines.includes(lineNumber) 
+                  ? '3px solid rgb(234, 179, 8)' 
+                  : 'none',
+                paddingLeft: highlightLines.includes(lineNumber) ? '12px' : '0',
+                display: 'block',
+              }
+            })}
+          >
+            {editableCode}
+          </SyntaxHighlighter>
         )}
       </div>
 
@@ -200,7 +210,7 @@ export function CodeBlock({
           <Button
             variant="outline"
             size="sm"
-            onClick={() => setEditableCode(code)}
+            onClick={() => handleCodeChange(code)}
             className="h-7 px-3 text-xs font-medium hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
           >
             🔄 Resetear

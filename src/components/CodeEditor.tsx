@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Play, ArrowCounterClockwise, Download, Upload, CheckCircle, XCircle } from '@phosphor-icons/react'
+import React, { useState, useEffect, useRef } from 'react'
+import { Play, ArrowCounterClockwise, Download, Eye, CheckCircle, XCircle, SplitVertical } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -34,8 +34,85 @@ export function CodeEditor({
   const [activeTab, setActiveTab] = useState(examples[0]?.title || '')
   const [executionResults, setExecutionResults] = useState<Record<string, { success: boolean; error?: string; logs: string[] } | null>>({})
   const [isExecuting, setIsExecuting] = useState(false)
+  const [showPreview, setShowPreview] = useState(false)
+  const [codeStates, setCodeStates] = useState<Record<string, string>>({})
+  const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const currentExample = examples.find(ex => ex.title === activeTab) || examples[0]
+
+  const hasWebCode = examples.some(ex => 
+    ['html', 'css', 'javascript', 'js'].includes(ex.language.toLowerCase())
+  )
+
+  useEffect(() => {
+    const initialStates: Record<string, string> = {}
+    examples.forEach(ex => {
+      initialStates[ex.title] = ex.code
+    })
+    setCodeStates(initialStates)
+  }, [examples])
+
+  useEffect(() => {
+    if (showPreview && hasWebCode) {
+      updatePreview()
+    }
+  }, [showPreview, codeStates])
+
+  const handleCodeChange = (code: string, exampleTitle: string) => {
+    setCodeStates(prev => ({
+      ...prev,
+      [exampleTitle]: code
+    }))
+  }
+
+  const updatePreview = () => {
+    if (!iframeRef.current) return
+
+    const htmlExample = examples.find(ex => ex.language.toLowerCase() === 'html')
+    const cssExample = examples.find(ex => ex.language.toLowerCase() === 'css')
+    const jsExample = examples.find(ex => 
+      ex.language.toLowerCase() === 'javascript' || ex.language.toLowerCase() === 'js'
+    )
+
+    const htmlCode = htmlExample ? (codeStates[htmlExample.title] || htmlExample.code) : '<body></body>'
+    const cssCode = cssExample ? (codeStates[cssExample.title] || cssExample.code) : ''
+    const jsCode = jsExample ? (codeStates[jsExample.title] || jsExample.code) : ''
+
+    const previewHTML = `
+      <!DOCTYPE html>
+      <html lang="es">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            body {
+              margin: 0;
+              padding: 16px;
+              font-family: system-ui, -apple-system, sans-serif;
+            }
+            ${cssCode}
+          </style>
+        </head>
+        ${htmlCode}
+        <script>
+          try {
+            ${jsCode}
+          } catch (error) {
+            document.body.innerHTML = '<div style="color: red; padding: 20px; background: #fee; border: 2px solid red; border-radius: 8px; margin: 20px;"><strong>Error en JavaScript:</strong><br>' + error.message + '</div>' + document.body.innerHTML;
+          }
+        </script>
+      </html>
+    `
+
+    const iframe = iframeRef.current
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
+
+    if (iframeDoc) {
+      iframeDoc.open()
+      iframeDoc.write(previewHTML)
+      iframeDoc.close()
+    }
+  }
 
   const executeCode = async (code: string, language: string) => {
     if (!allowExecution) return
@@ -45,23 +122,26 @@ export function CodeEditor({
       let result: { success: boolean; error?: string; logs: string[] } | null = null
       
       if (language === 'javascript' || language === 'js') {
-        // Simple evaluation for demonstration
         try {
-          // Create a safe eval context
-          const fn = new Function('console', `
+          const fn = new Function(`
             const logs = [];
             const mockConsole = {
-              log: (...args) => logs.push(args.join(' ')),
-              error: (...args) => logs.push('ERROR: ' + args.join(' ')),
-              warn: (...args) => logs.push('WARN: ' + args.join(' ')),
-              info: (...args) => logs.push('INFO: ' + args.join(' '))
+              log: (...args) => logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ')),
+              error: (...args) => logs.push('ERROR: ' + args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ')),
+              warn: (...args) => logs.push('WARN: ' + args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ')),
+              info: (...args) => logs.push('INFO: ' + args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '))
             };
+            
+            const originalConsole = console;
+            console = mockConsole;
             
             try {
               ${code}
               return { success: true, logs };
             } catch (error) {
               return { success: false, error: error.message, logs };
+            } finally {
+              console = originalConsole;
             }
           `)
           
@@ -83,17 +163,19 @@ export function CodeEditor({
   }
 
   const resetCode = () => {
-    // This would reset to original code in a real implementation
-    setExecutionResults(prev => ({
-      ...prev,
-      [activeTab]: null
-    }))
+    const resetStates: Record<string, string> = {}
+    examples.forEach(ex => {
+      resetStates[ex.title] = ex.code
+    })
+    setCodeStates(resetStates)
+    setExecutionResults({})
   }
 
   const exportCode = () => {
     if (!currentExample) return
     
-    const blob = new Blob([currentExample.code], { type: 'text/plain' })
+    const code = codeStates[currentExample.title] || currentExample.code
+    const blob = new Blob([code], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
@@ -105,6 +187,7 @@ export function CodeEditor({
   }
 
   const currentResult = executionResults[activeTab]
+  const currentCode = codeStates[currentExample?.title] || currentExample?.code || ''
 
   return (
     <Card className="w-full">
@@ -121,11 +204,23 @@ export function CodeEditor({
           </div>
           
           <div className="flex items-center gap-2">
+            {hasWebCode && (
+              <Button
+                variant={showPreview ? "default" : "outline"}
+                size="sm"
+                onClick={() => setShowPreview(!showPreview)}
+                className="gap-2 btn-hover-scale"
+              >
+                {showPreview ? <SplitVertical size={14} /> : <Eye size={14} />}
+                {showPreview ? 'Vista Dividida' : 'Vista Previa'}
+              </Button>
+            )}
+            
             {allowExecution && currentExample && (
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => executeCode(currentExample.code, currentExample.language)}
+                onClick={() => executeCode(currentCode, currentExample.language)}
                 disabled={isExecuting}
                 className="gap-2"
               >
@@ -158,75 +253,104 @@ export function CodeEditor({
       </CardHeader>
       
       <CardContent className="space-y-4">
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-auto">
+        <div className={cn("grid gap-4", showPreview && "lg:grid-cols-2")}>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-auto">
+              {examples.map((example) => (
+                <TabsTrigger key={example.title} value={example.title} className="text-xs">
+                  {example.title}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            
             {examples.map((example) => (
-              <TabsTrigger key={example.title} value={example.title} className="text-xs">
-                {example.title}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          
-          {examples.map((example) => (
-            <TabsContent key={example.title} value={example.title} className="space-y-4">
-              <CodeBlock
-                code={example.code}
-                language={example.language}
-                title={example.title}
-                description={example.description}
-                editable={example.editable}
-                showLineNumbers={true}
-                highlightLines={example.highlightLines}
-              />
-              
-              {currentResult && activeTab === example.title && (
-                <Card className={cn(
-                  "border-2",
-                  currentResult.success 
-                    ? "border-accent/30 bg-accent/5" 
-                    : "border-destructive/30 bg-destructive/5"
-                )}>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-sm flex items-center gap-2">
-                      {currentResult.success ? (
-                        <>
-                          <CheckCircle size={16} className="text-accent" weight="fill" />
-                          <span className="text-foreground">Ejecución Exitosa</span>
-                        </>
-                      ) : (
-                        <>
-                          <XCircle size={16} className="text-destructive" weight="fill" />
-                          <span className="text-foreground">Error de Ejecución</span>
-                        </>
+              <TabsContent key={example.title} value={example.title} className="space-y-4">
+                <CodeBlock
+                  code={codeStates[example.title] || example.code}
+                  language={example.language}
+                  title={example.title}
+                  description={example.description}
+                  editable={example.editable}
+                  showLineNumbers={true}
+                  highlightLines={example.highlightLines}
+                  onCodeChange={(code) => handleCodeChange(code, example.title)}
+                />
+                
+                {currentResult && activeTab === example.title && (
+                  <Card className={cn(
+                    "border-2",
+                    currentResult.success 
+                      ? "border-accent/30 bg-accent/5" 
+                      : "border-destructive/30 bg-destructive/5"
+                  )}>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-sm flex items-center gap-2">
+                        {currentResult.success ? (
+                          <>
+                            <CheckCircle size={16} className="text-accent" weight="fill" />
+                            <span className="text-foreground">Ejecución Exitosa</span>
+                          </>
+                        ) : (
+                          <>
+                            <XCircle size={16} className="text-destructive" weight="fill" />
+                            <span className="text-foreground">Error de Ejecución</span>
+                          </>
+                        )}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      {currentResult.logs && currentResult.logs.length > 0 && (
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-sm text-foreground">Salida:</h4>
+                          <div className="bg-black text-green-400 p-3 rounded font-mono text-sm border border-border">
+                            {currentResult.logs.map((log: string, index: number) => (
+                              <div key={index}>{log}</div>
+                            ))}
+                          </div>
+                        </div>
                       )}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    {currentResult.logs && currentResult.logs.length > 0 && (
-                      <div className="space-y-2">
-                        <h4 className="font-medium text-sm text-foreground">Salida:</h4>
-                        <div className="bg-black text-green-400 p-3 rounded font-mono text-sm border border-border">
-                          {currentResult.logs.map((log: string, index: number) => (
-                            <div key={index}>{log}</div>
-                          ))}
+                      
+                      {currentResult.error && (
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-sm text-foreground">Error:</h4>
+                          <div className="bg-destructive/10 border border-destructive/30 p-3 rounded text-sm text-destructive">
+                            {currentResult.error}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    
-                    {currentResult.error && (
-                      <div className="space-y-2">
-                        <h4 className="font-medium text-sm text-foreground">Error:</h4>
-                        <div className="bg-destructive/10 border border-destructive/30 p-3 rounded text-sm text-destructive">
-                          {currentResult.error}
-                        </div>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              )}
-            </TabsContent>
-          ))}
-        </Tabs>
+                      )}
+                    </CardContent>
+                  </Card>
+                )}
+              </TabsContent>
+            ))}
+          </Tabs>
+
+          {showPreview && hasWebCode && (
+            <Card className="border-2 border-primary/30 overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
+                <CardTitle className="text-sm flex items-center gap-2">
+                  <Eye size={16} className="text-primary" />
+                  Vista Previa en Vivo
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="relative bg-white min-h-[400px] max-h-[600px] overflow-auto">
+                  <iframe
+                    ref={iframeRef}
+                    title="Live Preview"
+                    sandbox="allow-scripts"
+                    className="w-full h-[400px] border-0"
+                  />
+                </div>
+                <div className="px-4 py-2 bg-muted/50 border-t border-border">
+                  <p className="text-xs text-muted-foreground">
+                    💡 La vista previa se actualiza automáticamente al editar el código
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
       </CardContent>
     </Card>
   )
