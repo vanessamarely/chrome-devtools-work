@@ -117,7 +117,7 @@ El panel Elements es tu puerta de entrada al DOM (Document Object Model) y los e
 - **F2** - Editar como HTML`,
           miniLab: {
             title: "Mini Lab: Manipulación DOM y CSS",
-            description: "Practica editando HTML y CSS en tiempo real",
+            description: "Practica editando HTML y CSS en tiempo real con escenarios de debugging avanzados",
             steps: [
               {
                 step: 1,
@@ -157,6 +157,50 @@ El panel Elements es tu puerta de entrada al DOM (Document Object Model) y los e
                   "Selecciónalo en el panel Elements",
                   "En el panel Styles, haz clic en ':hov'",
                   "Activa la checkbox de ':hover' y observa los cambios"
+                ]
+              },
+              {
+                step: 5,
+                title: "Debugging de Layout con Box Model",
+                instructions: [
+                  "Selecciona un elemento con mucho espacio alrededor (ej: un botón o card)",
+                  "Desplázate al final del panel Styles para ver el Box Model",
+                  "Observa los valores de margin (naranja), padding (verde), y border (amarillo)",
+                  "Haz clic en cualquier valor del Box Model para editarlo",
+                  "Prueba cambiar el padding de 20px a 40px y observa el cambio visual"
+                ]
+              },
+              {
+                step: 6,
+                title: "Debugging de Flexbox y Grid",
+                instructions: [
+                  "Busca un contenedor con display: flex o display: grid",
+                  "En el panel Elements, observa los badges 'flex' o 'grid' junto al elemento",
+                  "Haz clic en el badge para activar la overlay de debugging",
+                  "Observa las líneas y áreas visualizadas en la página",
+                  "Modifica propiedades como justify-content o gap en el panel Styles"
+                ]
+              },
+              {
+                step: 7,
+                title: "Ocultar y Reorganizar Elementos",
+                instructions: [
+                  "Selecciona cualquier elemento en el árbol DOM",
+                  "Presiona la tecla 'H' para ocultar el elemento temporalmente",
+                  "Presiona 'H' nuevamente para mostrarlo",
+                  "Arrastra y suelta elementos en el árbol DOM para reorganizarlos",
+                  "Observa cómo cambia la estructura de la página en tiempo real"
+                ]
+              },
+              {
+                step: 8,
+                title: "Copiar Estilos y Selectores",
+                instructions: [
+                  "Haz clic derecho en un elemento en el árbol DOM",
+                  "Selecciona 'Copy' > 'Copy selector' para copiar el selector CSS",
+                  "Luego selecciona 'Copy' > 'Copy styles' para copiar todos los estilos",
+                  "Pégalos en un editor de texto para ver el resultado",
+                  "Prueba 'Copy' > 'Copy JS path' para obtener el selector JavaScript"
                 ]
               }
             ],
@@ -483,7 +527,7 @@ La Consola es tu interfaz principal para la depuración e interacción con JavaS
 - Historial de comandos con teclas de flecha`,
           miniLab: {
             title: "Mini Lab: Dominando la Console",
-            description: "Explora las funcionalidades de la consola JavaScript",
+            description: "Explora las funcionalidades de la consola JavaScript con técnicas avanzadas de debugging",
             steps: [
               {
                 step: 1,
@@ -523,6 +567,72 @@ La Consola es tu interfaz principal para la depuración e interacción con JavaS
                   "Ejecuta alguna operación: for(let i=0; i<1000000; i++){}",
                   "Escribe: console.timeEnd('miTimer')",
                   "Observa el tiempo transcurrido en milisegundos"
+                ]
+              },
+              {
+                step: 5,
+                title: "Console.table para Datos Estructurados",
+                instructions: [
+                  "Crea un array de objetos: const usuarios = [{nombre: 'Ana', edad: 25}, {nombre: 'Luis', edad: 30}]",
+                  "Escribe: console.table(usuarios)",
+                  "Observa cómo los datos se muestran en formato de tabla",
+                  "Haz clic en las columnas para ordenar los datos",
+                  "Prueba con objetos más complejos para ver la representación"
+                ]
+              },
+              {
+                step: 6,
+                title: "Agrupación de Logs",
+                instructions: [
+                  "Escribe: console.group('Usuario 1')",
+                  "Luego: console.log('Nombre: Juan')",
+                  "Luego: console.log('Email: juan@email.com')",
+                  "Finalmente: console.groupEnd()",
+                  "Repite para crear otro grupo y observa la organización jerárquica"
+                ]
+              },
+              {
+                step: 7,
+                title: "Console.assert para Validación",
+                instructions: [
+                  "Escribe: console.assert(2 + 2 === 4, 'Las matemáticas funcionan!')",
+                  "Observa que no muestra nada (la condición es verdadera)",
+                  "Ahora: console.assert(2 + 2 === 5, 'Error: las matemáticas están rotas!')",
+                  "Observa el mensaje de error porque la condición es falsa",
+                  "Úsalo para debugging condicional sin if statements"
+                ]
+              },
+              {
+                step: 8,
+                title: "Console.trace para Stack Traces",
+                instructions: [
+                  "Define funciones anidadas: function a() { b(); } function b() { c(); } function c() { console.trace('¿Cómo llegué aquí?'); }",
+                  "Ejecuta: a()",
+                  "Observa el stack trace completo mostrando la cadena de llamadas",
+                  "Expande cada nivel para ver el contexto de ejecución",
+                  "Útil para entender flujos de ejecución complejos"
+                ]
+              },
+              {
+                step: 9,
+                title: "Contadores con Console.count",
+                instructions: [
+                  "Crea una función: function procesarDato() { console.count('Procesado'); }",
+                  "Llámala varias veces: procesarDato(); procesarDato(); procesarDato();",
+                  "Observa cómo cuenta automáticamente las llamadas",
+                  "Prueba: console.countReset('Procesado') para reiniciar el contador",
+                  "Útil para debugging de loops y funciones repetitivas"
+                ]
+              },
+              {
+                step: 10,
+                title: "Copiar Datos al Portapapeles",
+                instructions: [
+                  "Crea un objeto: const datos = {api: 'https://api.com', key: '12345', config: {timeout: 5000}}",
+                  "Escribe: copy(datos)",
+                  "Pega (Ctrl+V) en un editor de texto",
+                  "Observa que el objeto está en formato JSON",
+                  "Prueba con $$('a') para copiar todos los enlaces de la página"
                 ]
               }
             ]
@@ -604,7 +714,7 @@ El panel Sources es el centro de comando para la depuración de JavaScript. Aqu�
 - Configuración en bundlers para mejor experiencia`,
           miniLab: {
             title: "Mini Lab: Debugging con Sources",
-            description: "Aprende a usar breakpoints y stepping para depurar código",
+            description: "Aprende a usar breakpoints y stepping para depurar código con técnicas avanzadas",
             steps: [
               {
                 step: 1,
@@ -645,6 +755,83 @@ El panel Sources es el centro de comando para la depuración de JavaScript. Aqu�
                   "Agrega una expresión como 'this' o una variable que veas",
                   "Presiona F10 para avanzar y observa cómo cambia el valor",
                   "Agrega expresiones más complejas como 'typeof variable'"
+                ]
+              },
+              {
+                step: 5,
+                title: "Breakpoints Condicionales",
+                instructions: [
+                  "Haz clic derecho en un número de línea dentro de un loop",
+                  "Selecciona 'Add conditional breakpoint'",
+                  "Escribe una condición como: i > 10 o variable === 'valor'",
+                  "Ejecuta el código y observa que solo pausa cuando la condición es verdadera",
+                  "Útil para debugging de iteraciones específicas"
+                ]
+              },
+              {
+                step: 6,
+                title: "Logpoints para Debugging Sin Pausar",
+                instructions: [
+                  "Haz clic derecho en un número de línea",
+                  "Selecciona 'Add logpoint'",
+                  "Escribe un mensaje como: 'Valor de i:', i",
+                  "Observa que aparece en la console sin pausar la ejecución",
+                  "Perfecto para producción o debugging de código que no puedes pausar"
+                ]
+              },
+              {
+                step: 7,
+                title: "Event Listener Breakpoints",
+                instructions: [
+                  "En el panel derecho, expande 'Event Listener Breakpoints'",
+                  "Marca 'Mouse' > 'click' para pausar en cualquier click",
+                  "Haz clic en algún elemento de la página",
+                  "Observa el código que maneja ese evento",
+                  "Prueba con otros eventos: 'Keyboard' > 'keydown', 'Load' > 'load'"
+                ]
+              },
+              {
+                step: 8,
+                title: "XHR/Fetch Breakpoints",
+                instructions: [
+                  "En el panel derecho, busca 'XHR/fetch Breakpoints'",
+                  "Haz clic en '+' y escribe parte de una URL (ej: 'api')",
+                  "Cualquier petición que contenga 'api' pausará el debugger",
+                  "Interactúa con la página para hacer una petición",
+                  "Útil para debugging de llamadas API y problemas de red"
+                ]
+              },
+              {
+                step: 9,
+                title: "Inspección de Variables Complejas",
+                instructions: [
+                  "Cuando el código esté pausado, busca un objeto o array en Scope",
+                  "Expande el objeto para ver sus propiedades",
+                  "Haz hover sobre variables en el código para ver sus valores",
+                  "Haz clic derecho en una variable > 'Reveal in scope'",
+                  "Prueba editar valores: clic derecho > 'Set value'"
+                ]
+              },
+              {
+                step: 10,
+                title: "Blackboxing de Scripts de Terceros",
+                instructions: [
+                  "Encuentra un archivo de librería (ej: jquery, react) en el File Navigator",
+                  "Haz clic derecho en el archivo > 'Blackbox script'",
+                  "Ahora el debugger saltará este código al hacer stepping",
+                  "Para revertir: Settings > Blackboxing y elimina el patrón",
+                  "Útil para enfocarte solo en tu código durante debugging"
+                ]
+              },
+              {
+                step: 11,
+                title: "Debugging de Código Async/Await",
+                instructions: [
+                  "Busca una función async en el código",
+                  "Coloca un breakpoint antes de un await",
+                  "Presiona F11 (Step into) en el await",
+                  "Observa cómo salta a la función asíncrona",
+                  "Usa F8 (Resume) para ver el flujo completo de ejecución asíncrona"
                 ]
               }
             ]
@@ -728,7 +915,7 @@ Cada barra muestra las fases de la petición:
 - **Total page size < 1MB** - Tamaño total optimizado`,
           miniLab: {
             title: "Mini Lab: Análisis de Red",
-            description: "Analiza el performance de red de una página web",
+            description: "Analiza el performance de red de una página web con técnicas avanzadas",
             steps: [
               {
                 step: 1,
@@ -768,6 +955,83 @@ Cada barra muestra las fases de la petición:
                   "Identifica las líneas azul (DOMContentLoaded) y roja (Load)",
                   "Busca gaps largos que indiquen problemas de red",
                   "Haz clic en una petición y ve a la pestaña Timing para detalles"
+                ]
+              },
+              {
+                step: 5,
+                title: "Análisis de Headers y Cache",
+                instructions: [
+                  "Selecciona una petición y ve a la pestaña 'Headers'",
+                  "Busca 'Cache-Control' en Response Headers",
+                  "Identifica recursos sin caché o con caché muy corto",
+                  "Observa 'Content-Encoding' para ver si hay compresión (gzip/brotli)",
+                  "Verifica 'Content-Type' para asegurar tipos MIME correctos"
+                ]
+              },
+              {
+                step: 6,
+                title: "Simulación de Conexiones Lentas",
+                instructions: [
+                  "En la parte superior, busca el menú 'No throttling'",
+                  "Selecciona 'Slow 3G' para simular conexión lenta",
+                  "Recarga la página y observa el comportamiento",
+                  "Identifica qué recursos bloquean la carga en conexiones lentas",
+                  "Prueba 'Fast 3G' y 'Offline' para diferentes escenarios"
+                ]
+              },
+              {
+                step: 7,
+                title: "Blocking de Peticiones",
+                instructions: [
+                  "Haz clic derecho en una petición (ej: un script de analytics)",
+                  "Selecciona 'Block request URL'",
+                  "Recarga la página para ver cómo se comporta sin ese recurso",
+                  "Ve a Settings > Network request blocking para gestionar bloqueados",
+                  "Útil para testing de degradación graceful"
+                ]
+              },
+              {
+                step: 8,
+                title: "Copiar Peticiones como cURL",
+                instructions: [
+                  "Haz clic derecho en una petición XHR/Fetch",
+                  "Selecciona 'Copy' > 'Copy as cURL'",
+                  "Pega el comando en una terminal para replicar la petición",
+                  "Prueba 'Copy as fetch' para código JavaScript",
+                  "Útil para debugging de APIs fuera del navegador"
+                ]
+              },
+              {
+                step: 9,
+                title: "Análisis de Peticiones Fallidas",
+                instructions: [
+                  "En el filtro, escribe 'status-code:404' para ver recursos no encontrados",
+                  "Prueba 'status-code:500' para errores de servidor",
+                  "Usa 'is:running' para ver peticiones activas",
+                  "Filtra por 'larger-than:1M' para recursos > 1MB",
+                  "Identifica y corrige recursos rotos o muy grandes"
+                ]
+              },
+              {
+                step: 10,
+                title: "WebSocket Debugging",
+                instructions: [
+                  "Si el sitio usa WebSockets, filtra por 'WS'",
+                  "Selecciona la conexión WebSocket",
+                  "Ve a la pestaña 'Messages' para ver mensajes en tiempo real",
+                  "Observa 'Frames' para debugging de WebSocket frames",
+                  "Útil para debugging de aplicaciones en tiempo real"
+                ]
+              },
+              {
+                step: 11,
+                title: "Exportar y Analizar HAR Files",
+                instructions: [
+                  "Haz clic derecho en cualquier parte de la lista de peticiones",
+                  "Selecciona 'Save all as HAR with content'",
+                  "Guarda el archivo .har",
+                  "Puedes importarlo más tarde con 'Import HAR file'",
+                  "Comparte HAR files con tu equipo para análisis colaborativo"
                 ]
               }
             ]
