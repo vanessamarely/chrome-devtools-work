@@ -1792,7 +1792,7 @@ IA: ¿Cómo puedo mejorar la experiencia en 3G?
       title: "Integración de IA en DevTools",
       icon: "🤖",
       topics: [
-      topics: [
+        {
           id: "english-prompts",
           title: "Prompts en Inglés para DevTools + IA",
           content: `# Colección de Prompts en Inglés para DevTools + IA
